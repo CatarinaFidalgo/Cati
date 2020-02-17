@@ -28,12 +28,12 @@ public class PointingRightHand : MonoBehaviour
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         if (volumeCollider.bounds.Contains(transform.position))
         {
-            Debug.Log("DENTRO RIGHT");
+            //Debug.Log("DENTRO RIGHT");
             inWorkspace = true;
         }
         else
         {
-            Debug.Log("FORA RIGHT");
+            //Debug.Log("FORA RIGHT");
             inWorkspace = false;
         }
 
@@ -55,36 +55,32 @@ public class PointingRightHand : MonoBehaviour
                         fingerPart1.localRotation = Quaternion.Euler(-1.038f, -0.096f, 4.552f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, -0.351f);
                         fingerPart3.localRotation = Quaternion.Euler(0f, 0f, 0.013f);
-                        Debug.Log("index");
                         break;
 
                     case 1: //middle
                         fingerPart1.localRotation = Quaternion.Euler(54.66f, -0.139f, 0.601f);
                         fingerPart2.localRotation = Quaternion.Euler(104f, 0.002f, -0.5100001f);
                         fingerPart3.localRotation = Quaternion.Euler(36.79f, 0.008f, 0.194f);
-                        Debug.Log("middle");
                         break;
 
                     case 2: //pinky
                         fingerPart1.localRotation = Quaternion.Euler(71.12f, -0.905f, 4.523f);
                         fingerPart2.localRotation = Quaternion.Euler(90.3f, 0.002f, -0.325f);
                         fingerPart3.localRotation = Quaternion.Euler(39.67f, 0.004f, 0.0730f);
-                        Debug.Log("pinky");
                         break;
 
                     case 3: //ring
                         fingerPart1.localRotation = Quaternion.Euler(65.93f, -0.659f, 4.418f);
                         fingerPart2.localRotation = Quaternion.Euler(98.1f, -0.004f, -0.241f);
                         fingerPart3.localRotation = Quaternion.Euler(42.18f, 0.003f, 0.265f);
-                        Debug.Log("ring");
                         break;
 
                     case 4: //thumb
                         fingerPart1.localRotation = Quaternion.Euler(27.71f, 55f, 23.3f);
                         fingerPart2.localRotation = Quaternion.Euler(0.06f, -0.574f, 5.049f);
                         fingerPart3.localRotation = Quaternion.Euler(0.005f, -0.436f, 9.783f);
-                        Debug.Log("thumb");
                         break;
+
                     default:
                         Debug.Log("ERROR");
                         break;
@@ -99,7 +95,6 @@ public class PointingRightHand : MonoBehaviour
                         fingerPart1.localRotation = Quaternion.Euler(-1.457f, -0.097f, 5.167f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, 0.351f);
                         fingerPart3.localRotation = Quaternion.Euler(0f, 0f, -0.013f);
-                        Debug.Log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
                         break;
 
                     case 1: //middle
@@ -125,6 +120,7 @@ public class PointingRightHand : MonoBehaviour
                         fingerPart2.localRotation = Quaternion.Euler(0.055f, -0.539f, 5.208f);
                         fingerPart3.localRotation = Quaternion.Euler(0f, -0.003f, 9.046f);
                         break;
+
                     default:
                         Debug.Log("ERROR");
                         break;
