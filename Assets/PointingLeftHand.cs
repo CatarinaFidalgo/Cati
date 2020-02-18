@@ -7,6 +7,8 @@ public class PointingLeftHand : MonoBehaviour
     //public bool inWorkspace;
     public bool inWorkspace;
 
+    public Transform fingerTip;
+
     private Transform fingerPart1;
     private Transform fingerPart2;
     private Transform fingerPart3;
@@ -26,7 +28,7 @@ public class PointingLeftHand : MonoBehaviour
     void Update()
     {
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
-        if (volumeCollider.bounds.Contains(transform.position))
+        if (volumeCollider.bounds.Contains(fingerTip.position))
         {
             //Debug.Log("DENTRO LEFT");
             inWorkspace = true;

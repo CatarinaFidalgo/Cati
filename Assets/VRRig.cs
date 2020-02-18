@@ -27,6 +27,7 @@ public class VRRig : MonoBehaviour
     public Transform headConstraint;
     public Vector3 headBodyOffset; //initial diference in position between the head and the body
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,9 @@ public class VRRig : MonoBehaviour
     void Update()
     {
         transform.position = headConstraint.position + headBodyOffset;
-        transform.forward = Vector3.ProjectOnPlane(/*headConstraint.up*/Camera.main.transform.forward, Vector3.up).normalized;
+          
+        transform.forward = Vector3.ProjectOnPlane(/*headConstraint.up*/ head.vrTarget.forward, Vector3.up).normalized;
+
 
         //transform.forward = Camera.main.transform.forward;
 

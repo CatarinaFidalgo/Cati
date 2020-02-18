@@ -9,6 +9,7 @@ using System.Text;
 public class UdpListener : MonoBehaviour
 {
 
+    //public Transform OBJECT;
     public Transform remoteHead;
     public Transform remoteControllerRight;
     public Transform remotecontrollerLeft;
@@ -74,6 +75,9 @@ public class UdpListener : MonoBehaviour
         {
             string[] transforms = s.Split((char)MessageSeparators.L1);
 
+            //OBJECT.localPosition = _parsePosition(transforms[0].Split((char)MessageSeparators.L2)[0]);
+            //OBJECT.localRotation = _parseRotation(transforms[0].Split((char)MessageSeparators.L2)[1]);
+
             remoteHead.localPosition = _parsePosition(transforms[0].Split((char)MessageSeparators.L2)[0]);
             remoteHead.localRotation = _parseRotation(transforms[0].Split((char)MessageSeparators.L2)[1]);
 
@@ -93,7 +97,7 @@ public class UdpListener : MonoBehaviour
         string [] values = v.Split((char)MessageSeparators.L3);
 
         ret.x = float.Parse(values[0]);
-        ret.y = float.Parse(values[1]);
+        ret.y = float.Parse(values[1]); // - 180.0f;
         ret.z = float.Parse(values[2]);
         ret.w = float.Parse(values[3]);
 
@@ -106,9 +110,9 @@ public class UdpListener : MonoBehaviour
 
         string[] values = v.Split((char)MessageSeparators.L3);
 
-        ret.x = float.Parse(values[0]);
-        ret.y = float.Parse(values[1]);
-        ret.z = float.Parse(values[2]);
+        ret.x = float.Parse(values[0]);  // ret.x = -float.Parse(values[0]);
+        ret.y = float.Parse(values[1]);  // y mantem-se
+        ret.z = float.Parse(values[2]);  // ret.z = -float.Parse(values[2]);
 
         return ret;
     }

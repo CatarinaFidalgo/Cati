@@ -17,6 +17,7 @@ public class SendAvatar : MonoBehaviour
     public Transform head;
     public Transform controllerRight;
     public Transform controllerLeft;
+    //public Transform OBJECT;
 
     public int port = 7001;
     private UdpBroadcast _upd;
@@ -45,6 +46,7 @@ public class SendAvatar : MonoBehaviour
              */
             string msg = "";
 
+            //msg += _getValues(OBJECT) + (char)MessageSeparators.L1;
             msg += _getValues(head) + (char)MessageSeparators.L1;
             msg += _getValues(controllerRight) + (char)MessageSeparators.L1;
             msg += _getValues(controllerLeft);
