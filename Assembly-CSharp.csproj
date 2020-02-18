@@ -395,6 +395,7 @@
     <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPVersion.cs" />
     <Compile Include="Assets\PointingLeftHand.cs" />
     <Compile Include="Assets\PointingRightHand.cs" />
+    <Compile Include="Assets\Scripts\Evaluation.cs" />
     <Compile Include="Assets\Scripts\SendAvatar.cs" />
     <Compile Include="Assets\Scripts\UdpBroadcast.cs" />
     <Compile Include="Assets\Scripts\UdpListener.cs" />
