@@ -9,12 +9,16 @@ public class WorkspaceTransformation : MonoBehaviour
 
     public Evaluation evaluation;
 
-    public Transform handLeft;
-    public Transform handLeftTip;
+    public Transform remoteLeft;
     public Transform warpedHandLeft;
 
-    public Transform handRight;
+
+    public Transform handLeftTip;
+    public Transform TIP;
+
+    public Transform remoteRight;
     public Transform warpedHandRight;
+    
 
     void Start()
     {
@@ -27,14 +31,14 @@ public class WorkspaceTransformation : MonoBehaviour
 
         if (evaluation.condition == ConditionType.Approach)
         {
-            warpedHandLeft.localPosition = _invert(handLeft.localPosition);
+            warpedHandLeft.localPosition = _invert(remoteRight.localPosition);
 
-            //Vector3 d = handLeftTip.position - handLeft.position;
+            //Vector3 d = handLeftTip.position - remoteLeft.position;
             //warpedHandLeft.localPosition = warpedHandLeft.localPosition - d;
 
 
 
-            warpedHandRight.localPosition = _invert(handRight.localPosition);
+            warpedHandRight.localPosition = _invert(remoteLeft.localPosition);
 
 
 
@@ -42,7 +46,8 @@ public class WorkspaceTransformation : MonoBehaviour
             // else destroca
 
 
-
+            TIP.position = handLeftTip.position;
+            TIP.rotation = handLeftTip.rotation;
 
 
 
@@ -51,9 +56,13 @@ public class WorkspaceTransformation : MonoBehaviour
 
 
         }
-        else
+        else  // VERIDICAL
         {
-            warpedHandLeft.localPosition = warpedHandRight.localPosition = Vector3.zero;
+            warpedHandLeft.localPosition = remoteLeft.localPosition; 
+            warpedHandLeft.localRotation = remoteLeft.localRotation;
+
+            warpedHandRight.localPosition = remoteRight.localPosition; 
+            warpedHandRight.localRotation = remoteRight.localRotation;
         }
     }
 

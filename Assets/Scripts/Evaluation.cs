@@ -21,14 +21,19 @@ public class Evaluation : MonoBehaviour
     public Transform localWorkspace;
     public Transform remoteWorkspace;
 
+    public GameObject veridicalSetUp;
+    public GameObject approachSetUp;
+
     void Start()
     {
 
         if ( condition == ConditionType.Veridical)
         {           
-            remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
-            //MAIS MIL CENAS
+            remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);            
             remoteWorkspace.localScale = new Vector3(1, 1, 1);
+
+            veridicalSetUp.SetActive(true);
+            approachSetUp.SetActive(false);
         }
 
         else if (condition == ConditionType.SideToSide)
@@ -36,12 +41,18 @@ public class Evaluation : MonoBehaviour
             remoteWorkspace.localRotation = Quaternion.Euler(0, -25, 0); //Por agora. Mais tarde: 0 diferença na rotação
             localWorkspace.localRotation = Quaternion.Euler(0, 25, 0);
             remoteWorkspace.localScale = new Vector3(1, 1, 1);
+
+            veridicalSetUp.SetActive(true);
+            approachSetUp.SetActive(false);
         }
 
         else // condition == ConditionType.Approach
         {
             remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
             remoteWorkspace.localScale = new Vector3(-1, 1, 1);
+
+            veridicalSetUp.SetActive(false);
+            approachSetUp.SetActive(true);
         }
     }
 
