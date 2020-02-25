@@ -4909,8 +4909,6 @@ MonoBehaviour:
   TIP: {fileID: 366134665}
   remoteRight: {fileID: 1477282893}
   warpedHandRight: {fileID: 1536892037}
-  newPivotLeft: {fileID: 1782443637}
-  targetLeft: {fileID: 848067787}
 --- !u!4 &1595118414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4219709927406051244, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
@@ -5057,7 +5055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: 0
+  condition: 1
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}
