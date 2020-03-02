@@ -24,6 +24,8 @@ public class Evaluation : MonoBehaviour
     public GameObject veridicalSetUp;
     public GameObject approachSetUp;
 
+    public Transform remoteAvatar;
+
     void Start()
     {
 
@@ -49,7 +51,12 @@ public class Evaluation : MonoBehaviour
         else // condition == ConditionType.Approach
         {
             remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
-            remoteWorkspace.localScale = new Vector3(-1, 1, 1);
+            remoteWorkspace.localScale = new Vector3(1, 1, 1);
+
+
+            
+
+
 
             veridicalSetUp.SetActive(false);
             approachSetUp.SetActive(true);
@@ -57,10 +64,10 @@ public class Evaluation : MonoBehaviour
     }
 
 
-    void Update()
+    void LateUpdate()
     {
 
+        //remoteAvatar.parent = remoteWorkspace;
 
-        
     }
 }

@@ -87,6 +87,7 @@ public class UdpListener : MonoBehaviour
             remotecontrollerLeft.localPosition = _parsePosition(transforms[2].Split((char)MessageSeparators.L2)[0]);
             remotecontrollerLeft.localRotation = _parseRotation(transforms[2].Split((char)MessageSeparators.L2)[1]);
 
+
         }
     }
 

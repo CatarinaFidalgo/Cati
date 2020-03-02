@@ -27,6 +27,8 @@ public class PointingRightHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         if (volumeCollider.bounds.Contains(fingerTip.position))
         {

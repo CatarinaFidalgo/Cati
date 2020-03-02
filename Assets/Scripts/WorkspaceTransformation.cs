@@ -15,24 +15,33 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform remoteLeft;
     public Transform warpedHandLeft;
 
-
     public Transform handLeftTip;
     public Transform TIP;
 
     public Transform remoteRight;
     public Transform warpedHandRight;
 
+    public Transform remoteHMD;
+    public Transform warpedHMD;
+
     public Transform newPivotLeft;
     public Transform targetLeft;
+
+    public VRRig remoteVRRig;
+    public Transform remoteAvatar;
+
+    public Transform warpedSpace;
 
     void Start()
     {
         
     }
 
-
     void Update()
     {
+        
+
+
         if (volumeCollider.bounds.Contains(remoteLeft.position) || volumeCollider.bounds.Contains(remoteRight.position))
         {
            inWorkspace = true;
@@ -43,53 +52,79 @@ public class WorkspaceTransformation : MonoBehaviour
         }
 
 
-        if (evaluation.condition == ConditionType.Approach && inWorkspace == true)
+        if (evaluation.condition == ConditionType.Approach)
         {
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
 
-            warpedHandLeft.localPosition = _invert(remoteRight.localPosition);
-            warpedHandLeft.localRotation = remoteRight.localRotation;
+            warpedSpace.localScale = new Vector3(-1, 1, 1);
 
-           // warpedHandLeft.LookAt(targetLeft.position - (-newPivotLeft.right), newPivotLeft.forward);
+            warpedHMD.localPosition = remoteHMD.localPosition;
 
-            //Vector3 d = handLeftTip.position - remoteLeft.position;
-            //warpedHandLeft.localPosition = warpedHandLeft.localPosition - d;
+            warpedHandRight.localPosition = remoteLeft.localPosition;
+
+            warpedHandLeft.localPosition = remoteRight.localPosition;
 
 
 
-            warpedHandRight.localPosition = _invert(remoteLeft.localPosition);
+            warpedHMD.localRotation = remoteHMD.localRotation;
+
             warpedHandRight.localRotation = remoteLeft.localRotation;
 
+            warpedHandLeft.localRotation = remoteRight.localRotation;
 
-            //TIP.position = handLeftTip.position;
-            //TIP.rotation = handLeftTip.rotation;
 
-            Debug.Log("Approach in workspace");
+
+            ////transform.localRotation = Quaternion.Euler(0, 180, 0);
+            ////transform.localScale = new Vector3(-1, 1, 1);
+
+
+
+            //warpedHandLeft.localPosition = remoteRight.localPosition;
+            //warpedHandLeft.LookAt(warpedHandLeft.position + remoteRight.forward, remoteRight.up);
+
+            //warpedHandRight.localPosition = remoteLeft.localPosition;
+            //warpedHandRight.LookAt(warpedHandRight.position + remoteLeft.forward, remoteLeft.up);
+
+
+
+            //if (inWorkspace)
+            //{
+            //    /* LEFt HAND */
+
+            //    //TIP.position = handLeftTip.position;
+            //    //TIP.RotateAroundLocal(Vector3.up, 180f); //TIP.Rotate();
+
+
+
+
+
+
+
+            //    Debug.Log("Approach in workspace");
+            //}
+            //else
+            //{
+
+
+
+
+            //    Debug.Log("Approach out workspace");
+            //}
+
+
 
 
         }
 
-        else if (evaluation.condition == ConditionType.Approach && inWorkspace == false)
+
+
+
+        if (evaluation.condition == ConditionType.Veridical)
         {
+            // Debug.Log("Veridical");
 
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            transform.localScale = new Vector3(1, 1, 1);
+            warpedHMD.localPosition = remoteHMD.localPosition;
+            warpedHMD.localRotation = remoteHMD.localRotation;
 
-            warpedHandLeft.localPosition = remoteLeft.localPosition;
-            warpedHandLeft.localRotation = remoteLeft.localRotation;
-
-            warpedHandRight.localPosition = remoteRight.localPosition;
-            warpedHandRight.localRotation = remoteRight.localRotation;
-
-            Debug.Log("Approach out workspace");
-
-        }
-
-
-        else  // VERIDICAL
-        {
-           // Debug.Log("Veridical");
 
             warpedHandLeft.localPosition = remoteLeft.localPosition; 
             warpedHandLeft.localRotation = remoteLeft.localRotation;
@@ -97,6 +132,11 @@ public class WorkspaceTransformation : MonoBehaviour
             warpedHandRight.localPosition = remoteRight.localPosition; 
             warpedHandRight.localRotation = remoteRight.localRotation;
         }
+    }
+
+    void LateUpdate()
+    {
+
     }
 
     private Vector3 _invert(Vector3 p)
