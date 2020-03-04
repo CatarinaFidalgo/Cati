@@ -68,6 +68,7 @@
     <Compile Include="Assets\MagicMirror\Prefab\MirrorCameraScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorReflectionScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorScript.cs" />
+    <Compile Include="Assets\NewTry.cs" />
     <Compile Include="Assets\Oculus\AudioManager\Scenes\Scripts\TestScript.cs" />
     <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\AmbienceEmitter.cs" />
     <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\AudioManager.cs" />
@@ -407,6 +408,7 @@
     <Compile Include="Assets\Unity\ConstraintSamples\Scripts\mParent.cs" />
     <Compile Include="Assets\Unity\Info\Scripts\Readme.cs" />
     <Compile Include="Assets\VRRig.cs" />
+    <Compile Include="Assets\VRRig2.cs" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
     <None Include="Assets\plants\dd\AlphaTest-Bumped.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_PC_SingleComponent.shader" />

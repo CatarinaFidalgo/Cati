@@ -46,6 +46,7 @@ public class Evaluation : MonoBehaviour
 
             veridicalSetUp.SetActive(true);
             approachSetUp.SetActive(false);
+            Debug.Log("I'm side to side");
         }
 
         else // condition == ConditionType.Approach

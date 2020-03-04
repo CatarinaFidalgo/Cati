@@ -10,27 +10,31 @@ public class WorkspaceTransformation : MonoBehaviour
     public bool inWorkspace;
     public BoxCollider volumeCollider;
 
+    public Transform warpedSpace;
+
     public Evaluation evaluation;
 
-    public Transform remoteLeft;
-    public Transform warpedHandLeft;
-
-    public Transform handLeftTip;
-    public Transform TIP;
-
-    public Transform remoteRight;
-    public Transform warpedHandRight;
+    public VRRig2 remoteVRRig;
+    public Transform remoteAvatar;
 
     public Transform remoteHMD;
     public Transform warpedHMD;
 
-    public Transform newPivotLeft;
-    public Transform targetLeft;
+    public Transform remoteLeft;
+    public Transform warpedHandLeft;    
+    
+    public Transform remoteRight;
+    public Transform warpedHandRight;
 
-    public VRRig remoteVRRig;
-    public Transform remoteAvatar;
-
-    public Transform warpedSpace;
+    public Transform remoteLeftTip;
+    public Transform remoteRightTip;
+          
+    public Transform targetLeft; // targets are the tips of the local avatar hands calculated from the remote hands
+    public Transform targetRight;  
+                 
+    [Space(15)]
+    public Vector3 transformLeftHandVector;
+    public bool d;
 
     void Start()
     {
@@ -39,23 +43,16 @@ public class WorkspaceTransformation : MonoBehaviour
 
     void Update()
     {
-        
 
-
-        if (volumeCollider.bounds.Contains(remoteLeft.position) || volumeCollider.bounds.Contains(remoteRight.position))
-        {
-           inWorkspace = true;
-        }
-        else
-        {           
-            inWorkspace = false;
-        }
+        inWorkspace = volumeCollider.bounds.Contains(remoteLeft.position) || volumeCollider.bounds.Contains(remoteRight.position);
 
 
         if (evaluation.condition == ConditionType.Approach)
         {
 
             warpedSpace.localScale = new Vector3(-1, 1, 1);
+
+            //Mirror hands and put them in the right place
 
             warpedHMD.localPosition = remoteHMD.localPosition;
 
@@ -73,55 +70,37 @@ public class WorkspaceTransformation : MonoBehaviour
 
 
 
-            ////transform.localRotation = Quaternion.Euler(0, 180, 0);
-            ////transform.localScale = new Vector3(-1, 1, 1);
+            remoteVRRig.updateRig(); 
+
+           
+            //Truques Mauricio para calcular a local tip a partir da remota
+            Transform parent = remoteLeftTip.parent;
+            remoteLeftTip.parent = transform;
+            targetLeft.localPosition = new Vector3(remoteLeftTip.localPosition.x, remoteLeftTip.localPosition.y, -remoteLeftTip.localPosition.z);
+            remoteLeftTip.parent = parent;
+
+            //transformLeftHandVector is the transform vector from the remote to the local tip
+            transformLeftHandVector = targetLeft.position - remoteLeftTip.position; 
 
 
-
-            //warpedHandLeft.localPosition = remoteRight.localPosition;
-            //warpedHandLeft.LookAt(warpedHandLeft.position + remoteRight.forward, remoteRight.up);
-
-            //warpedHandRight.localPosition = remoteLeft.localPosition;
-            //warpedHandRight.LookAt(warpedHandRight.position + remoteLeft.forward, remoteLeft.up);
+            Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + transformLeftHandVector, Color.cyan);
 
 
+            GameObject.Find("Bolinhaaaaa").transform.position = warpedHandLeft.position + transformLeftHandVector;
 
-            //if (inWorkspace)
-            //{
-            //    /* LEFt HAND */
-
-            //    //TIP.position = handLeftTip.position;
-            //    //TIP.RotateAroundLocal(Vector3.up, 180f); //TIP.Rotate();
-
-
-
-
-
-
-
-            //    Debug.Log("Approach in workspace");
-            //}
-            //else
-            //{
-
-
-
-
-            //    Debug.Log("Approach out workspace");
-            //}
-
-
-
-
+            
+            warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; // <------------------ DANIEL!!!! NAO FUNCIONMAAAA. #touchorando
+            
+            remoteVRRig.updateRig(); // <----- aha--- tá aqui o fora da lei
+            
         }
 
 
 
 
-        if (evaluation.condition == ConditionType.Veridical)
+        if (evaluation.condition == ConditionType.Veridical || evaluation.condition == ConditionType.SideToSide)
         {
-            // Debug.Log("Veridical");
-
+            
             warpedHMD.localPosition = remoteHMD.localPosition;
             warpedHMD.localRotation = remoteHMD.localRotation;
 
@@ -139,8 +118,5 @@ public class WorkspaceTransformation : MonoBehaviour
 
     }
 
-    private Vector3 _invert(Vector3 p)
-    {
-        return new Vector3(p.x, p.y, -p.z);
-    }
+    
 }

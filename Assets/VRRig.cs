@@ -37,12 +37,19 @@ public class VRRig : MonoBehaviour
 
     void Update()
     {
-        updateRig();
+        if (remote && evaluation.condition == ConditionType.Approach)
+        {
+            // tou a fazer approach olo
+        }
+        else
+        {
+            updateRig();
+            Debug.Log("Estou nio vr rig antigo");
+        }
     }
 
     public void updateRig()
     {
-
 
         transform.position = headConstraint.position + headBodyOffset;
           
