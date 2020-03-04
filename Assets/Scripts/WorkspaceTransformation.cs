@@ -38,16 +38,7 @@ public class WorkspaceTransformation : MonoBehaviour
 
     void Start()
     {
-        
-    }
-
-    void Update()
-    {
-
-        inWorkspace = volumeCollider.bounds.Contains(remoteLeft.position) || volumeCollider.bounds.Contains(remoteRight.position);
-
-
-        if (evaluation.condition == ConditionType.Approach)
+        /*if (evaluation.condition == ConditionType.Approach)
         {
 
             warpedSpace.localScale = new Vector3(-1, 1, 1);
@@ -68,11 +59,46 @@ public class WorkspaceTransformation : MonoBehaviour
 
             warpedHandLeft.localRotation = remoteRight.localRotation;
 
+            remoteVRRig.updateRig();
+
+            Debug.Break();
+
+        }*/
+    }
+
+    void Update()
+    {
+
+        inWorkspace = volumeCollider.bounds.Contains(remoteLeft.position) || volumeCollider.bounds.Contains(remoteRight.position);
 
 
-            remoteVRRig.updateRig(); 
+        if (evaluation.condition == ConditionType.Approach)
+        {
+            
+            warpedSpace.localScale = new Vector3(-1, 1, 1);
 
-           
+            //Mirror hands and put them in the right place
+
+            warpedHMD.localPosition = remoteHMD.localPosition;
+
+            warpedHandRight.localPosition = remoteLeft.localPosition;
+
+            warpedHandLeft.localPosition = remoteRight.localPosition;
+
+
+
+            warpedHMD.localRotation = remoteHMD.localRotation;
+
+            warpedHandRight.localRotation = remoteLeft.localRotation;
+
+            warpedHandLeft.localRotation = remoteRight.localRotation;
+
+            
+            Debug.Break();
+            remoteVRRig.updateRig();
+            Debug.Break();
+            
+
             //Truques Mauricio para calcular a local tip a partir da remota
             Transform parent = remoteLeftTip.parent;
             remoteLeftTip.parent = transform;
@@ -80,19 +106,25 @@ public class WorkspaceTransformation : MonoBehaviour
             remoteLeftTip.parent = parent;
 
             //transformLeftHandVector is the transform vector from the remote to the local tip
-            transformLeftHandVector = targetLeft.position - remoteLeftTip.position; 
+            transformLeftHandVector = targetLeft.position - remoteLeftTip.position;
 
+            Debug.Log(transformLeftHandVector);
 
             Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + transformLeftHandVector, Color.cyan);
 
 
             GameObject.Find("Bolinhaaaaa").transform.position = warpedHandLeft.position + transformLeftHandVector;
 
-            
+            Debug.Break();
+
             warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; // <------------------ DANIEL!!!! NAO FUNCIONMAAAA. #touchorando
-            
+            Debug.Break();
+           
+
             remoteVRRig.updateRig(); // <----- aha--- tá aqui o fora da lei
+
             
+            Debug.Break();
         }
 
 

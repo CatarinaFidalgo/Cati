@@ -27,11 +27,7 @@ public class VRRig2 : MonoBehaviour
 
     [Space(15)]
     [Header("Offsets")]    
-    public Vector3 headPositionOffset;
-    //public Vector3 headRotationOffset;
-    //public Vector3 rightHandPositionOffset;
-    //public Vector3 leftHandPositionOffset;
-
+    public Vector3 headPositionOffset;   
     private Vector3 headBodyOffset;
 
     [Space(15)]
@@ -49,12 +45,12 @@ public class VRRig2 : MonoBehaviour
         if (remote && evaluation.condition == ConditionType.Approach)
         {
             // Fazer a approach - WorkspaceTransformation
-            Debug.Log("Estou na approach");
+            //Debug.Log("Estou na approach");
         }
         else
         {
             updateRig();
-            Debug.Log("Estou no else");
+            //Debug.Log("Estou no else");
         }
     }
 
@@ -67,15 +63,11 @@ public class VRRig2 : MonoBehaviour
         //Match entre o target no esqueleto (RigTarget) e os dados vindos dos controladores (VrTarget)
 
         headRigTarget.position = headVrTarget.TransformPoint(headPositionOffset);
-        headRigTarget.rotation = headVrTarget.rotation;
-        //headRigTarget.rotation = headVrTarget.rotation * Quaternion.Euler(headRotationOffset);
-
-
-        //rightHandRigTarget.position = rightHandVrTarget.TransformPoint(rightHandPositionOffset);
+        headRigTarget.rotation = headVrTarget.rotation;      
+               
         rightHandRigTarget.position = rightHandVrTarget.position;
         rightHandRigTarget.LookAt(rightHandRigTarget.position - rightHandVrTarget.right, rightHandVrTarget.forward);
 
-        //leftHandRigTarget.position = leftHandVrTarget.TransformPoint(leftHandPositionOffset);
         leftHandRigTarget.position = leftHandVrTarget.position;
         leftHandRigTarget.LookAt(leftHandRigTarget.position - (-leftHandVrTarget.right), leftHandVrTarget.forward);
 
