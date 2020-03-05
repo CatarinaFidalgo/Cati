@@ -42,16 +42,8 @@ public class VRRig2 : MonoBehaviour
 
     void Update()
     {
-        if (remote && evaluation.condition == ConditionType.Approach)
-        {
-            // Fazer a approach - WorkspaceTransformation
-            //Debug.Log("Estou na approach");
-        }
-        else
-        {
-            updateRig();
-            //Debug.Log("Estou no else");
-        }
+        updateRig();
+        
     }
 
     public void updateRig()
@@ -70,8 +62,7 @@ public class VRRig2 : MonoBehaviour
 
         leftHandRigTarget.position = leftHandVrTarget.position;
         leftHandRigTarget.LookAt(leftHandRigTarget.position - (-leftHandVrTarget.right), leftHandVrTarget.forward);
-
-
+        
     }
 }
 

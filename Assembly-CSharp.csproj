@@ -405,6 +405,7 @@
     <Compile Include="Assets\Scripts\UdpListener.cs" />
     <Compile Include="Assets\Scripts\WorkspaceTransformation.cs" />
     <Compile Include="Assets\SetTarget.cs" />
+    <Compile Include="Assets\ShowFingertipValues.cs" />
     <Compile Include="Assets\Unity\ConstraintSamples\Scripts\mParent.cs" />
     <Compile Include="Assets\Unity\Info\Scripts\Readme.cs" />
     <Compile Include="Assets\VRRig.cs" />
