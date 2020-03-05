@@ -13,7 +13,9 @@ public class UdpListener : MonoBehaviour
     public Transform remoteHead;
     public Transform remoteControllerRight;
     public Transform remotecontrollerLeft;
-    
+    public Transform remoteFingertipRight;
+    public Transform remoteFingertipLeft;
+
     public int port = 7002;
     
 
@@ -87,6 +89,12 @@ public class UdpListener : MonoBehaviour
             remotecontrollerLeft.localPosition = _parsePosition(transforms[2].Split((char)MessageSeparators.L2)[0]);
             remotecontrollerLeft.localRotation = _parseRotation(transforms[2].Split((char)MessageSeparators.L2)[1]);
 
+            remoteFingertipRight.localPosition = _parsePosition(transforms[3].Split((char)MessageSeparators.L2)[0]);
+            remoteFingertipRight.localRotation = _parseRotation(transforms[3].Split((char)MessageSeparators.L2)[1]);
+
+            remoteFingertipLeft.localPosition = _parsePosition(transforms[4].Split((char)MessageSeparators.L2)[0]);
+            remoteFingertipLeft.localRotation = _parseRotation(transforms[4].Split((char)MessageSeparators.L2)[1]);
+
 
         }
     }
@@ -98,7 +106,7 @@ public class UdpListener : MonoBehaviour
         string [] values = v.Split((char)MessageSeparators.L3);
 
         ret.x = float.Parse(values[0]);
-        ret.y = float.Parse(values[1]); // - 180.0f;
+        ret.y = float.Parse(values[1]); 
         ret.z = float.Parse(values[2]);
         ret.w = float.Parse(values[3]);
 
@@ -111,9 +119,9 @@ public class UdpListener : MonoBehaviour
 
         string[] values = v.Split((char)MessageSeparators.L3);
 
-        ret.x = float.Parse(values[0]);  // ret.x = -float.Parse(values[0]);
-        ret.y = float.Parse(values[1]);  // y mantem-se
-        ret.z = float.Parse(values[2]);  // ret.z = -float.Parse(values[2]);
+        ret.x = float.Parse(values[0]);  
+        ret.y = float.Parse(values[1]);  
+        ret.z = float.Parse(values[2]);  
 
         return ret;
     }

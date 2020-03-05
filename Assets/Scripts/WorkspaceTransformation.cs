@@ -26,6 +26,14 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform remoteRight;
     public Transform warpedHandRight;
 
+    public Transform remoteFingertipRight;
+    public Transform warpedFingertipRight;
+
+    public Transform remoteFingertipLeft;
+    public Transform warpedFingertipLeft;
+
+
+
     public Transform remoteLeftTip;
     public Transform remoteRightTip;
           
@@ -34,6 +42,7 @@ public class WorkspaceTransformation : MonoBehaviour
                  
     [Space(15)]
     public Vector3 transformLeftHandVector;
+    public Vector3 transformRightHandVector;
     public bool d;
 
     void Start()
@@ -93,38 +102,46 @@ public class WorkspaceTransformation : MonoBehaviour
 
             warpedHandLeft.localRotation = remoteRight.localRotation;
 
-            
-            Debug.Break();
-            remoteVRRig.updateRig();
-            Debug.Break();
-            
+            warpedFingertipRight.localPosition = remoteFingertipLeft.localPosition;
+            warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
 
-            //Truques Mauricio para calcular a local tip a partir da remota
+            warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;
+            warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
+
+
+            remoteVRRig.updateRig();
+
+
+
+            /*//Truques Mauricio para calcular a local tip a partir da remota
             Transform parent = remoteLeftTip.parent;
             remoteLeftTip.parent = transform;
             targetLeft.localPosition = new Vector3(remoteLeftTip.localPosition.x, remoteLeftTip.localPosition.y, -remoteLeftTip.localPosition.z);
-            remoteLeftTip.parent = parent;
+            remoteLeftTip.parent = parent;*/
+
+
+            //calcular a local tip a partir da remota
+            targetRight.localPosition = new Vector3(-warpedFingertipLeft.localPosition.x, warpedFingertipLeft.localPosition.y, -warpedFingertipLeft.localPosition.z); //local right fingertip from the left warped hand
+            targetLeft.localPosition = new Vector3(-warpedFingertipRight.localPosition.x, warpedFingertipRight.localPosition.y, -warpedFingertipRight.localPosition.z); //local left fingertip from the right warped hand
 
             //transformLeftHandVector is the transform vector from the remote to the local tip
-            transformLeftHandVector = targetLeft.position - remoteLeftTip.position;
+            transformRightHandVector = targetLeft.position - warpedFingertipRight.position;
+            transformLeftHandVector = targetRight.position - warpedFingertipLeft.position;
 
             Debug.Log(transformLeftHandVector);
 
             Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + transformLeftHandVector, Color.cyan);
 
+           
 
-            GameObject.Find("Bolinhaaaaa").transform.position = warpedHandLeft.position + transformLeftHandVector;
-
-            Debug.Break();
-
-            warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; // <------------------ DANIEL!!!! NAO FUNCIONMAAAA. #touchorando
-            Debug.Break();
+            ///////////warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; // <------------------ DANIEL!!!! NAO FUNCIONMAAAA. #touchorando
+ 
            
 
             remoteVRRig.updateRig(); // <----- aha--- tá aqui o fora da lei
 
             
-            Debug.Break();
+            
         }
 
 
@@ -136,12 +153,15 @@ public class WorkspaceTransformation : MonoBehaviour
             warpedHMD.localPosition = remoteHMD.localPosition;
             warpedHMD.localRotation = remoteHMD.localRotation;
 
-
             warpedHandLeft.localPosition = remoteLeft.localPosition; 
             warpedHandLeft.localRotation = remoteLeft.localRotation;
 
             warpedHandRight.localPosition = remoteRight.localPosition; 
             warpedHandRight.localRotation = remoteRight.localRotation;
+
+            
+
+
         }
     }
 
