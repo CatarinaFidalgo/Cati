@@ -28,11 +28,14 @@ public class VRRig2 : MonoBehaviour
     [Space(15)]
     [Header("Offsets")]    
     public Vector3 headPositionOffset;   
-    private Vector3 headBodyOffset;
+    public Vector3 headBodyOffset;
 
     [Space(15)]
     public bool remote = false;
     public Evaluation evaluation;
+
+    [Space(15)]
+    public bool active;
 
     void Start()
     {
@@ -48,6 +51,8 @@ public class VRRig2 : MonoBehaviour
 
     public void updateRig()
     {
+        if (!active) return;
+
         //update da posiçao do avatar
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = Vector3.ProjectOnPlane(headVrTarget.forward, Vector3.up).normalized;

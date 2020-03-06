@@ -115,10 +115,13 @@ public class WorkspaceTransformation : MonoBehaviour
             warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; 
             warpedHandRight.position = warpedHandRight.position + transformRightHandVector;
 
-            /*
+            
             differenceAvatarWristToWarpedCLeft = (warpedHandLeft.position - wristLeft.position);// * 1000000f;
             differenceAvatarWristToWarpedCRight = (warpedHandRight.position - wristRight.position);// * 1000000f; 
-            
+
+           // Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + differenceAvatarWristToWarpedCLeft, Color.green);
+
+            /*
             //Arm Stretching
 
             shoulderLeft.localPosition = shoulderLeft.localPosition + new Vector3 (0, 0.5f*differenceAvatarWristToWarpedCLeft.z, 0);
