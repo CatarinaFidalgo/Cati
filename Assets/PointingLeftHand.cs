@@ -28,7 +28,7 @@ public class PointingLeftHand : MonoBehaviour
     void Update()
     {
 
-
+        
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         inWorkspace = volumeCollider.bounds.Contains(fingerTip.position);
         
@@ -47,9 +47,9 @@ public class PointingLeftHand : MonoBehaviour
                 switch (i)
                 {
                     case 0: //index
-                        fingerPart1.localRotation = Quaternion.Euler(-1.038f, -0.096f, 4.552f);
+                        /*fingerPart1.localRotation = Quaternion.Euler(-1.038f, -0.096f, 4.552f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, -0.351f);
-                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, 0.013f);                        
+                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, 0.013f);  */                     
                         break;
 
                     case 1: //middle
