@@ -23,8 +23,10 @@ public class calibration : MonoBehaviour
 
     void Update()
     {
+                    return;
+
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {            
             float leftScale = Vector3.Distance(leftShoulder.position, controllerLeft.position) / Vector3.Distance(leftShoulder.position, localHandLeft.position);
             float rightScale = Vector3.Distance(rightShoulder.position, controllerRight.position) / Vector3.Distance(rightShoulder.position, localHandRight.position);
 

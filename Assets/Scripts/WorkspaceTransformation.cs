@@ -36,30 +36,42 @@ public class WorkspaceTransformation : MonoBehaviour
     [Space(8)]
     public Transform targetLeft; // targets are the tips of the local avatar hands calculated from the remote hands
     public Transform targetRight;
-    [Space(8)]
-    public Transform wristRight;
-    public Transform wristLeft;
-    [Space(20)]
+   
+       
+    [Header("Right Arm Rig")]
+
     [Header("Stretch the Arms")]
-    [Space(10)]
-    [Header("Right Arm")]
+
     public Transform shoulderRight;
     public Transform elbowRight;
+    public Transform wristRight;
     public Vector3 differenceAvatarWristToWarpedCRight;
-    [Space(10)]
-    [Header("Left Arm")]
+    [Header("Left Arm Rig")]
+   
     public Transform shoulderLeft;
     public Transform elbowLeft;
+    public Transform wristLeft;
     public Vector3 differenceAvatarWristToWarpedCLeft;
 
 
     private Vector3 transformLeftHandVector;
     private Vector3 transformRightHandVector;
 
+    // reset values
+    private Transform warpedHMD_reset;
+    private Transform warpedHandRight_reset;
+    private Transform warpedHandLeft_reset;
+    private Transform warpedFingertipRight_reset;
+    private Transform warpedFingertipLeft_reset;
+
     //values for internal use
     private Quaternion _lookRotation;
     private Vector3 _direction;
 
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
@@ -75,29 +87,17 @@ public class WorkspaceTransformation : MonoBehaviour
             //Mirror hands and put them in the right place
 
             warpedHMD.localPosition = remoteHMD.localPosition;
-
             warpedHandRight.localPosition = remoteLeft.localPosition;
-
             warpedHandLeft.localPosition = remoteRight.localPosition;
-
             warpedFingertipRight.localPosition = remoteFingertipLeft.localPosition;
-
-            warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;
-            
+            warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;            
 
             
             warpedHMD.localRotation = remoteHMD.localRotation;
-
             warpedHandRight.localRotation = remoteLeft.localRotation;
-
-            warpedHandLeft.localRotation = remoteRight.localRotation;
-           
-            warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
-            
+            warpedHandLeft.localRotation = remoteRight.localRotation;           
+            warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;            
             warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
-
-            
-
 
             //Calculate the local tip from the remote tip coordinates
 
@@ -110,26 +110,57 @@ public class WorkspaceTransformation : MonoBehaviour
             transformLeftHandVector = targetRight.position - warpedFingertipLeft.position;
 
 
-            //Update the warped hands position with the transform vector
+            //1st Update of the warped hands position with the transform vector 1
 
             warpedHandLeft.position = warpedHandLeft.position + transformLeftHandVector; 
             warpedHandRight.position = warpedHandRight.position + transformRightHandVector;
 
-            
-            differenceAvatarWristToWarpedCLeft = (warpedHandLeft.position - wristLeft.position);// * 1000000f;
-            differenceAvatarWristToWarpedCRight = (warpedHandRight.position - wristRight.position);// * 1000000f; 
+            /* //Arm Stretching
 
-           // Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + differenceAvatarWristToWarpedCLeft, Color.green);
+             differenceAvatarWristToWarpedCLeft = new Vector3 (0, 0.1f, 0.1f);
 
-            /*
-            //Arm Stretching
 
-            shoulderLeft.localPosition = shoulderLeft.localPosition + new Vector3 (0, 0.5f*differenceAvatarWristToWarpedCLeft.z, 0);
-            elbowLeft.localPosition = elbowLeft.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCLeft.z, 0);
+             if (!Input.GetKeyDown(KeyCode.Space)) //!OVRInput.GetDown(OVRInput.Button.One)
+             {
+                 differenceAvatarWristToWarpedCLeft = Vector3.zero;
+                 differenceAvatarWristToWarpedCRight = Vector3.zero;
+                 //Debug.Log("PRESSED NOTHING");
 
-            shoulderRight.localPosition = shoulderRight.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCRight.z, 0);            
-            elbowRight.localPosition = elbowRight.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCRight.z, 0);*/
+             }            
 
+             if (Input.GetKeyDown(KeyCode.Space)) //Press a button to let the system know it is allright to start taking measures
+             {
+                 differenceAvatarWristToWarpedCLeft = (warpedHandLeft.position - wristLeft.position);
+                 differenceAvatarWristToWarpedCRight = (warpedHandRight.position - wristRight.position);
+                 Debug.Log("PRESSED A");
+             }
+
+             if ((warpedHandLeft.position - wristLeft.position).magnitude > differenceAvatarWristToWarpedCLeft.magnitude)
+             {
+                 differenceAvatarWristToWarpedCLeft = (warpedHandLeft.position - wristLeft.position);
+                 Debug.Log("Increased the stretching on the Left");
+             }
+
+             if ((warpedHandRight.position - wristRight.position).magnitude > differenceAvatarWristToWarpedCRight.magnitude)
+             {
+                 differenceAvatarWristToWarpedCRight = (warpedHandRight.position - wristRight.position);
+                 Debug.Log("Increased the stretching on the Right");
+             }
+
+             // Debug.DrawLine(warpedHandLeft.position, warpedHandLeft.position + differenceAvatarWristToWarpedCLeft, Color.green);
+
+
+             shoulderLeft.localPosition = shoulderLeft.localPosition + new Vector3 (0, 0.5f*differenceAvatarWristToWarpedCLeft.z, 0);    //Porque só podemos mexer em z para alongar       
+             elbowLeft.localPosition = elbowLeft.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCLeft.z, 0);
+
+             //shoulderRight.localPosition = shoulderRight.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCRight.z, 0);            
+            // elbowRight.localPosition = elbowRight.localPosition + new Vector3(0, 0.5f * differenceAvatarWristToWarpedCRight.z, 0);
+
+             //2nd Update of the warped hands position with the transform vector 2
+
+             warpedHandLeft.position = warpedHandLeft.position + differenceAvatarWristToWarpedCLeft;
+             //warpedHandRight.position = warpedHandRight.position + differenceAvatarWristToWarpedCRight;
+             */
         }
 
 

@@ -5430,13 +5430,13 @@ MonoBehaviour:
   remoteFingertipRightRig: {fileID: 2140557417}
   targetLeft: {fileID: 1511270394}
   targetRight: {fileID: 1944313130}
-  wristRight: {fileID: 1648315316}
-  wristLeft: {fileID: 229942173}
   shoulderRight: {fileID: 67318577}
   elbowRight: {fileID: 1027412841}
+  wristRight: {fileID: 1648315316}
   differenceAvatarWristToWarpedCRight: {x: 0, y: 0, z: 0}
   shoulderLeft: {fileID: 1689010879}
   elbowLeft: {fileID: 347984485}
+  wristLeft: {fileID: 229942173}
   differenceAvatarWristToWarpedCLeft: {x: 0, y: 0, z: 0}
 --- !u!4 &1595118414 stripped
 Transform:
@@ -5615,7 +5615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: 0
+  condition: 1
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}
