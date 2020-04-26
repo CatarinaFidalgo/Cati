@@ -19,31 +19,33 @@ public class AvatarCalibration : MonoBehaviour
 
 
 
-    public VRRig2 VRRig;
+    public VRRig2 VRRigRemote;
+    public VRRig2 VRRigLocal;
 
     private float _scale;
     public float Scale { get => _scale; }
 
     void Update()
     {
-        return;
+        //return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             float leftScale = Vector3.Distance(leftShoulder.position, controllerLeft.position) / Vector3.Distance(leftShoulder.position, localHandLeft.position);
             float rightScale = Vector3.Distance(rightShoulder.position, controllerRight.position) / Vector3.Distance(rightShoulder.position, localHandRight.position);
 
-            _scale = (leftScale + rightScale) * 0.5f;
+            _scale = (leftScale + rightScale) * 0.5f *0.95f;
 
-            Vector3 tmpPos = Avatar.position;
+            //Vector3 tmpPos = Avatar.position;
             Avatar.localScale = new Vector3(_scale, _scale, _scale);
-            Avatar.position = tmpPos;
+            //Avatar.position = tmpPos;
 
-            VRRig.headBodyOffset *= _scale;
-
-            tmpPos = AvatarAPAGA.position;
+            VRRigRemote.headBodyOffset *= _scale;
+            VRRigLocal.headBodyOffset *= _scale;
+            
+            //tmpPos = AvatarAPAGA.position;
             AvatarAPAGA.localScale = new Vector3(_scale, _scale, _scale);
-            AvatarAPAGA.position = tmpPos;
+            //AvatarAPAGA.position = tmpPos;
 
             Debug.Log("Scale: " + _scale);
         }

@@ -806,6 +806,7 @@ MonoBehaviour:
   remote: 1
   evaluation: {fileID: 1641664408}
   active: 1
+  ti: 0
 --- !u!1 &316435754
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Avatar
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6490797625099919960, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
         type: 3}
@@ -2702,6 +2708,7 @@ MonoBehaviour:
   remote: 0
   evaluation: {fileID: 1641664408}
   active: 1
+  ti: 0
 --- !u!4 &646421396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4355221431637606, guid: f3c62d7d0e6462f4b84c26d69e118bcd,
@@ -2775,7 +2782,8 @@ MonoBehaviour:
   localHandRight: {fileID: 925460460}
   controllerLeft: {fileID: 736988006}
   controllerRight: {fileID: 242734145}
-  VRRig: {fileID: 645765914}
+  VRRigRemote: {fileID: 309572964}
+  VRRigLocal: {fileID: 645765914}
 --- !u!4 &676475996
 Transform:
   m_ObjectHideFlags: 0
@@ -3710,6 +3718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RemoteAvatar
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6490797625099919960, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
         type: 3}
@@ -5989,7 +6002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: 0
+  condition: 1
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}

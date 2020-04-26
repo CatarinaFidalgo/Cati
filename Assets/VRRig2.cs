@@ -37,6 +37,8 @@ public class VRRig2 : MonoBehaviour
     [Space(15)]
     public bool active;
 
+    public float ti;
+
     void Start()
     {
         //initial diference in position between the head and the body
@@ -45,13 +47,7 @@ public class VRRig2 : MonoBehaviour
 
     void Update()
     {
-        updateRig();
-        
-    }
-
-    public void updateRig()
-    {
-        if (!active) return;
+        ti = 1.0f;
 
         //update da posiçao do avatar
         transform.position = headConstraint.position + headBodyOffset;
@@ -60,14 +56,14 @@ public class VRRig2 : MonoBehaviour
         //Match entre o target no esqueleto (RigTarget) e os dados vindos dos controladores (VrTarget)
 
         headRigTarget.position = headVrTarget.TransformPoint(headPositionOffset);
-        headRigTarget.rotation = headVrTarget.rotation;      
-               
+        headRigTarget.rotation = headVrTarget.rotation;
+
         rightHandRigTarget.position = rightHandVrTarget.position;
         rightHandRigTarget.LookAt(rightHandRigTarget.position - rightHandVrTarget.right, rightHandVrTarget.forward);
 
         leftHandRigTarget.position = leftHandVrTarget.position;
         leftHandRigTarget.LookAt(leftHandRigTarget.position - (-leftHandVrTarget.right), leftHandVrTarget.forward);
-        
     }
+
 }
 

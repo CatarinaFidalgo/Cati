@@ -43,7 +43,7 @@ public class WorkspaceTransformation : MonoBehaviour
 
     private void Start()
     {
-        offset = 0.60f;
+        offset = 0.4f;
         lerpRatio = 1.0f;
     }
 

@@ -23,7 +23,7 @@ public class calibration : MonoBehaviour
 
     void Update()
     {
-                    return;
+                    //return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {            
