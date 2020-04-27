@@ -11,12 +11,20 @@ public enum ConditionType
     SideToSide
 }
 
+public enum Handedness
+{
+    Right_Handed,
+    Left_Handed
+}
+
+
 
 
 public class Evaluation : MonoBehaviour
 {
 
     public ConditionType condition;
+    public Handedness handedness;
 
     public Transform localWorkspace;
     public Transform remoteWorkspace;

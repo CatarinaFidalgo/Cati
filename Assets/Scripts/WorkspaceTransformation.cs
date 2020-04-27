@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OVRTouchSample;
+using UnityEngine.SceneManagement;
 
 public class WorkspaceTransformation : MonoBehaviour
 {
@@ -32,70 +34,133 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform remoteFingertipLeftRig;
     public Transform remoteFingertipRightRig;
     [Space(8)]
-    public Transform targetLeft; // targets are the tips of the local avatar hands calculated from the remote hands
-    public Transform targetRight;    
+    public Transform targetLeftTip; // targetTips are the tips of the local avatar hands calculated from the remote hands
+    public Transform targetRightTip;
+    [Space(8)]
+    public Transform rigWristLeft;
+    public Transform rigWristRight;
+    
 
     //values for internal use
     private Vector3 transformLeftHandVector;
     private Vector3 transformRightHandVector;
-    private float offset;
-    private float lerpRatio;
+    private Vector3 differenceAvatarWristToWarpedCRight;
+    private Vector3 differenceAvatarWristToWarpedCLeft;
+
+    private float offset1;
+    private float offset_left;
+    public float offset_right;
+    public Transform pointingHandTip;
+    //private float lerpRatio;
+    private float angle_cos;
+    private float magnitude_right;
+    private float magnitude_left;
 
     private void Start()
     {
-        offset = 0.4f;
-        lerpRatio = 1.0f;
+        offset1 = 0.0f;
+        offset_right = 0.0f;
+        offset_left = 0.0f;
+       
     }
 
     void Update()
     {
+        //OVRInput.Update();
 
         inWorkspace = volumeCollider.bounds.Contains(remoteFingertipRight.position) || volumeCollider.bounds.Contains(remoteFingertipLeft.position);
+        
+        if (evaluation.handedness == Handedness.Right_Handed)
+        {
+            pointingHandTip.position = targetRightTip.position;
+            pointingHandTip.rotation = targetRightTip.rotation;
+        }
+        else if (evaluation.handedness == Handedness.Left_Handed)
+        {
+            pointingHandTip.position = targetLeftTip.position;
+            pointingHandTip.rotation = targetLeftTip.rotation;
+        }
 
+        //Debug.Log((float)OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger));
+        //Debug.Log((float)OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger));
+        //Debug.Log(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch));
+        //Debug.Log(Input.GetAxis("Oculus_CrossPlatform_SecondaryIndexTrigger"));
 
         if (evaluation.condition == ConditionType.Approach)
         {
+            warpedSpace.localScale = new Vector3(-1, 1, 1); //Mirror workspace
+
+            /*************** Calculate warped positions of head and hands****************/
+
+            //warpedHMD.localPosition = remoteHMD.localPosition;  //Update head position in (*1*)
+            warpedHandRight.localPosition = remoteLeft.localPosition;
+            warpedHandLeft.localPosition = remoteRight.localPosition;
+            warpedFingertipRight.localPosition = remoteFingertipLeft.localPosition;
+            warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;
+
+
+            warpedHMD.localRotation = remoteHMD.localRotation;
+            warpedHandRight.localRotation = remoteLeft.localRotation;
+            warpedHandLeft.localRotation = remoteRight.localRotation;
+            warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
+            warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
+
+            /*************** Make remote hands point to the same place as local avatar ****************/
+            /**************       (Works only in specific zone: needs more update)     ****************/
+
+            //Calculate the local tips from the remote tip coordinates
+            targetRightTip.localPosition = new Vector3(-warpedFingertipLeft.localPosition.x, warpedFingertipLeft.localPosition.y, -warpedFingertipLeft.localPosition.z); //local right fingertip from the left warped hand
+            targetLeftTip.localPosition = new Vector3(-warpedFingertipRight.localPosition.x, warpedFingertipRight.localPosition.y, -warpedFingertipRight.localPosition.z); //local left fingertip from the right warped hand
+
+            //transformHandVector is the transform vector from the remote to the local tip
+            transformRightHandVector = targetLeftTip.position - warpedFingertipRight.position;
+            transformLeftHandVector = targetRightTip.position - warpedFingertipLeft.position;
+
+            //Update of the warped hands position with the transform vector
+            warpedHandLeft.position += transformLeftHandVector;
+            warpedHandRight.position += transformRightHandVector;
+
+            // (*1*)
+            /*****************************    Head position update     **************************/
             
-            if (true)
-            {             
-                    
-                warpedSpace.localScale = new Vector3(-1, 1, 1);
+            differenceAvatarWristToWarpedCLeft = warpedHandLeft.position - rigWristLeft.position;
+            differenceAvatarWristToWarpedCRight = warpedHandRight.position - rigWristRight.position;
 
-                //Mirror hands and put them in the right place            
+            magnitude_left = differenceAvatarWristToWarpedCLeft.magnitude;
+            magnitude_right = differenceAvatarWristToWarpedCRight.magnitude;
 
-                // public static Vector3 Lerp(Vector3 a, Vector3 b, float t);
-
-                //warpedHMD.localPosition = Vector3.Lerp(remoteHMD.localPosition, new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, -remoteHMD.localPosition.z - offset), lerpRatio);
-
-                warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, -remoteHMD.localPosition.z - offset);
-                //warpedHMD.localPosition = remoteHMD.localPosition;
-                warpedHandRight.localPosition = remoteLeft.localPosition;
-                warpedHandLeft.localPosition = remoteRight.localPosition;
-                warpedFingertipRight.localPosition = remoteFingertipLeft.localPosition;
-                warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;
-
-
-                warpedHMD.localRotation = remoteHMD.localRotation;
-                warpedHandRight.localRotation = remoteLeft.localRotation;
-                warpedHandLeft.localRotation = remoteRight.localRotation;
-                warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
-                warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
-
-                //Calculate the local tip from the remote tip coordinates
-
-                targetRight.localPosition = new Vector3(-warpedFingertipLeft.localPosition.x, warpedFingertipLeft.localPosition.y, -warpedFingertipLeft.localPosition.z); //local right fingertip from the left warped hand
-                targetLeft.localPosition = new Vector3(-warpedFingertipRight.localPosition.x, warpedFingertipRight.localPosition.y, -warpedFingertipRight.localPosition.z); //local left fingertip from the right warped hand
-
-                //transformHandVector is the transform vector from the remote to the local tip
-
-                transformRightHandVector = targetLeft.position - warpedFingertipRight.position;
-                transformLeftHandVector = targetRight.position - warpedFingertipLeft.position;
-
-                //1st Update of the warped hands position with the transform vector 1
-
-                warpedHandLeft.position += transformLeftHandVector;
-                warpedHandRight.position += transformRightHandVector;
+            angle_cos = Mathf.Cos(Vector3.Angle(differenceAvatarWristToWarpedCLeft, transform.forward));
+            Debug.Log("cos left" + angle_cos);
+            if (angle_cos < 0)
+            {
+                magnitude_left = -magnitude_left;
             }
+
+            angle_cos = Mathf.Cos(Vector3.Angle(differenceAvatarWristToWarpedCRight, transform.forward));
+            Debug.Log("cos right" + angle_cos);
+            if (angle_cos < 0)
+            {
+                magnitude_right = -magnitude_right;
+            }
+
+            offset_left += magnitude_left;
+            offset_right += magnitude_right;
+
+            Debug.Log("offset left" + offset_left);
+            Debug.Log("offset right" + offset_right);
+
+            warpedHMD.localPosition = remoteHMD.localPosition;
+            //warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, remoteHMD.localPosition.z + offset_left);
+            //warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, remoteHMD.localPosition.z + offset1);
+          
+
+            //warpedHMD.localPosition = Vector3.Lerp(remoteHMD.localPosition, new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, -remoteHMD.localPosition.z - offset), lerpRatio);
+            //**************warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, -pointingHandTip.position.z + offset_1);
+            //warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, -remoteHMD.localPosition.z - offset);
+            //warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, remoteHMD.localPosition.z - offset_1);
+
+            
+
             
             /*if (!inWorkspace)
             {

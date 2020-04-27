@@ -21,8 +21,8 @@ public class TableDisplay : MonoBehaviour
 
         else // condition == ConditionType.Approach
         {
-            largeTable.SetActive(false);
-            smallTable.SetActive(true);
+            largeTable.SetActive(true);
+            smallTable.SetActive(false);
         }
     }
 
