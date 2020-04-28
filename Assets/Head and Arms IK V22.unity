@@ -3263,7 +3263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &749126421
 Transform:
   m_ObjectHideFlags: 0
@@ -3879,11 +3879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109308, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 113768, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 487254, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6107,6 +6107,7 @@ MonoBehaviour:
   targetRightTip: {fileID: 1944313130}
   rigWristLeft: {fileID: 229942173}
   rigWristRight: {fileID: 1648315316}
+  offset1: 0
   offset_right: 0
   pointingHandTip: {fileID: 749126421}
 --- !u!4 &1595118414 stripped
