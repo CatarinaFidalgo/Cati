@@ -44,6 +44,7 @@ public class PointingRightHand : MonoBehaviour
 
             if (inWorkspace == true)  // Fingers in Pointing Position
             {
+                Debug.Log("in Workspace");
                 switch (i)
                 {
                     case 0: //index
@@ -87,12 +88,14 @@ public class PointingRightHand : MonoBehaviour
             {
                 // Fingers in Relaxed Position - Default hands of the prefab
 
-                /*switch (i)
+                Debug.Log("NOOOOOOOOOOT Workspace");
+
+                switch (i)
                 {
                     case 0: //index
-                        fingerPart1.localRotation = Quaternion.Euler(-1.457f, -0.097f, 5.167f);
+                        /*fingerPart1.localRotation = Quaternion.Euler(-1.457f, -0.097f, 5.167f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, 0.351f);
-                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, -0.013f);
+                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, -0.013f);*/
                         break;
 
                     case 1: //middle
@@ -122,7 +125,7 @@ public class PointingRightHand : MonoBehaviour
                     default:
                         Debug.Log("ERROR");
                         break;
-                }*/
+                }
 
             }
         }   

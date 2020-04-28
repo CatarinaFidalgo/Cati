@@ -27,7 +27,7 @@ public class PointingLeftHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         inWorkspace = volumeCollider.bounds.Contains(fingerTip.position);
@@ -44,6 +44,7 @@ public class PointingLeftHand : MonoBehaviour
 
             if (inWorkspace == true)  // Fingers in Pointing Position
             {
+                Debug.Log("In Workspace");
                 switch (i)
                 {
                     case 0: //index
@@ -86,13 +87,14 @@ public class PointingLeftHand : MonoBehaviour
             {
 
                 // Fingers in Relaxed Position - Default hands of the prefab
+                Debug.Log("NOOOOOOOOOOT Workspace");
 
-                /*switch (i)
+                switch (i)
                 {
                     case 0: //index
-                        fingerPart1.localRotation = Quaternion.Euler(-1.457f, -0.097f, 5.167f);
+                        /*fingerPart1.localRotation = Quaternion.Euler(-1.457f, -0.097f, 5.167f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, 0.351f);
-                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, -0.013f);
+                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, -0.013f);*/
                         break;
 
                     case 1: //middle
@@ -122,7 +124,7 @@ public class PointingLeftHand : MonoBehaviour
                     default:
                         Debug.Log("ERROR");
                         break;
-                }*/
+                }
 
             }
         }
