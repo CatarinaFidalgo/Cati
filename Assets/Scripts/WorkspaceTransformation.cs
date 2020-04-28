@@ -47,6 +47,8 @@ public class WorkspaceTransformation : MonoBehaviour
     private Vector3 transformRightHandVector;
     private float m;
     private float b;
+    public bool isPointingRight;
+    public bool isPointingLeft;
 
     private void Start()
     {
@@ -97,15 +99,19 @@ public class WorkspaceTransformation : MonoBehaviour
 
             //Assumes the pointing hand is the one that is further ahead
 
-            if (targetRightTip.position.z >= targetLeftTip.position.z)
+            if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
             {
                 pointingHandTip.position = targetRightTip.position;
                 pointingHandTip.rotation = targetRightTip.rotation;
+                isPointingRight = true;
+                isPointingLeft = false;
             }
-            else if (targetRightTip.position.z < targetLeftTip.position.z)
+            else if (targetRightTip.position.z < targetLeftTip.position.z) //pointing hand is the LEFT hand
             {
                 pointingHandTip.position = targetLeftTip.position;
                 pointingHandTip.rotation = targetLeftTip.rotation;
+                isPointingRight = false;
+                isPointingLeft = true;
             }
 
             // Moves head according to the position of the local hand tip along the equation:

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PointingLeftHand : MonoBehaviour
+public class PointingLeftHandRemote : MonoBehaviour
 {
     //public bool inWorkspace;
     public bool inWorkspace;
@@ -20,11 +19,11 @@ public class PointingLeftHand : MonoBehaviour
     private int i = 0;
 
     void Update()
-    {        
-        
+    {
+
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         inWorkspace = volumeCollider.bounds.Contains(fingerTip.position);
-        
+
         //Changes the rotation of the fingers for a pointing/relaxed position
 
         for (i = 0; i <= 4; i++)
@@ -35,7 +34,7 @@ public class PointingLeftHand : MonoBehaviour
             fingerPart2 = this.gameObject.transform.GetChild(i).GetChild(0);
             fingerPart3 = this.gameObject.transform.GetChild(i).GetChild(0).GetChild(0);
 
-            if (inWorkspace == true && wsTransformation.isPointingLeft == true )  // Fingers in Pointing Position
+            if (inWorkspace == true && wsTransformation.isPointingRight == true)  // Fingers in Pointing Position
             {
                 Debug.Log("In Workspace");
                 switch (i)
@@ -43,7 +42,7 @@ public class PointingLeftHand : MonoBehaviour
                     case 0: //index
                         /*fingerPart1.localRotation = Quaternion.Euler(-1.038f, -0.096f, 4.552f);
                         fingerPart2.localRotation = Quaternion.Euler(0f, 0.004f, -0.351f);
-                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, 0.013f);  */                     
+                        fingerPart3.localRotation = Quaternion.Euler(0f, 0f, 0.013f);  */
                         break;
 
                     case 1: //middle
@@ -55,7 +54,7 @@ public class PointingLeftHand : MonoBehaviour
                     case 2: //pinky
                         fingerPart1.localRotation = Quaternion.Euler(71.12f, -0.905f, 4.523f);
                         fingerPart2.localRotation = Quaternion.Euler(90.3f, 0.002f, -0.325f);
-                        fingerPart3.localRotation = Quaternion.Euler(39.67f, 0.004f, 0.0730f);                        
+                        fingerPart3.localRotation = Quaternion.Euler(39.67f, 0.004f, 0.0730f);
                         break;
 
                     case 3: //ring
@@ -69,14 +68,14 @@ public class PointingLeftHand : MonoBehaviour
                         fingerPart2.localRotation = Quaternion.Euler(0.06f, 0.574f, -5.049f);
                         fingerPart3.localRotation = Quaternion.Euler(0.005f, 0.436f, -9.783f);
                         break;
-           
+
                     default:
                         Debug.Log("ERROR");
                         break;
                 }
             }
 
-            else if (inWorkspace == false || wsTransformation.isPointingLeft == false) 
+            else if (inWorkspace == false || wsTransformation.isPointingRight == false)
             {
 
                 // Fingers in Relaxed Position - out of the workspace or if the hand isn't pointing 
@@ -113,7 +112,7 @@ public class PointingLeftHand : MonoBehaviour
                         fingerPart2.localRotation = Quaternion.Euler(0.055f, 0.539f, -5.208f);
                         fingerPart3.localRotation = Quaternion.Euler(0f, 0.003f, -9.046f);
                         break;
-                        
+
                     default:
                         Debug.Log("ERROR");
                         break;

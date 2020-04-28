@@ -400,7 +400,9 @@
     <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPSettings.cs" />
     <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPVersion.cs" />
     <Compile Include="Assets\PointingLeftHand.cs" />
+    <Compile Include="Assets\PointingLeftHandRemote.cs" />
     <Compile Include="Assets\PointingRightHand.cs" />
+    <Compile Include="Assets\PointingRightHandRemote.cs" />
     <Compile Include="Assets\Scripts\CopyInfo.cs" />
     <Compile Include="Assets\Scripts\Evaluation.cs" />
     <Compile Include="Assets\Scripts\SendAvatar.cs" />
