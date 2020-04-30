@@ -413,6 +413,7 @@
     <Compile Include="Assets\ShowFingertipValues.cs" />
     <Compile Include="Assets\ShowVectorValues.cs" />
     <Compile Include="Assets\TableDisplay.cs" />
+    <Compile Include="Assets\TrainToFinger.cs" />
     <Compile Include="Assets\Unity\ConstraintSamples\Scripts\mParent.cs" />
     <Compile Include="Assets\Unity\Info\Scripts\Readme.cs" />
     <Compile Include="Assets\VRRig.cs" />

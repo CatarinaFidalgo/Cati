@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class WorkspaceTransformation : MonoBehaviour
 {
-    private bool inWorkspace;
+    //private bool inWorkspace;
     public BoxCollider volumeCollider;
     [Space(8)]
     public Transform warpedSpace;
@@ -29,16 +29,10 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform warpedFingertipRight;
     [Space(8)]
     public Transform remoteFingertipLeft;
-    public Transform warpedFingertipLeft;
-    [Space(8)]
-    public Transform remoteFingertipLeftRig;
-    public Transform remoteFingertipRightRig;
+    public Transform warpedFingertipLeft;    
     [Space(8)]
     public Transform targetLeftTip; // targetTips are the tips of the local avatar hands calculated from the remote hands
-    public Transform targetRightTip;
-    [Space(8)]
-    public Transform rigWristLeft;
-    public Transform rigWristRight;
+    public Transform targetRightTip;    
     [Space(8)]
     public Transform pointingHandTip;
 
@@ -49,6 +43,7 @@ public class WorkspaceTransformation : MonoBehaviour
     private float b;
     public bool isPointingRight;
     public bool isPointingLeft;
+    private float offset_positionZ;
 
     private void Start()
     {
@@ -58,13 +53,32 @@ public class WorkspaceTransformation : MonoBehaviour
 
     void Update()
     {           
-        inWorkspace = volumeCollider.bounds.Contains(remoteFingertipRight.position) || volumeCollider.bounds.Contains(remoteFingertipLeft.position);
+        //inWorkspace = volumeCollider.bounds.Contains(remoteFingertipRight.position) || volumeCollider.bounds.Contains(remoteFingertipLeft.position);
          
         if (evaluation.condition == ConditionType.Approach)
         {
-            warpedSpace.localScale = new Vector3(-1, 1, 1); //Mirror workspace
+            //Mirror workspace
+            warpedSpace.localScale = new Vector3(-1, 1, 1);
 
-            /*************** Calculate warped positions of head and hands****************/
+            /*************** Selection of the pointing hand ****************/
+
+            //Assumes the pointing hand is the one that is further ahead
+            if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
+            {
+                pointingHandTip.position = targetRightTip.position;
+                pointingHandTip.rotation = targetRightTip.rotation;
+                isPointingRight = true;
+                isPointingLeft = false;
+            }
+            else if (targetRightTip.position.z < targetLeftTip.position.z) //pointing hand is the LEFT hand
+            {
+                pointingHandTip.position = targetLeftTip.position;
+                pointingHandTip.rotation = targetLeftTip.rotation;
+                isPointingRight = false;
+                isPointingLeft = true;
+            }           
+
+            /*************** Calculate warped positions and orientations of head and hands ****************/
 
             //warpedHMD.localPosition = remoteHMD.localPosition;  //Update head position in (*1*)
             warpedHandRight.localPosition = remoteLeft.localPosition;
@@ -79,8 +93,18 @@ public class WorkspaceTransformation : MonoBehaviour
             warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
             warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
 
+            // (*1*)
+            /*****************************    Head position update     **************************/
+
+            // Moves head according to the position of the local hand tip along the equation:
+            //           hmd_z = m * (-pointingHandTip.position.z) + b
+
+            warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, m * (-pointingHandTip.position.z) + b);
+            offset_positionZ = remoteHMD.localPosition.z - warpedHMD.localPosition.z;
+            Debug.Log(offset_positionZ);
+
             /*************** Make remote hands point to the same place as local avatar ****************/
-            /**************       (Works only in specific zone: needs more update)     ****************/
+            /**************       (Only the pointing hands suffers this update)     ****************/
 
             //Calculate the local tips from the remote tip coordinates
             targetRightTip.localPosition = new Vector3(-warpedFingertipLeft.localPosition.x, warpedFingertipLeft.localPosition.y, -warpedFingertipLeft.localPosition.z); //local right fingertip from the left warped hand
@@ -90,35 +114,18 @@ public class WorkspaceTransformation : MonoBehaviour
             transformRightHandVector = targetLeftTip.position - warpedFingertipRight.position;
             transformLeftHandVector = targetRightTip.position - warpedFingertipLeft.position;
 
-            //Update of the warped hands position with the transform vector
-            warpedHandLeft.position += transformLeftHandVector;
-            warpedHandRight.position += transformRightHandVector;
-
-            // (*1*)
-            /*****************************    Head position update     **************************/
-
-            //Assumes the pointing hand is the one that is further ahead
-
-            if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
+            //Update of the pointing warped hand position with the transform vector
+            if (isPointingRight == true) 
             {
-                pointingHandTip.position = targetRightTip.position;
-                pointingHandTip.rotation = targetRightTip.rotation;
-                isPointingRight = true;
-                isPointingLeft = false;
-            }
-            else if (targetRightTip.position.z < targetLeftTip.position.z) //pointing hand is the LEFT hand
-            {
-                pointingHandTip.position = targetLeftTip.position;
-                pointingHandTip.rotation = targetLeftTip.rotation;
-                isPointingRight = false;
-                isPointingLeft = true;
+                warpedHandLeft.position += transformLeftHandVector;
+                warpedHandRight.position = new Vector3 (warpedHandRight.position.x, warpedHandRight.position.y, warpedHandRight.position.z + offset_positionZ);
             }
 
-            // Moves head according to the position of the local hand tip along the equation:
-            //           hmd_z = m * (-pointingHandTip.position.z) + b
-
-            warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, m * (-pointingHandTip.position.z) + b);
-           
+            if (isPointingLeft == true)
+            {
+                warpedHandRight.position += transformRightHandVector;
+                warpedHandLeft.position = new Vector3(warpedHandLeft.position.x, warpedHandLeft.position.y, warpedHandLeft.position.z + offset_positionZ);
+            }  
         }       
 
         if (evaluation.condition == ConditionType.Veridical || evaluation.condition == ConditionType.SideToSide)
