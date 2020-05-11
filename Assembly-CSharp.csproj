@@ -66,7 +66,12 @@
     <Compile Include="Assets\approach.cs" />
     <Compile Include="Assets\AvatarCalibration.cs" />
     <Compile Include="Assets\calibration.cs" />
+    <Compile Include="Assets\CSV.cs" />
+    <Compile Include="Assets\CSV_Generator.cs" />
+    <Compile Include="Assets\ExtractInfo.cs" />
     <Compile Include="Assets\hide.cs" />
+    <Compile Include="Assets\LogGeral.cs" />
+    <Compile Include="Assets\LogTime.cs" />
     <Compile Include="Assets\MagicMirror\Demo\DemoScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorCameraScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorReflectionScript.cs" />
@@ -419,7 +424,10 @@
     <Compile Include="Assets\VRRig.cs" />
     <Compile Include="Assets\VRRig2.cs" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
+    <None Include="Assets\Jorge_05.11.2020 18.07_Approach_LogTime.txt" />
     <None Include="Assets\plants\dd\AlphaTest-Bumped.shader" />
+    <None Include="Assets\Jorge_05.11.2020 18.16_Approach_LogTime.txt" />
+    <None Include="Assets\Jorge_05.11.2020 18.19_Approach_LogGeneral.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_PC_SingleComponent.shader" />
     <None Include="Assets\Oculus\Avatar\Samples\CrossPlatform\Readme.txt" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderBumpMap.shader" />
@@ -429,8 +437,11 @@
     <None Include="Assets\Oculus\SampleFramework\Usage\Locomotion\Shaders\TriPlanarWorld.shader" />
     <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Materials\Hands_Transparent.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_Mobile_Loader.shader" />
+    <None Include="Assets\Jorge_05.11.2020 18.16_Approach_LogGeneral.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Shaders\Hands_02.shader" />
     <None Include="Assets\Oculus\SampleFramework\Core\Video\Plugins\Android\Audio360\ThirdPartyNotices.txt" />
+    <None Include="Assets\Jorge_05.11.2020 18.19_Approach_CSV.txt" />
+    <None Include="Assets\Jorge_05.11.2020 18.19_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderSelfOccluding.shader" />
     <None Include="Assets\MagicMirror\Prefab\Readme.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\ButtonGlow.shader" />
@@ -449,6 +460,8 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderPBSV2.shader" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\XingLightShader.shader" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShader.shader" />
+    <None Include="Assets\Jorge_05.11.2020 18.16_Approach_CSV.txt" />
+    <None Include="Assets\Jorge_05.11.2020 18.07_Approach_LogGeneral.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_Mobile_SingleComponent.shader" />
     <None Include="Assets\Oculus\SampleFramework\Core\Locomotion\Materials\ColumnGlow.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarMaterialStateShader.cginc" />

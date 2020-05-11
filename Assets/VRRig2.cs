@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Match the VR target to the headset etc
+//Match the VR targets (HMD and controllers) to the Rig targets (Head and HAnds of the avatar skeleton)
 
 
 public class VRRig2 : MonoBehaviour
@@ -31,13 +31,7 @@ public class VRRig2 : MonoBehaviour
     public Vector3 headBodyOffset;
 
     [Space(15)]
-    public bool remote = false;
-    public Evaluation evaluation;
-
-    [Space(15)]
     public bool active;
-
-    public float ti;
 
     void Start()
     {
@@ -47,8 +41,6 @@ public class VRRig2 : MonoBehaviour
 
     void Update()
     {
-        ti = 1.0f;
-
         //update da posiçao do avatar
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = Vector3.ProjectOnPlane(headVrTarget.forward, Vector3.up).normalized;

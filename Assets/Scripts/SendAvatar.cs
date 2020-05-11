@@ -21,6 +21,8 @@ public class SendAvatar : MonoBehaviour
     public Transform fingertipRight;
     public Transform fingertipLeft;
 
+    public string logGeneral;
+
 
     public int port = 7001;
     private UdpBroadcast _upd;
@@ -57,6 +59,8 @@ public class SendAvatar : MonoBehaviour
             msg += _getValues(fingertipLeft);
 
             _upd.send(msg);
+            //Debug.Log(msg);
+            logGeneral = msg;
         }
     }
 

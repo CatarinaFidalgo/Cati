@@ -16,6 +16,7 @@ public class Evaluation : MonoBehaviour
 {
 
     public ConditionType condition;
+    public string participantName;
 
     public Transform localWorkspace;
     public Transform remoteWorkspace;

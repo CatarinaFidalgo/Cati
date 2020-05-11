@@ -36,7 +36,7 @@ public class PointingLeftHandRemote : MonoBehaviour
 
             if (inWorkspace == true && wsTransformation.isPointingRight == true)  // Fingers in Pointing Position
             {
-                Debug.Log("In Workspace");
+                //Debug.Log("In Workspace");
                 switch (i)
                 {
                     case 0: //index
@@ -79,7 +79,7 @@ public class PointingLeftHandRemote : MonoBehaviour
             {
 
                 // Fingers in Relaxed Position - out of the workspace or if the hand isn't pointing 
-                Debug.Log("NOOOOOOOOOOT Workspace");
+               // Debug.Log("NOOOOOOOOOOT Workspace");
 
                 switch (i)
                 {
