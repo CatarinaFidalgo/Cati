@@ -9,10 +9,9 @@ namespace GK
 	public class ConvexHullTry : MonoBehaviour
 	{
 
-		public GameObject cube;
+		public GameObject initialMesh;
 		//public Transform trail;
-		public int i = 0;
-		private List<Vector3> pointsTrail = new List<Vector3>();
+		public int i = 0;		
 		public bool generateHullDone = true;
 		public SaveTrailPoints saveTrailPoints;
 
@@ -34,7 +33,7 @@ namespace GK
 
 					//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
-					var initialHull = Instantiate(cube);
+					var initialHull = Instantiate(initialMesh);
 
 					initialHull.transform.SetParent(transform, false);
 					initialHull.transform.position = Vector3.zero;

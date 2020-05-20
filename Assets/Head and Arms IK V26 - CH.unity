@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5441422c6df4243bdd0e59b7161e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 1333499949}
+  initialMesh: {fileID: 1333499949}
   i: 0
   generateHullDone: 1
   saveTrailPoints: {fileID: 28538070}
@@ -4358,7 +4358,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 45
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.01
@@ -5415,7 +5415,7 @@ Transform:
   m_GameObject: {fileID: 1333499949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11

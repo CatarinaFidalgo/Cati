@@ -12,7 +12,7 @@ public class SaveTrailPoints : MonoBehaviour
     public ConvexHullTry convexHullTry;
     public Renderer rend;
     public TrailRenderer trailRend;
-    private Vector3 mousePosition;
+    //private Vector3 mousePosition;
     //public GameObject spherePoint;
 
     void LateUpdate()
@@ -52,7 +52,8 @@ public class SaveTrailPoints : MonoBehaviour
             //Change flags
             pressed = false;            
             rend.enabled = false;
-           
+
+            Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 
          }
 
