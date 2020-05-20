@@ -14,7 +14,7 @@ public class PointingLeftHandRemote : MonoBehaviour
 
     public BoxCollider volumeCollider;
 
-    public WorkspaceTransformation wsTransformation;
+    public WorkspaceTransformation wsTransformation;    
 
     private int i = 0;
 
@@ -24,7 +24,7 @@ public class PointingLeftHandRemote : MonoBehaviour
         //Check if the parent transform (Right Hand) is inside the box collider (volumeCollider)
         inWorkspace = volumeCollider.bounds.Contains(fingerTip.position);
 
-        //Changes the rotation of the fingers for a pointing/relaxed position
+       //Changes the rotation of the fingers for a pointing/relaxed position
 
         for (i = 0; i <= 4; i++)
         {
@@ -34,7 +34,7 @@ public class PointingLeftHandRemote : MonoBehaviour
             fingerPart2 = this.gameObject.transform.GetChild(i).GetChild(0);
             fingerPart3 = this.gameObject.transform.GetChild(i).GetChild(0).GetChild(0);
 
-            if (inWorkspace == true && wsTransformation.isPointingRight == true)  // Fingers in Pointing Position
+            if (inWorkspace == true && wsTransformation.isPointingRightRemotely == false)  // Fingers in Pointing Position
             {
                 //Debug.Log("In Workspace");
                 switch (i)
@@ -75,7 +75,7 @@ public class PointingLeftHandRemote : MonoBehaviour
                 }
             }
 
-            else if (inWorkspace == false || wsTransformation.isPointingRight == false)
+            else if (inWorkspace == false || wsTransformation.isPointingRightRemotely == true)
             {
 
                 // Fingers in Relaxed Position - out of the workspace or if the hand isn't pointing 

@@ -34,7 +34,8 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform targetLeftTip; // targetTips are the tips of the local avatar hands calculated from the remote hands
     public Transform targetRightTip;    
     [Space(8)]
-    public Transform pointingHandTip;
+    public Transform pointingHandTipRemote;
+    
 
     //values for internal use
     private Vector3 transformLeftHandVector;
@@ -42,7 +43,9 @@ public class WorkspaceTransformation : MonoBehaviour
     private float m;
     private float b;
     public bool isPointingRight;
-    public bool isPointingLeft;
+    public bool isPointingRightRemotely;
+    //public bool isPointingLeft;
+    //public bool isPointingLeftRemotely;
     private float offset_positionZ;
 
     private void Start()
@@ -52,9 +55,10 @@ public class WorkspaceTransformation : MonoBehaviour
     }
 
     void Update()
-    {           
+    {
         //inWorkspace = volumeCollider.bounds.Contains(remoteFingertipRight.position) || volumeCollider.bounds.Contains(remoteFingertipLeft.position);
-         
+                
+
         if (evaluation.condition == ConditionType.Approach)
         {
             //Mirror workspace
@@ -65,18 +69,24 @@ public class WorkspaceTransformation : MonoBehaviour
             //Assumes the pointing hand is the one that is further ahead
             if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
             {
-                pointingHandTip.position = targetRightTip.position;
-                pointingHandTip.rotation = targetRightTip.rotation;
+                pointingHandTipRemote.position = targetRightTip.position;
+                pointingHandTipRemote.rotation = targetRightTip.rotation;
+
                 isPointingRight = true;
-                isPointingLeft = false;
+                isPointingRightRemotely = false;
+                //isPointingLeft = false;
+                //isPointingLeftRemotely = true;
             }
             else if (targetRightTip.position.z < targetLeftTip.position.z) //pointing hand is the LEFT hand
             {
-                pointingHandTip.position = targetLeftTip.position;
-                pointingHandTip.rotation = targetLeftTip.rotation;
+                pointingHandTipRemote.position = targetLeftTip.position;
+                pointingHandTipRemote.rotation = targetLeftTip.rotation;
+
                 isPointingRight = false;
-                isPointingLeft = true;
-            }           
+                isPointingRightRemotely = true;
+                //isPointingLeft = true;
+                //isPointingLeftRemotely = false;
+            }
 
             /*************** Calculate warped positions and orientations of head and hands ****************/
 
@@ -97,9 +107,9 @@ public class WorkspaceTransformation : MonoBehaviour
             /*****************************    Head position update     **************************/
 
             // Moves head according to the position of the local hand tip along the equation:
-            //           hmd_z = m * (-pointingHandTip.position.z) + b
+            //           hmd_z = m * (-pointingHandTipRemote.position.z) + b
 
-            warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, m * (-pointingHandTip.position.z) + b);
+            warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, m * (-pointingHandTipRemote.position.z) + b);
             offset_positionZ = remoteHMD.localPosition.z - warpedHMD.localPosition.z;
             //Debug.Log(offset_positionZ);
 
@@ -111,7 +121,8 @@ public class WorkspaceTransformation : MonoBehaviour
             targetLeftTip.localPosition = new Vector3(-warpedFingertipRight.localPosition.x, warpedFingertipRight.localPosition.y, -warpedFingertipRight.localPosition.z); //local left fingertip from the right warped hand
 
             //transformHandVector is the transform vector from the remote to the local tip
-            transformRightHandVector = targetLeftTip.position - warpedFingertipRight.position;
+            //our Right and Left transform vectors are a function the Left and Right tips, respectively (Changed because of the mirroring)
+            transformRightHandVector = targetLeftTip.position - warpedFingertipRight.position; 
             transformLeftHandVector = targetRightTip.position - warpedFingertipLeft.position;
 
             //Update of the pointing warped hand position with the transform vector
@@ -121,7 +132,7 @@ public class WorkspaceTransformation : MonoBehaviour
                 warpedHandRight.position = new Vector3 (warpedHandRight.position.x, warpedHandRight.position.y, warpedHandRight.position.z + offset_positionZ);
             }
 
-            if (isPointingLeft == true)
+            if (isPointingRight == false)
             {
                 warpedHandRight.position += transformRightHandVector;
                 warpedHandLeft.position = new Vector3(warpedHandLeft.position.x, warpedHandLeft.position.y, warpedHandLeft.position.z + offset_positionZ);
@@ -133,13 +144,44 @@ public class WorkspaceTransformation : MonoBehaviour
             //Warped hands are the same as the remote hands received through the network
 
             warpedHMD.localPosition = remoteHMD.localPosition;
-            warpedHMD.localRotation = remoteHMD.localRotation;
-
             warpedHandLeft.localPosition = remoteLeft.localPosition;
-            warpedHandLeft.localRotation = remoteLeft.localRotation;
-
             warpedHandRight.localPosition = remoteRight.localPosition;
+            warpedFingertipRight.localPosition = remoteFingertipLeft.localPosition;
+            warpedFingertipLeft.localPosition = remoteFingertipRight.localPosition;
+
+
+            warpedHMD.localRotation = remoteHMD.localRotation;            
+            warpedHandLeft.localRotation = remoteLeft.localRotation;            
             warpedHandRight.localRotation = remoteRight.localRotation;
+            warpedFingertipRight.localRotation = remoteFingertipLeft.localRotation;
+            warpedFingertipLeft.localRotation = remoteFingertipRight.localRotation;
+
+
+            /*************** Selection of the pointing hand ****************/
+
+            //Assumes the pointing hand is the one that is further ahead
+            if (warpedFingertipRight.position.z >= warpedFingertipLeft.position.z) //pointing hand is the RIGHT hand
+            {
+                //pointingHandTipRemote.position = warpedFingertipRight.position;
+                //pointingHandTipRemote.rotation = warpedFingertipRight.rotation;
+                pointingHandTipRemote.position = warpedFingertipLeft.position;
+                pointingHandTipRemote.rotation = warpedFingertipLeft.rotation;
+
+                isPointingRight = true;
+                isPointingRightRemotely = true;
+                
+            }
+            else if (warpedFingertipRight.position.z < warpedFingertipLeft.position.z) //pointing hand is the LEFT hand
+            {
+                //pointingHandTipRemote.position = warpedFingertipLeft.position;
+                //pointingHandTipRemote.rotation = warpedFingertipLeft.rotation;
+                pointingHandTipRemote.position = warpedFingertipRight.position;
+                pointingHandTipRemote.rotation = warpedFingertipRight.rotation;
+
+                isPointingRight = false;
+                isPointingRightRemotely = false;
+            }
+
 
         }
     }

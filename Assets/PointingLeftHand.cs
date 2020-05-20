@@ -15,7 +15,9 @@ public class PointingLeftHand : MonoBehaviour
 
     public BoxCollider volumeCollider;
 
-    public WorkspaceTransformation wsTransformation;
+    //public WorkspaceTransformation wsTransformation;
+
+    public PointingFingerLocal p;
 
     private int i = 0;
 
@@ -35,7 +37,7 @@ public class PointingLeftHand : MonoBehaviour
             fingerPart2 = this.gameObject.transform.GetChild(i).GetChild(0);
             fingerPart3 = this.gameObject.transform.GetChild(i).GetChild(0).GetChild(0);
 
-            if (inWorkspace == true && wsTransformation.isPointingLeft == true )  // Fingers in Pointing Position
+            if (inWorkspace == true && p.isPointingRight == false )  // Fingers in Pointing Position
             {
                 //Debug.Log("In Workspace");
                 switch (i)
@@ -76,7 +78,7 @@ public class PointingLeftHand : MonoBehaviour
                 }
             }
 
-            else if (inWorkspace == false || wsTransformation.isPointingLeft == false) 
+            else if (inWorkspace == false || p.isPointingRight == true) 
             {
 
                 // Fingers in Relaxed Position - out of the workspace or if the hand isn't pointing 
