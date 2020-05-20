@@ -101,7 +101,7 @@ public class WorkspaceTransformation : MonoBehaviour
 
             warpedHMD.localPosition = new Vector3(remoteHMD.localPosition.x, remoteHMD.localPosition.y, m * (-pointingHandTip.position.z) + b);
             offset_positionZ = remoteHMD.localPosition.z - warpedHMD.localPosition.z;
-            Debug.Log(offset_positionZ);
+            //Debug.Log(offset_positionZ);
 
             /*************** Make remote hands point to the same place as local avatar ****************/
             /**************       (Only the pointing hands suffers this update)     ****************/
