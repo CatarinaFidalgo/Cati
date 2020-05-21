@@ -8,24 +8,37 @@ public class PointingFingerLocal : MonoBehaviour
     public Transform leftTip;
     public Transform pointingHandTipLocal;
 
+    public SaveTrailPoints saveTrails;
+
     public bool isPointingRight;
 
     void Update()
     {
-        //Assumes the pointing hand is the one that is further ahead
-        if (rightTip.position.z >= leftTip.position.z) //pointing hand is the RIGHT hand
+        if (!saveTrails.pressed)
+        {
+            //Assumes the pointing hand is the one that is further ahead
+            if (rightTip.position.z >= leftTip.position.z) //pointing hand is the RIGHT hand
+            {
+                isPointingRight = true;
+            }
+            else  //pointing hand is the LEFT hand
+            {
+                isPointingRight = false;
+            }
+        }
+        
+        if (isPointingRight) 
         {
             pointingHandTipLocal.position = rightTip.position;
             pointingHandTipLocal.rotation = rightTip.rotation;
-            
-            isPointingRight = true;
+                
         }
-        else if (rightTip.position.z < leftTip.position.z) //pointing hand is the LEFT hand
+        else  
         {
             pointingHandTipLocal.position = leftTip.position;
             pointingHandTipLocal.rotation = leftTip.rotation;
-            
-            isPointingRight = false;
+                
         }
+        
     }
 }

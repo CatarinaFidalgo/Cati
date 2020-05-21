@@ -14,6 +14,7 @@ namespace GK
 		public int i = 0;		
 		public bool generateHullDone = true;
 		public SaveTrailPoints saveTrailPoints;
+		public float volume;
 
 		IEnumerator Start()
 		{
@@ -28,36 +29,57 @@ namespace GK
 			{
 				if (saveTrailPoints.pressed == false && generateHullDone == false)
 				{
-					
-					calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
+					try
+					{
+						calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
-					//Create an initial transform that will evolve into our Convex Hull when altering the mesh
+						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
-					var initialHull = Instantiate(initialMesh);
+						var initialHull = Instantiate(initialMesh);
 
-					initialHull.transform.SetParent(transform, false);
-					initialHull.transform.position = Vector3.zero;
-					initialHull.transform.rotation = Quaternion.identity;
-					initialHull.transform.localScale = Vector3.one;					
+						initialHull.transform.SetParent(transform, false);
+						initialHull.transform.position = Vector3.zero;
+						initialHull.transform.rotation = Quaternion.identity;
+						initialHull.transform.localScale = Vector3.one;
 
-					//Independentemente do tipo de mesh com que se começa (cubo, esfera..) 
-					//a mesh é redefenida com as definiçoes abaixo
+						//Independentemente do tipo de mesh com que se começa (cubo, esfera..) 
+						//a mesh é redefenida com as definiçoes abaixo
 
-					var mesh = new Mesh();
-					mesh.SetVertices(verts);
-					mesh.SetTriangles(tris, 0);
-					mesh.SetNormals(normals);
+						var mesh = new Mesh();
+						mesh.SetVertices(verts);
+						mesh.SetTriangles(tris, 0);
+						mesh.SetNormals(normals);
 
-					initialHull.GetComponent<MeshFilter>().sharedMesh = mesh;
-					initialHull.GetComponent<MeshCollider>().sharedMesh = mesh;	
-					
-					//Limpar os pontos antigos da lista para o proximo convex hull e
-					//informar o programa de que já realizou esta função 
+						initialHull.GetComponent<MeshFilter>().sharedMesh = mesh;
+						initialHull.GetComponent<MeshCollider>().sharedMesh = mesh;
 
-					saveTrailPoints.pointsTrail.Clear();
-					generateHullDone = true;
-					//yield return new WaitForSeconds(1);
-					
+						//Calcular o volume da CH
+
+						volume = VolumeOfMesh(mesh) * 1000000; //convert to cm3
+						Debug.Log("Volume: " + volume);
+
+						//Limpar os pontos antigos da lista para o proximo convex hull e
+						//informar o programa de que já realizou esta função 
+
+						saveTrailPoints.pointsTrail.Clear();
+						generateHullDone = true;
+						//yield return new WaitForSeconds(1);
+					}
+					catch (System.ArgumentException)
+					{
+						saveTrailPoints.pointsTrail.Clear();
+						generateHullDone = true;
+					}
+
+					catch (UnityEngine.Assertions.AssertionException)
+					{
+						saveTrailPoints.pointsTrail.Clear();
+						generateHullDone = true;
+					}
+
+
+
+
 				}
 
 
@@ -66,6 +88,33 @@ namespace GK
 				
 			}
 		}
+
+		float SignedVolumeOfTriangle(Vector3 p1, Vector3 p2, Vector3 p3)
+		{
+			float v321 = p3.x * p2.y * p1.z;
+			float v231 = p2.x * p3.y * p1.z;
+			float v312 = p3.x * p1.y * p2.z;
+			float v132 = p1.x * p3.y * p2.z;
+			float v213 = p2.x * p1.y * p3.z;
+			float v123 = p1.x * p2.y * p3.z;
+			return (1.0f / 6.0f) * (-v321 + v231 + v312 - v132 - v213 + v123);
+		}
+
+		float VolumeOfMesh(Mesh mesh)
+		{
+			float volume = 0;
+			Vector3[] vertices = mesh.vertices;
+			int[] triangles = mesh.triangles;
+			for (int i = 0; i < mesh.triangles.Length; i += 3)
+			{
+				Vector3 p1 = vertices[triangles[i + 0]];
+				Vector3 p2 = vertices[triangles[i + 1]];
+				Vector3 p3 = vertices[triangles[i + 2]];
+				volume += SignedVolumeOfTriangle(p1, p2, p3);
+			}
+			return Mathf.Abs(volume);
+		}
+		
 				
 	}
 }

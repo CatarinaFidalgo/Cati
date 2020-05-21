@@ -35,6 +35,7 @@ public class WorkspaceTransformation : MonoBehaviour
     public Transform targetRightTip;    
     [Space(8)]
     public Transform pointingHandTipRemote;
+    public SaveTrailPoints saveTrails;
     
 
     //values for internal use
@@ -67,26 +68,33 @@ public class WorkspaceTransformation : MonoBehaviour
             /*************** Selection of the pointing hand ****************/
 
             //Assumes the pointing hand is the one that is further ahead
-            if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
+            
+            if (!saveTrails.pressed)
+            {
+                if (targetRightTip.position.z >= targetLeftTip.position.z) //pointing hand is the RIGHT hand
+                {
+                    isPointingRight = true;
+                    isPointingRightRemotely = false;
+                }
+                else  //pointing hand is the LEFT hand
+                {
+                    isPointingRight = false;
+                    isPointingRightRemotely = true;
+                }
+            }
+
+            if (isPointingRight)
             {
                 pointingHandTipRemote.position = targetRightTip.position;
                 pointingHandTipRemote.rotation = targetRightTip.rotation;
-
-                isPointingRight = true;
-                isPointingRightRemotely = false;
-                //isPointingLeft = false;
-                //isPointingLeftRemotely = true;
             }
-            else if (targetRightTip.position.z < targetLeftTip.position.z) //pointing hand is the LEFT hand
+
+            else
             {
                 pointingHandTipRemote.position = targetLeftTip.position;
                 pointingHandTipRemote.rotation = targetLeftTip.rotation;
-
-                isPointingRight = false;
-                isPointingRightRemotely = true;
-                //isPointingLeft = true;
-                //isPointingLeftRemotely = false;
             }
+            
 
             /*************** Calculate warped positions and orientations of head and hands ****************/
 
@@ -126,13 +134,13 @@ public class WorkspaceTransformation : MonoBehaviour
             transformLeftHandVector = targetRightTip.position - warpedFingertipLeft.position;
 
             //Update of the pointing warped hand position with the transform vector
-            if (isPointingRight == true) 
+            if (isPointingRight) 
             {
                 warpedHandLeft.position += transformLeftHandVector;
                 warpedHandRight.position = new Vector3 (warpedHandRight.position.x, warpedHandRight.position.y, warpedHandRight.position.z + offset_positionZ);
             }
 
-            if (isPointingRight == false)
+            if (!isPointingRight)
             {
                 warpedHandRight.position += transformRightHandVector;
                 warpedHandLeft.position = new Vector3(warpedHandLeft.position.x, warpedHandLeft.position.y, warpedHandLeft.position.z + offset_positionZ);
@@ -159,29 +167,35 @@ public class WorkspaceTransformation : MonoBehaviour
 
             /*************** Selection of the pointing hand ****************/
 
-            //Assumes the pointing hand is the one that is further ahead
-            if (warpedFingertipRight.position.z >= warpedFingertipLeft.position.z) //pointing hand is the RIGHT hand
+            if (!saveTrails.pressed)
             {
-                //pointingHandTipRemote.position = warpedFingertipRight.position;
-                //pointingHandTipRemote.rotation = warpedFingertipRight.rotation;
+                //Assumes the pointing hand is the one that is further ahead
+                if (warpedFingertipRight.position.z >= warpedFingertipLeft.position.z) //pointing hand is the RIGHT hand
+                {
+                    isPointingRight = true;
+                    isPointingRightRemotely = true;
+
+                }
+                else if (warpedFingertipRight.position.z < warpedFingertipLeft.position.z) //pointing hand is the LEFT hand
+                {
+                    isPointingRight = false;
+                    isPointingRightRemotely = false;
+                }
+            }
+
+            
+            if (isPointingRight)
+            {
                 pointingHandTipRemote.position = warpedFingertipLeft.position;
                 pointingHandTipRemote.rotation = warpedFingertipLeft.rotation;
-
-                isPointingRight = true;
-                isPointingRightRemotely = true;
-                
             }
-            else if (warpedFingertipRight.position.z < warpedFingertipLeft.position.z) //pointing hand is the LEFT hand
+
+            else
             {
-                //pointingHandTipRemote.position = warpedFingertipLeft.position;
-                //pointingHandTipRemote.rotation = warpedFingertipLeft.rotation;
                 pointingHandTipRemote.position = warpedFingertipRight.position;
                 pointingHandTipRemote.rotation = warpedFingertipRight.rotation;
-
-                isPointingRight = false;
-                isPointingRightRemotely = false;
             }
-
+                      
 
         }
     }

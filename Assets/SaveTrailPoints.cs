@@ -15,25 +15,23 @@ public class SaveTrailPoints : MonoBehaviour
     //private Vector3 mousePosition;
     //public GameObject spherePoint;
 
+    /* Requirements for buttons to work:
+        - Include an instance of OVRManager anywhere in your scene. 
+        - Call OVRInput.Update() once per frame at the beginning of any component’s Update methods.
+     
+    */
+
     void LateUpdate()
     {
-         if (Input.GetKey(KeyCode.Mouse0))
-         {
-            /*
+        OVRInput.Update();        
 
-            //Make this transform follow the mouse position
-            //Change to make follow the finger position
-
-            mousePosition = Input.mousePosition;
-            mousePosition.z = 10f;
-            this.transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
-            */
-
+        if (OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Three))
+         {    
             //Activate trail renderer
 
             rend.enabled = true;
             pointsTrail.Add(trail.position); // save trail positions in the points list for the CH
-            Debug.Log("Entry number" + i + ": " + pointsTrail[i]);
+            //Debug.Log("Entry number" + i + ": " + pointsTrail[i]);
             //Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
             i++;
 
@@ -53,7 +51,7 @@ public class SaveTrailPoints : MonoBehaviour
             pressed = false;            
             rend.enabled = false;
 
-            Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+            //Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 
          }
 
