@@ -23,10 +23,10 @@ public class SaveTrailPoints : MonoBehaviour
 
     void LateUpdate()
     {
-        OVRInput.Update();        
+        OVRInput.Update();
 
         if (OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Three))
-         {    
+        {    
             //Activate trail renderer
 
             rend.enabled = true;
@@ -38,12 +38,10 @@ public class SaveTrailPoints : MonoBehaviour
             //Change flags
             pressed = true;
             convexHullTry.generateHullDone = false;
-            
-            
-         }  
+        }  
          
-         else
-         {
+        else
+        {
             i = 0;
             trailRend.Clear(); //Clear past trails
 
@@ -53,7 +51,32 @@ public class SaveTrailPoints : MonoBehaviour
 
             //Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 
-         }
+        }
+/*
+        if (!OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger))
+        {
+            Debug.Log("Is pointing Right");
+        }
+        else
+        {
+            Debug.Log("Not pointing Right");
+        }
+
+        if (!OVRInput.Get(OVRInput.NearTouch.PrimaryIndexTrigger))
+        {
+            Debug.Log("Is pointing Left");
+        }
+
+        else
+        {
+            Debug.Log("Not pointing Left");
+        }
+
+        Debug.Log("Right: " + OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger));
+        Debug.Log("Left: " + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger));
+        Debug.Log("Rest: " + OVRInput.Get(OVRInput.Touch.SecondaryThumbRest));
+        Debug.Log("B: " + OVRInput.Get(OVRInput.Button.Two));
+        Debug.Log("A out: " + OVRInput.Get(OVRInput.Button.One));*/
 
     }
 }

@@ -39,6 +39,8 @@ public class PointingFingerLocal : MonoBehaviour
             pointingHandTipLocal.rotation = leftTip.rotation;
                 
         }
+
+
         
     }
 }

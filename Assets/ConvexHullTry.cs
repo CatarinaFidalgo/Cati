@@ -15,6 +15,7 @@ namespace GK
 		public bool generateHullDone = true;
 		public SaveTrailPoints saveTrailPoints;
 		public float volume;
+		//public GameObject initialHull;
 
 		IEnumerator Start()
 		{
@@ -36,6 +37,7 @@ namespace GK
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
 						var initialHull = Instantiate(initialMesh);
+						initialHull = Instantiate(initialMesh);
 
 						initialHull.transform.SetParent(transform, false);
 						initialHull.transform.position = Vector3.zero;
