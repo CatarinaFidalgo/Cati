@@ -16,9 +16,18 @@ namespace GK
 		public SaveTrailPoints saveTrailPoints;
 		public float volume;
 		//public GameObject initialHull;
+		public Transform ChParent;
+		public bool remote;
+		public int nrCHremote = 0;
+		public int nrCHlocal = 0;
+		//public checkIntersection checkInt;
+		public bool readyForIntersectionRemote = false;
+		public bool readyForIntersectionLocal = false;
+
 
 		IEnumerator Start()
 		{
+			
 			//Parametros necessarios para o algoritmo de Convex Hull
 
 			var calc = new ConvexHullCalculator();
@@ -37,9 +46,9 @@ namespace GK
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
 						var initialHull = Instantiate(initialMesh);
-						initialHull = Instantiate(initialMesh);
+						//initialHull = Instantiate(initialMesh);
 
-						initialHull.transform.SetParent(transform, false);
+						initialHull.transform.SetParent(ChParent, false);
 						initialHull.transform.position = Vector3.zero;
 						initialHull.transform.rotation = Quaternion.identity;
 						initialHull.transform.localScale = Vector3.one;
@@ -65,7 +74,20 @@ namespace GK
 
 						saveTrailPoints.pointsTrail.Clear();
 						generateHullDone = true;
-						//yield return new WaitForSeconds(1);
+						//checkInt.intersectionDone = false;
+
+						if (remote)
+						{
+							nrCHremote++;
+							readyForIntersectionRemote = true;
+						}
+						else //if local
+						{
+							nrCHlocal++;
+							readyForIntersectionLocal = true;
+						}
+					
+						
 					}
 					catch (System.ArgumentException)
 					{

@@ -1,0 +1,10 @@
+Start Time: 19:08:13
+End Time: 19:08:19
+Duration of the Experiment: 00:0:5
+
+
+Start Time: 19:08:51
+End Time: 19:08:59
+Duration of the Experiment: 00:0:7
+
+

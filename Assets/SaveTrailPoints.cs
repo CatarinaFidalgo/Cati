@@ -13,7 +13,7 @@ public class SaveTrailPoints : MonoBehaviour
     public Renderer rend;
     public TrailRenderer trailRend;
     //private Vector3 mousePosition;
-    //public GameObject spherePoint;
+    public GameObject spherePoint;
 
     /* Requirements for buttons to work:
         - Include an instance of OVRManager anywhere in your scene. 
@@ -32,7 +32,7 @@ public class SaveTrailPoints : MonoBehaviour
             rend.enabled = true;
             pointsTrail.Add(trail.position); // save trail positions in the points list for the CH
             //Debug.Log("Entry number" + i + ": " + pointsTrail[i]);
-            //Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
+            Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
             i++;
 
             //Change flags
