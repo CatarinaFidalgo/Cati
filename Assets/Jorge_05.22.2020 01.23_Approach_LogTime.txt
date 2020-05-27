@@ -1,5 +1,0 @@
-Start Time: 01:23:33
-End Time: 01:23:36
-Duration of the Experiment: 00:0:2
-
-

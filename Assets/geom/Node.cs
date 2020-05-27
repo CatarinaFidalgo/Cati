@@ -57,6 +57,7 @@ namespace ConstructiveSolidGeometry
             Node temp = this.front;
             this.front = this.back;
             this.back = temp;
+            Debug.Log("Poly in invert :" + this.polygons.Count);
         }
 
         /// <summary>

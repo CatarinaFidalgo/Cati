@@ -4474,14 +4474,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chremote: {fileID: 1620914238}
   chlocal: {fileID: 20217228}
-  a: {fileID: 519150508}
-  b: {fileID: 1536705198}
+  a: {fileID: 1687955048}
+  b: {fileID: 1831162582}
   intersectionPoints: []
-  volume: 0
+  volumeOfUnion: 0
+  volumeOfIntersection: 0
   ball: {fileID: 594072755}
   initialMeshCSG: {fileID: 1384120450}
   ballsList: []
   POINTS: {fileID: 1108751043}
+  child: 0
+  percentageOfIntersection: 0
 --- !u!4 &862417162
 Transform:
   m_ObjectHideFlags: 0
@@ -5763,7 +5766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1239424239
 Transform:
   m_ObjectHideFlags: 0
@@ -6391,7 +6394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1371032094
 Transform:
   m_ObjectHideFlags: 0
@@ -6566,7 +6569,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2926557707537190794, guid: bfc57934ec0bd064192f633d56d47033, type: 3}
+  - {fileID: 2100000, guid: 045dfaef8327d2448b241423ed0f8274, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10901,7 +10904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1813738261
 Transform:
   m_ObjectHideFlags: 0

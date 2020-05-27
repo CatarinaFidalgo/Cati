@@ -32,7 +32,7 @@ public class SaveTrailPoints : MonoBehaviour
             rend.enabled = true;
             pointsTrail.Add(trail.position); // save trail positions in the points list for the CH
             //Debug.Log("Entry number" + i + ": " + pointsTrail[i]);
-            Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
+            //Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
             i++;
 
             //Change flags

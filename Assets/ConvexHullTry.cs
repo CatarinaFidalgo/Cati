@@ -40,7 +40,8 @@ namespace GK
 				if (saveTrailPoints.pressed == false && generateHullDone == false)
 				{
 					try
-					{
+					{	
+						//Debug.Log("Entered CH calculator");
 						calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
@@ -67,12 +68,16 @@ namespace GK
 						//Calcular o volume da CH
 
 						volume = VolumeOfMesh(mesh) * 1000000; //convert to cm3
-						Debug.Log("Volume: " + volume);
+																//Debug.Log("Volume of MESH: " + volume);
+
+						//Debug.Log("Verts: " + verts.Count + " Tris: " + tris.Count + " Normals: " + normals.Count);
+						
+
 
 						//Limpar os pontos antigos da lista para o proximo convex hull e
 						//informar o programa de que já realizou esta função 
 
-						saveTrailPoints.pointsTrail.Clear();
+						//////////////////saveTrailPoints.pointsTrail.Clear();
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 
@@ -80,14 +85,16 @@ namespace GK
 						{
 							nrCHremote++;
 							readyForIntersectionRemote = true;
+							Debug.Log("Volume of Remote CH: " + volume);
 						}
 						else //if local
 						{
 							nrCHlocal++;
 							readyForIntersectionLocal = true;
+							Debug.Log("Volume of Local CH: " + volume);
 						}
-					
-						
+						//Debug.Log("Exit CH calculator");
+
 					}
 					catch (System.ArgumentException)
 					{
@@ -129,6 +136,8 @@ namespace GK
 			float volume = 0;
 			Vector3[] vertices = mesh.vertices;
 			int[] triangles = mesh.triangles;
+			Debug.Log("nr vertices in function: " + vertices.Length);
+			Debug.Log("nr triangles in function: " + triangles.Length);
 			for (int i = 0; i < mesh.triangles.Length; i += 3)
 			{
 				Vector3 p1 = vertices[triangles[i + 0]];

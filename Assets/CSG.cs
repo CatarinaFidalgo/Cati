@@ -186,7 +186,7 @@ namespace ConstructiveSolidGeometry
         {
             List<Polygon> triangles = new List<Polygon>();
             int[] tris = m.triangles;
-            Debug.Log("tris " + tris.Length);
+            
             for (int t = 0; t < tris.Length; t += 3)
             {
                 Vertex[] vs = new Vertex[3];
@@ -196,7 +196,7 @@ namespace ConstructiveSolidGeometry
                 //Debug.Log("Tri index: " + (t+i).ToString() + ", Vertex: " + vs[i].pos);
                 triangles.Add(new Polygon(vs));
             }
-            Debug.Log("Poly " + triangles.Count);
+            //Debug.Log("Poly: " + triangles.Count);
             return CSG.fromPolygons(triangles);
         }
 
@@ -299,7 +299,7 @@ namespace ConstructiveSolidGeometry
             b.invert();
             a.clipTo(b);
             b.clipTo(a);
-            a.build(b.allPolygons());
+            a.build(b.allPolygons());          
             return CSG.fromPolygons(a.allPolygons()).inverse();
         }
 
@@ -392,8 +392,9 @@ namespace ConstructiveSolidGeometry
             foreach (Polygon p in polygons)
             {
                 csg.polygons.Add(p.clone());
+                
             }
-
+            //Debug.Log("nr polygons" + csg.polygons.Count);
             return csg;
         }
 
