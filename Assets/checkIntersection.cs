@@ -133,8 +133,8 @@ public class checkIntersection : MonoBehaviour
                 Debug.Log("Percentage of Intersection" + percentageOfIntersection);
 
                 //ballsList.Clear();
-                ////////////////////////////////unionHash.Clear();
-                ////////////////////////////////unionList.Clear();
+                unionHash.Clear();
+                unionList.Clear();
 
                 initialMeshCSG.SetActive(false);
                 a.transform.GetChild(child).gameObject.SetActive(true);

@@ -86,7 +86,7 @@ namespace GK
 						//Limpar os pontos antigos da lista para o proximo convex hull e
 						//informar o programa de que já realizou esta função 
 
-						////////////////////////////////saveTrailPoints.pointsTrail.Clear();
+						saveTrailPoints.pointsTrail.Clear();
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 
