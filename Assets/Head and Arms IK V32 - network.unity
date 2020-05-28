@@ -358,7 +358,6 @@ MonoBehaviour:
   convexHullTry: {fileID: 20217228}
   rend: {fileID: 28538066}
   trailRend: {fileID: 28538071}
-  spherePoint: {fileID: 1928903512}
   udpSend: {fileID: 1174461000}
 --- !u!96 &28538071
 TrailRenderer:
@@ -6143,10 +6142,9 @@ MonoBehaviour:
   trail: {fileID: 1346963210}
   pointsTrail: []
   pressed: 0
-  convexHullTry: {fileID: 1620914238}
+  convexHullTry: {fileID: 20217228}
   rend: {fileID: 1346963215}
   trailRend: {fileID: 1346963211}
-  spherePoint: {fileID: 1148437265}
   udpSend: {fileID: 1174461000}
 --- !u!114 &1346963213
 MonoBehaviour:
@@ -9797,7 +9795,6 @@ GameObject:
   - component: {fileID: 1620914241}
   - component: {fileID: 1620914240}
   - component: {fileID: 1620914239}
-  - component: {fileID: 1620914238}
   - component: {fileID: 1620914242}
   m_Layer: 0
   m_Name: Convex Hull Calculator
@@ -9806,27 +9803,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1620914238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1620914237}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5441422c6df4243bdd0e59b7161e8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMesh: {fileID: 87149556}
-  i: 0
-  generateHullDone: 1
-  saveTrailPoints: {fileID: 1346963212}
-  volume: 0
-  ChParent: {fileID: 1831162583}
-  nrCHlocal: 0
-  readyForIntersectionLocal: 0
-  checkInt: {fileID: 862417161}
 --- !u!23 &1620914239
 MeshRenderer:
   m_ObjectHideFlags: 0

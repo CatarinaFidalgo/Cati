@@ -108,7 +108,9 @@ namespace GK
 						
 						nrCHlocal++;
 						readyForIntersectionLocal = true;
-						
+
+						Debug.Log("Finish CH Local");
+
 
 					}
 					catch (System.ArgumentException)

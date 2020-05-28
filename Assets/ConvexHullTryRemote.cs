@@ -110,6 +110,8 @@ namespace GK
 						
 						nrCHremote++;
 						readyForIntersectionRemote = true;
+
+						Debug.Log("Finish CH Remote");
 						
 						
 

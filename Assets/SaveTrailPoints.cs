@@ -14,7 +14,7 @@ public class SaveTrailPoints : MonoBehaviour
     public Renderer rend;
     public TrailRenderer trailRend;
     //private Vector3 mousePosition;
-    public GameObject spherePoint;
+    //public GameObject spherePoint;
     public SendAvatar udpSend;
 
     /* Requirements for buttons to work:
@@ -44,17 +44,18 @@ public class SaveTrailPoints : MonoBehaviour
             //Change flags
             pressed = true;
             convexHullTry.generateHullDone = false;
-        }  
-         
+            udpSend.sent = false;
+        }
+
         else
         {
             i = 0;
             trailRend.Clear(); //Clear past trails
-
+            
             //Change flags
             pressed = false;            
             rend.enabled = false;
-            udpSend.sent = false;
+            
 
             //Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 
