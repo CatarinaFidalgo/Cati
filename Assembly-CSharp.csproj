@@ -70,6 +70,7 @@
     <Compile Include="Assets\ConvexHullCalculator.cs" />
     <Compile Include="Assets\ConvexHullIntersection.cs" />
     <Compile Include="Assets\ConvexHullTry.cs" />
+    <Compile Include="Assets\ConvexHullTryRemote.cs" />
     <Compile Include="Assets\CSG.cs" />
     <Compile Include="Assets\CSV.cs" />
     <Compile Include="Assets\CSV_Generator.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Assets\geom\Vertex.cs" />
     <Compile Include="Assets\hide.cs" />
     <Compile Include="Assets\IntersectionCSGTry.cs" />
+    <Compile Include="Assets\IntTry.cs" />
+    <Compile Include="Assets\ListToString.cs" />
     <Compile Include="Assets\LogGeral.cs" />
     <Compile Include="Assets\LogTime.cs" />
     <Compile Include="Assets\MagicMirror\Demo\DemoScript.cs" />
@@ -439,6 +442,7 @@
     <Compile Include="Assets\VRRig.cs" />
     <Compile Include="Assets\VRRig2.cs" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
+    <None Include="Assets\Jorge_05.28.2020 16.18_Approach_LogTime.txt" />
     <None Include="Assets\plants\dd\AlphaTest-Bumped.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_PC_SingleComponent.shader" />
     <None Include="Assets\Oculus\Avatar\Samples\CrossPlatform\Readme.txt" />
@@ -453,10 +457,12 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_Mobile_Loader.shader" />
     <None Include="Assets\OutlineEffect\Readme.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Shaders\Hands_02.shader" />
+    <None Include="Assets\Jorge_05.28.2020 15.33_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\Video\Plugins\Android\Audio360\ThirdPartyNotices.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderSelfOccluding.shader" />
     <None Include="Assets\MagicMirror\Prefab\Readme.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\ButtonGlow.shader" />
+    <None Include="Assets\Jorge_05.28.2020 16.09_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderPBS.shader" />
     <None Include="Assets\Oculus\Avatar\Samples\SocialStarter\README.txt" />
     <None Include="Assets\Oculus\SampleFramework\license.txt" />
@@ -464,6 +470,7 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Expressive\Avatar_Mobile_CombinedMeshExpressive.shader" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\OculusSampleTrainSmokeShader.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Expressive\Avatar_PC_SingleComponentExpressive.shader" />
+    <None Include="Assets\Jorge_05.28.2020 16.08_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\GradientSkybox.shader" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarPBRV2Simple.shader" />
     <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Shaders\Hands_01.shader" />
@@ -479,6 +486,7 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShader.shader" />
     <None Include="Assets\Oculus\SampleFramework\Core\Video\Plugins\Android\Audio360\NOTICE.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\DistanceGrab\Materials\ToyCubeWithOutline.shader" />
+    <None Include="Assets\Jorge_05.28.2020 16.21_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\OculusSampleTrainPropsShader.shader" />
     <None Include="Assets\Oculus\SampleFramework\Usage\DistanceGrab\Materials\CrosshairZCheat.shader" />
     <Reference Include="Unity.Timeline.Editor">

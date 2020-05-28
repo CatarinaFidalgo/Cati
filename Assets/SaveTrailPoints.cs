@@ -1,6 +1,7 @@
 ﻿using GK;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class SaveTrailPoints : MonoBehaviour
@@ -14,6 +15,7 @@ public class SaveTrailPoints : MonoBehaviour
     public TrailRenderer trailRend;
     //private Vector3 mousePosition;
     public GameObject spherePoint;
+    public SendAvatar udpSend;
 
     /* Requirements for buttons to work:
         - Include an instance of OVRManager anywhere in your scene. 
@@ -30,7 +32,11 @@ public class SaveTrailPoints : MonoBehaviour
             //Activate trail renderer
 
             rend.enabled = true;
+
             pointsTrail.Add(trail.position); // save trail positions in the points list for the CH
+
+
+
             //Debug.Log("Entry number" + i + ": " + pointsTrail[i]);
             //Instantiate(spherePoint, pointsTrail[i], Quaternion.identity);
             i++;
@@ -48,6 +54,7 @@ public class SaveTrailPoints : MonoBehaviour
             //Change flags
             pressed = false;            
             rend.enabled = false;
+            udpSend.sent = false;
 
             //Debug.Log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 

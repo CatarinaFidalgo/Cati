@@ -8,6 +8,7 @@ using System.IO;
 public class LogTime : MonoBehaviour
 {
     public Evaluation evaluation;
+    public checkIntersection checkInt;
 
     private string participantName;
     private string t0;
@@ -60,6 +61,14 @@ public class LogTime : MonoBehaviour
             Debug.Log(delta_t);*/
 
             File.AppendAllText(path, "End Time: " + tf + "\n");
+
+            /*if (checkInt.writeResult)
+            {
+                Debug.Log("Writing result of intersection on file");
+                File.AppendAllText(path, "Volumes:\nLocal V: " + checkInt.chlocal.volume + " RemoteV: " + checkInt.chremote.volume + " Union V: " + checkInt.volumeOfUnion + " Intersection V: " + checkInt.volumeOfIntersection + ":   Percentage: " + checkInt.percentageOfIntersection + "%");
+
+            }*/
+            File.AppendAllText(path, "Volumes:\nLocal V: " + checkInt.chlocal.volume + " RemoteV: " + checkInt.chremote.volume + " Union V: " + checkInt.volumeOfUnion + " Intersection V: " + checkInt.volumeOfIntersection + ":   Percentage: " + checkInt.percentageOfIntersection + "%");
             File.AppendAllText(path, "Duration of the Experiment: " + MinutesToString(delta_t));
             //Debug.Log("Exiting playmode.");
         }

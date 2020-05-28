@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Linq;
 using System.Text;
+using GK;
 
 public class UdpListener : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class UdpListener : MonoBehaviour
     public Transform remotecontrollerLeft;
     public Transform remoteFingertipRight;
     public Transform remoteFingertipLeft;
+
+    //public ConvexHullTry chremote;
+    public List<Vector3> remotePoints;
+    public bool receptionComplete = false;
 
     public int port = 7002;
     
@@ -28,6 +33,7 @@ public class UdpListener : MonoBehaviour
     void Start()
     {
         udpRestart();
+        remotePoints = new List<Vector3>();
     }
 
     public void udpRestart()
@@ -95,6 +101,16 @@ public class UdpListener : MonoBehaviour
             remoteFingertipLeft.localPosition = _parsePosition(transforms[4].Split((char)MessageSeparators.L2)[0]);
             remoteFingertipLeft.localRotation = _parseRotation(transforms[4].Split((char)MessageSeparators.L2)[1]);
 
+            if (transforms.Length == 6 && receptionComplete == false)
+            {
+                Debug.Log("Received once");
+                //Debug.Log(remotePoints.Count);
+                remotePoints = _stringToList(transforms[5]).ToList();
+                //Debug.Log(remotePoints.Count);
+                receptionComplete = true;
+            }
+            
+
 
         }
     }
@@ -125,6 +141,27 @@ public class UdpListener : MonoBehaviour
 
         return ret;
     }
+
+    private HashSet<Vector3> _stringToList(string msg)
+    {
+        HashSet<Vector3> points = new HashSet<Vector3>();
+
+        string[] stringPoints = msg.Split((char)MessageSeparators.L2);
+        //Debug.Log(stringPoints.Length);
+        //Debug.Log("a1");
+
+        for (int i = 0; i < stringPoints.Length - 1; i++)
+        {
+            points.Add(_parsePosition(stringPoints[i]));
+            //Debug.Log(points.ToList()[i]);
+            //Debug.Log(points.Count);
+
+        }        
+
+        //Debug.Log("a3");
+        return points;
+    }
+
 
     void OnApplicationQuit()
     {

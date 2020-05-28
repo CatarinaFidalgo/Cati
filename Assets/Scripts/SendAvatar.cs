@@ -1,15 +1,15 @@
-﻿using System;
+﻿using GK;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum MessageSeparators
+/*public enum MessageSeparators
 {
     L1 = '#', // sep transforms
     L2 = '/', // sep propertines 
     L3 = ':' // sep values
-}
+}*/
 
 
 public class SendAvatar : MonoBehaviour
@@ -20,6 +20,12 @@ public class SendAvatar : MonoBehaviour
     //public Transform OBJECT;
     public Transform fingertipRight;
     public Transform fingertipLeft;
+
+    public SaveTrailPoints saveTrailPoints;
+    //public ConvexHullTry
+
+    public bool sent = false;
+
 
     public string logGeneral;
 
@@ -41,6 +47,7 @@ public class SendAvatar : MonoBehaviour
     {
         if (!SENDING) return; // TODO 
 
+        //sendCH = chlocal.sendCH;
 
         if (_upd != null)
         {
@@ -58,6 +65,14 @@ public class SendAvatar : MonoBehaviour
             msg += _getValues(fingertipRight) + (char)MessageSeparators.L1;
             msg += _getValues(fingertipLeft);
 
+            if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent)
+            {
+                msg += (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
+                Debug.Log("Sent Once");
+                sent = true;
+            }
+            
+             
             _upd.send(msg);
             //Debug.Log(msg);
             logGeneral = msg;
@@ -83,6 +98,23 @@ public class SendAvatar : MonoBehaviour
     private string _rotationToString(Quaternion r)
     {
         return "" + r.x + (char)MessageSeparators.L3 + r.y + (char)MessageSeparators.L3 + r.z + (char)MessageSeparators.L3 + r.w;
+    }
+
+    private string _listToString(List<Vector3> points)
+    {
+        string msg = "";
+        int i;
+
+        //Debug.Log("Nr points sent: " + points.Count);
+
+        for (i = 0; i < points.Count; i++)
+        {
+            msg += _positionToString(points[i]) + (char)MessageSeparators.L2;
+        }
+
+        //Debug.Log(msg);
+
+        return msg;
     }
 
 }

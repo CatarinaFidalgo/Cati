@@ -7,29 +7,29 @@ using UnityEngine.XR.WSA.Input;
 
 namespace GK
 {
-	public class ConvexHullTry : MonoBehaviour
+	public class ConvexHullTryRemote : MonoBehaviour
 	{
 
 		public GameObject initialMesh;
-		//public Transform trail;
-		public int i = 0;		
-		public bool generateHullDone = true;
-		public SaveTrailPoints saveTrailPoints;
+		public int i = 0;
+		public bool generateHullDone = true;		
 		public float volume;
-		
 		public Transform ChParent;
-		
-		
-		public int nrCHlocal = 0;
-		
-		
-		public bool readyForIntersectionLocal = false;
+		public bool remote;
+		public int nrCHremote = 0;
+		public bool readyForIntersectionRemote = false;
 		public checkIntersection checkInt;
 
-		
+		public UdpListener udpListener;
+
+		List<Vector3> pointsTrailRemote = new List<Vector3>();
+
+
+
+
 		IEnumerator Start()
 		{
-			
+
 			//Parametros necessarios para o algoritmo de Convex Hull
 
 			var calc = new ConvexHullCalculator();
@@ -40,19 +40,23 @@ namespace GK
 
 
 			//pointsTrailRemote = udpListener.remotePoints;
-			
+
 			//Debug.Log(udpListener.remotePoints.Count);
 			//Debug.Log(pointsTrailRemote.Count);
 
 			while (true)
 			{
-				if (saveTrailPoints.pressed == false && generateHullDone == false)
+				if (udpListener.remotePoints.Count > 0 && udpListener.receptionComplete) //list is complete
 				{
-					
+					udpListener.receptionComplete = false;
 
 					try
-					{	
-						calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
+					{
+						
+						calc.GenerateHull(udpListener.remotePoints, true, ref verts, ref tris, ref normals);
+						
+
+						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
@@ -85,41 +89,42 @@ namespace GK
 						//Send points of the mesh to the hashset containing all points for later Union
 
 						
-						for (int i = 0; i < saveTrailPoints.pointsTrail.Count; i++)
+
+						for (int i = 0; i < pointsTrailRemote.Count; i++)
 						{
-							checkInt.unionHash.Add(saveTrailPoints.pointsTrail[i]);
+							checkInt.unionHash.Add(pointsTrailRemote[i]);
 						}
 						
 
-						
-						
 
 						//Limpar os pontos antigos da lista para o proximo convex hull e
 						//informar o programa de que já realizou esta função 
 
-						saveTrailPoints.pointsTrail.Clear();
+						//saveTrailPoints.pointsTrail.Clear();
 						//pointsTrailRemote.Clear();
-						//udpListener.remotePoints.Clear();
+						udpListener.remotePoints.Clear();
 
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 
 						
+						nrCHremote++;
+						readyForIntersectionRemote = true;
 						
-						nrCHlocal++;
-						readyForIntersectionLocal = true;
 						
 
 					}
 					catch (System.ArgumentException)
 					{
-						saveTrailPoints.pointsTrail.Clear();						
+						
+						udpListener.remotePoints.Clear();
 						generateHullDone = true;
 					}
 
 					catch (UnityEngine.Assertions.AssertionException)
 					{
-						saveTrailPoints.pointsTrail.Clear();						
+						
+						udpListener.remotePoints.Clear();
 						generateHullDone = true;
 					}
 
@@ -131,7 +136,7 @@ namespace GK
 
 
 				yield return new WaitForSeconds(0.5f);
-				
+
 			}
 		}
 
@@ -162,7 +167,7 @@ namespace GK
 			}
 			return Mathf.Abs(volume);
 		}
-		
-				
+
+
 	}
 }
