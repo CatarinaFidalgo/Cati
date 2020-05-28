@@ -23,6 +23,9 @@ namespace GK
 		//public checkIntersection checkInt;
 		public bool readyForIntersectionRemote = false;
 		public bool readyForIntersectionLocal = false;
+		public checkIntersection checkInt;
+
+		
 
 
 		IEnumerator Start()
@@ -68,16 +71,22 @@ namespace GK
 						//Calcular o volume da CH
 
 						volume = VolumeOfMesh(mesh) * 1000000; //convert to cm3
-																//Debug.Log("Volume of MESH: " + volume);
+															   //Debug.Log("Volume of MESH: " + volume);
 
 						//Debug.Log("Verts: " + verts.Count + " Tris: " + tris.Count + " Normals: " + normals.Count);
-						
+
+						//Send points of the mesh to the hashset containing all points for later Union
+
+						for (int i = 0; i < saveTrailPoints.pointsTrail.Count; i++)
+						{
+							checkInt.unionHash.Add(saveTrailPoints.pointsTrail[i]);
+						}
 
 
 						//Limpar os pontos antigos da lista para o proximo convex hull e
 						//informar o programa de que já realizou esta função 
 
-						//////////////////saveTrailPoints.pointsTrail.Clear();
+						////////////////////////////////saveTrailPoints.pointsTrail.Clear();
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 

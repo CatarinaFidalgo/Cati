@@ -6,6 +6,8 @@ using GK;
 using Oculus.Platform.Samples.VrHoops;
 using System.Linq;
 using System;
+
+[System.Serializable]
 public class checkIntersection : MonoBehaviour
 {
     public ConvexHullTry chremote;
@@ -23,18 +25,22 @@ public class checkIntersection : MonoBehaviour
     public int child;
     public float percentageOfIntersection;
     //public bool intersectionDone = false;
+    public HashSet<Vector3> unionHash = new HashSet<Vector3>();
+    public List<Vector3> unionList = new List<Vector3>();
 
     void Update()
     {
         
         if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && chlocal.readyForIntersectionLocal && chremote.readyForIntersectionRemote)
         {
-            //Debug.Log("Nr CH remote: " + chremote.nrCHremote + " Nr CH local: " + chlocal.nrCHlocal + " Local ready: " + chlocal.readyForIntersectionLocal + " Remote ready: " + chremote.readyForIntersectionRemote);
+            child = chremote.nrCHremote - 1;     
+
+            /*//Debug.Log("Nr CH remote: " + chremote.nrCHremote + " Nr CH local: " + chlocal.nrCHlocal + " Local ready: " + chlocal.readyForIntersectionLocal + " Remote ready: " + chremote.readyForIntersectionRemote);
             //Debug.Log("Compute Intersection");
             
             //Intersection through CSG
 
-            child = chremote.nrCHremote - 1;        
+               
 
             CSG A = CSG.fromMesh(a.transform.GetChild(child).GetComponent<MeshFilter>().mesh, a.transform.GetChild(child));
             CSG B = CSG.fromMesh(b.transform.GetChild(child).GetComponent<MeshFilter>().mesh, b.transform.GetChild(child));
@@ -42,8 +48,13 @@ public class checkIntersection : MonoBehaviour
             //CSG A = CSG.fromMesh(a.GetComponent<MeshFilter>().mesh, a.transform);
             //CSG B = CSG.fromMesh(b.GetComponent<MeshFilter>().mesh, b.transform);
 
-            //Debug.Log("Antes Interseção");
+            if(A.polygons.Count == 0 && B.polygons.Count == 0)
+            {
+                Debug.Log("Can't compute intersection for local or remote CH are null.");
+            }
 
+            
+            
             //CSG result = A.intersect(B);
             CSG result = A.union(B);
 
@@ -53,12 +64,7 @@ public class checkIntersection : MonoBehaviour
 
             //Debug.Log("Depois dos pontos: " + intersectionPoints.Count + "pontos");
 
-            //Parametros necessarios para o algoritmo de Convex Hull
-
-            var calc = new ConvexHullCalculator();
-            var verts = new List<Vector3>();
-            var tris = new List<int>();
-            var normals = new List<Vector3>();
+                
 
             //Debug.Log("Antes da CH" );
 
@@ -74,15 +80,20 @@ public class checkIntersection : MonoBehaviour
             {
                 ballsList.Add(POINTS.GetChild(pi).position);
 
-            }
+            }*/
 
             try
             {
-                //Debug.Log("Balls List " + ballsList.Count);
+                //Parametros necessarios para o algoritmo de Convex Hull
 
-                calc.GenerateHull(ballsList, true, ref verts, ref tris, ref normals);
+                var calc = new ConvexHullCalculator();
+                var verts = new List<Vector3>();
+                var tris = new List<int>();
+                var normals = new List<Vector3>();                
 
-                //Debug.Log("Depois da CH");
+                unionList = unionHash.ToList(); //Converte o hashset para uma lista
+
+                calc.GenerateHull(unionList, true, ref verts, ref tris, ref normals);                
 
                 //Create an initial transform that will evolve into our Convex Hull when altering the mesh
                 initialMeshCSG.SetActive(true);
@@ -121,56 +132,76 @@ public class checkIntersection : MonoBehaviour
                 percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
                 Debug.Log("Percentage of Intersection" + percentageOfIntersection);
 
-                ballsList.Clear();
+                //ballsList.Clear();
+                ////////////////////////////////unionHash.Clear();
+                ////////////////////////////////unionList.Clear();
 
                 initialMeshCSG.SetActive(false);
+                a.transform.GetChild(child).gameObject.SetActive(true);
+                b.transform.GetChild(child).gameObject.SetActive(true);
                 //a.SetActive(false);
                 //b.SetActive(false);
 
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
 
-                foreach (Transform child in POINTS)
+                /*foreach (Transform child in POINTS)
                 {
                     Destroy(child.gameObject);
-                }
+                }*/
 
                 //Debug.Log("ChildBalls: " + POINTS.childCount);
             }
 
             catch (System.ArgumentException)
             {
-                ballsList.Clear();
+                //ballsList.Clear();
+                unionHash.Clear();
+                unionList.Clear();
 
                 initialMeshCSG.SetActive(false);
+                a.transform.GetChild(child).gameObject.SetActive(false);
+                b.transform.GetChild(child).gameObject.SetActive(false);
+
+                /*initialMeshCSG.SetActive(false);
                 a.SetActive(false);
-                b.SetActive(false);
+                b.SetActive(false);*/
 
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
 
-                foreach (Transform child in POINTS)
+                /*foreach (Transform child in POINTS)
                 {
                     Destroy(child.gameObject);
-                }
+                }*/
             }
 
             catch (UnityEngine.Assertions.AssertionException)
             {
-                ballsList.Clear();
+                //ballsList.Clear();
+                unionHash.Clear();
+                unionList.Clear();
 
                 initialMeshCSG.SetActive(false);
+                a.transform.GetChild(child).gameObject.SetActive(false);
+                b.transform.GetChild(child).gameObject.SetActive(false);
+
+                /*initialMeshCSG.SetActive(false);
                 a.SetActive(false);
-                b.SetActive(false);
+                b.SetActive(false);*/
 
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
 
-                foreach (Transform child in POINTS)
+                /*foreach (Transform child in POINTS)
                 {
                     Destroy(child.gameObject);
-                }
+                }*/
             }
+
+
+
+
 
 
 
@@ -212,7 +243,13 @@ public class checkIntersection : MonoBehaviour
     {
         float volumeOfIntersection;
 
-        if (volumeOfUnion < volumeLocal || volumeOfUnion < volumeRemote)
+        if (volumeOfUnion < 1.0f)
+        {
+            Debug.Log("Error computing Union. Please Try again.");
+            return 0;
+        }
+
+        /*if (volumeOfUnion < volumeLocal || volumeOfUnion < volumeRemote)
         {
             if (volumeLocal > volumeRemote)
             {
@@ -225,7 +262,7 @@ public class checkIntersection : MonoBehaviour
             }
 
             
-        }
+        }*/
 
         volumeOfIntersection = volumeLocal + volumeRemote - volumeOfUnion;
 
@@ -233,6 +270,8 @@ public class checkIntersection : MonoBehaviour
         {
             volumeOfIntersection = 0.0f;
         }
+
+        Debug.Log("Int: " + volumeOfIntersection + " Loc: " + volumeLocal + " Rem: " + volumeRemote + " Uni: " + volumeOfUnion);
 
         return volumeOfIntersection;
     }
