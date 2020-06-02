@@ -17,7 +17,7 @@ public class CSV_Generator : MonoBehaviour
 
     void Start()
     {
-        participantName = evaluation.participantName;
+        participantName = evaluation.participantID;
         //Path to the file
         //path = Application.dataPath + "/LogGeneral_" + participantName + "_" + t0 + "_" + evaluation.condition + ".txt";
         path = Application.dataPath + "/" + participantName + "_" + DateTime.Now.ToString("MM/dd/yyyy HH:mm").Replace(":", ".").Replace("/", ".") + "_" + evaluation.condition + "_CSV" + ".txt";

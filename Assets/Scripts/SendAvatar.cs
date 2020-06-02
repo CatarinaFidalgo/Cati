@@ -28,6 +28,7 @@ public class SendAvatar : MonoBehaviour
 
 
     public string logGeneral;
+    public string logPoints;
 
 
     public int port = 7001;
@@ -65,9 +66,12 @@ public class SendAvatar : MonoBehaviour
             msg += _getValues(fingertipRight) + (char)MessageSeparators.L1;
             msg += _getValues(fingertipLeft);
 
+            logGeneral = msg;
+
             if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent)
             {
                 msg += (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
+                logPoints = (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
                 Debug.Log("Sent Once");
                 sent = true;
             }
@@ -75,7 +79,7 @@ public class SendAvatar : MonoBehaviour
              
             _upd.send(msg);
             //Debug.Log(msg);
-            logGeneral = msg;
+            
         }
     }
 

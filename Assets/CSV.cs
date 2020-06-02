@@ -25,7 +25,7 @@ public class CSV : MonoBehaviour
     {
         return;
         t0 = System.DateTime.Now.ToString("HH:mm:ss");
-        participantName = evaluation.participantName;
+        participantName = evaluation.participantID;
 
 
         //Path to the file

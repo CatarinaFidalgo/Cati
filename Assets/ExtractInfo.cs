@@ -30,7 +30,7 @@ public class ExtractInfo : MonoBehaviour
     void Start()
     {
         return;
-        participantName = evaluation.participantName;
+        participantName = evaluation.participantID;
 
         //Path to the file
         path = Application.dataPath + "/LogGeneral_" + participantName + "_" + ConditionType.Approach + ".txt";

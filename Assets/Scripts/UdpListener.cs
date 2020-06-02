@@ -17,6 +17,10 @@ public class UdpListener : MonoBehaviour
     public Transform remoteFingertipRight;
     public Transform remoteFingertipLeft;
 
+    //Strings for Loging
+    public string logGeneral;
+    public string logPoints;
+
     //public ConvexHullTry chremote;
     public List<Vector3> remotePoints;
     public bool receptionComplete = false;
@@ -83,6 +87,8 @@ public class UdpListener : MonoBehaviour
         {
             string[] transforms = s.Split((char)MessageSeparators.L1);
 
+            logGeneral = transforms[0] + (char)MessageSeparators.L1 + transforms[1] + (char)MessageSeparators.L1 + transforms[2] + (char)MessageSeparators.L1 + transforms[3] + (char)MessageSeparators.L1 + transforms[4];
+            logPoints = "";
             //OBJECT.localPosition = _parsePosition(transforms[0].Split((char)MessageSeparators.L2)[0]);
             //OBJECT.localRotation = _parseRotation(transforms[0].Split((char)MessageSeparators.L2)[1]);
 
@@ -100,6 +106,8 @@ public class UdpListener : MonoBehaviour
 
             remoteFingertipLeft.localPosition = _parsePosition(transforms[4].Split((char)MessageSeparators.L2)[0]);
             remoteFingertipLeft.localRotation = _parseRotation(transforms[4].Split((char)MessageSeparators.L2)[1]);
+            
+            
 
             if (transforms.Length == 6 && receptionComplete == false)
             {
@@ -107,6 +115,7 @@ public class UdpListener : MonoBehaviour
                 //Debug.Log(remotePoints.Count);
                 remotePoints = _stringToList(transforms[5]).ToList();
                 //Debug.Log(remotePoints.Count);
+                logPoints = transforms[5];
                 receptionComplete = true;
             }
             

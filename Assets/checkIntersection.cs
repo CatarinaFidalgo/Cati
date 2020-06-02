@@ -28,6 +28,7 @@ public class checkIntersection : MonoBehaviour
     public HashSet<Vector3> unionHash = new HashSet<Vector3>();
     public List<Vector3> unionList = new List<Vector3>();
     public bool writeResult;
+    public string percentageString;
 
     void Update()
     {
@@ -88,6 +89,8 @@ public class checkIntersection : MonoBehaviour
                 percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
                 Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
 
+                //Debug.Log(" V_Loc: " + volumeLocal.ToString("F0") + " V_Rem: " + volumeRemote.ToString("F0") + " V_Union: " + volumeOfUnion.ToString("F0") + " V_Int: " + volumeOfIntersection.ToString("F0"));
+                percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfUnion.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString();
                 //writeResult = true;
 
                 //ballsList.Clear();

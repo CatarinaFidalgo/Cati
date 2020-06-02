@@ -19,7 +19,7 @@ public class LogTime : MonoBehaviour
     void Start()
     {
         t0 = System.DateTime.Now.ToString("HH:mm:ss");
-        participantName = evaluation.participantName;
+        participantName = evaluation.participantID;
 
         //Path to the file
         path = Application.dataPath + "/" + participantName + "_" + DateTime.Now.ToString("MM/dd/yyyy HH:mm").Replace(":",".").Replace("/", ".") + "_" + evaluation.condition + "_LogTime" + ".txt";

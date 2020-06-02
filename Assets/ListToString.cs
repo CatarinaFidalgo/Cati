@@ -28,7 +28,9 @@ public class ListToString : MonoBehaviour
 
         message = _listToString(points);
 
-        pointsAfter = _stringToList(message);        
+        pointsAfter = _stringToList(message);
+
+        Debug.Log("cm<sup>3</sup>");
 
     }
 
