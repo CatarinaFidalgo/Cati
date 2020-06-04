@@ -26,7 +26,8 @@ namespace GK
 		public bool readyForIntersectionLocal = false;
 		public checkIntersection checkInt;
 
-		
+		public bool writeFile = false;
+
 		IEnumerator Start()
 		{
 			
@@ -53,7 +54,7 @@ namespace GK
 					try
 					{	
 						calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
-
+						writeFile = true;
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
 						var initialHull = Instantiate(initialMesh);

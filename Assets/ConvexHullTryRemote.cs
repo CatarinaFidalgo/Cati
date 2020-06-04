@@ -24,6 +24,8 @@ namespace GK
 
 		List<Vector3> pointsTrailRemote = new List<Vector3>();
 
+		public bool writeFile = false;
+
 
 
 
@@ -54,8 +56,8 @@ namespace GK
 					{
 						
 						calc.GenerateHull(udpListener.remotePoints, true, ref verts, ref tris, ref normals);
-						
 
+						writeFile = true;
 						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh

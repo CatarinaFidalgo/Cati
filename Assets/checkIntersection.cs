@@ -40,7 +40,7 @@ public class checkIntersection : MonoBehaviour
 
             try
             {
-                Debug.Log("Initiate Intersection");
+                Debug.Log("Initiate Intersection");                
                 //Parametros necessarios para o algoritmo de Convex Hull
 
                 var calc = new ConvexHullCalculator();
@@ -91,7 +91,7 @@ public class checkIntersection : MonoBehaviour
 
                 //Debug.Log(" V_Loc: " + volumeLocal.ToString("F0") + " V_Rem: " + volumeRemote.ToString("F0") + " V_Union: " + volumeOfUnion.ToString("F0") + " V_Int: " + volumeOfIntersection.ToString("F0"));
                 percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfUnion.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString();
-                //writeResult = true;
+                writeResult = true;
 
                 //ballsList.Clear();
                 unionHash.Clear();

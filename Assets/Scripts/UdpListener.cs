@@ -24,6 +24,8 @@ public class UdpListener : MonoBehaviour
     //public ConvexHullTry chremote;
     public List<Vector3> remotePoints;
     public bool receptionComplete = false;
+    public bool udpWriteFile = true;
+
 
     public int port = 7002;
     
@@ -88,7 +90,7 @@ public class UdpListener : MonoBehaviour
             string[] transforms = s.Split((char)MessageSeparators.L1);
 
             logGeneral = transforms[0] + (char)MessageSeparators.L1 + transforms[1] + (char)MessageSeparators.L1 + transforms[2] + (char)MessageSeparators.L1 + transforms[3] + (char)MessageSeparators.L1 + transforms[4];
-            logPoints = "";
+            
             //OBJECT.localPosition = _parsePosition(transforms[0].Split((char)MessageSeparators.L2)[0]);
             //OBJECT.localRotation = _parseRotation(transforms[0].Split((char)MessageSeparators.L2)[1]);
 
@@ -117,6 +119,7 @@ public class UdpListener : MonoBehaviour
                 //Debug.Log(remotePoints.Count);
                 logPoints = transforms[5];
                 receptionComplete = true;
+                udpWriteFile = true;
             }
             
 
