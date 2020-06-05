@@ -113,7 +113,7 @@ public class UdpListener : MonoBehaviour
 
             if (transforms.Length == 6 && receptionComplete == false)
             {
-                Debug.Log("Received once");
+                //Debug.Log("Received once");
                 //Debug.Log(remotePoints.Count);
                 remotePoints = _stringToList(transforms[5]).ToList();
                 //Debug.Log(remotePoints.Count);

@@ -18,10 +18,10 @@ public class checkIntersection : MonoBehaviour
     public List<Vector3> intersectionPoints = new List<Vector3>();
     public float volumeOfUnion;
     public float volumeOfIntersection;
-    public Transform ball;
+    //public Transform ball;
     public GameObject initialMeshCSG;
     public List<Vector3> ballsList = new List<Vector3>();
-    public Transform POINTS;
+    //public Transform POINTS;
     public int child;
     public float percentageOfIntersection;
     //public bool intersectionDone = false;
@@ -40,7 +40,7 @@ public class checkIntersection : MonoBehaviour
 
             try
             {
-                Debug.Log("Initiate Intersection");                
+                //Debug.Log("Initiate Intersection");                
                 //Parametros necessarios para o algoritmo de Convex Hull
 
                 var calc = new ConvexHullCalculator();
@@ -87,10 +87,10 @@ public class checkIntersection : MonoBehaviour
                 //Compare the volume of intersection with the volume that the local pointed
 
                 percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
-                Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
+                //Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
 
                 //Debug.Log(" V_Loc: " + volumeLocal.ToString("F0") + " V_Rem: " + volumeRemote.ToString("F0") + " V_Union: " + volumeOfUnion.ToString("F0") + " V_Int: " + volumeOfIntersection.ToString("F0"));
-                percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfUnion.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString();
+                percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfUnion.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString("F1");
                 writeResult = true;
 
                 //ballsList.Clear();
@@ -106,7 +106,7 @@ public class checkIntersection : MonoBehaviour
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
 
-                Debug.Log("Finish Intersection");
+                
 
             }
 
@@ -228,18 +228,13 @@ public class checkIntersection : MonoBehaviour
             volumeOfIntersection = 0.0f;
         }
 
-        Debug.Log(" V_Loc: " + volumeLocal.ToString("F0") + " V_Rem: " + volumeRemote.ToString("F0") + " V_Union: " + volumeOfUnion.ToString("F0") + " V_Int: " + volumeOfIntersection.ToString("F0"));
-
         return volumeOfIntersection;
     }
 
     List<Vector3> CSGtoListOfPoints(List<Polygon> polygons)
     {
         HashSet<Vector3> hash = new HashSet<Vector3>();
-
         int i = 0;
-
-       // Debug.Log("Number of polygons in result from CGS: " + polygons.Count);
 
         for (int pi = 0; pi < polygons.Count; pi++)
         {
@@ -250,9 +245,6 @@ public class checkIntersection : MonoBehaviour
             }
 
         }
-
-        //Debug.Log("Number of points in the HashSet:" + hash.Count);
-        //Debug.Log("Number of i:" + i);
 
         List<Vector3> points = hash.ToList();
 

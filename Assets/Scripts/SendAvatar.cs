@@ -54,7 +54,7 @@ public class SendAvatar : MonoBehaviour
         {
             /* Message is:
              * 
-             *  head, controllerRight, controllerLeft, fingertipRight, fingertipLeft
+             *  head, controllerRight, controllerLeft, fingertipRight, fingertipLeft, pointingpoints
              * 
              */
             string msg = "";
@@ -72,7 +72,7 @@ public class SendAvatar : MonoBehaviour
             {
                 msg += (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
                 logPoints = (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
-                Debug.Log("Sent Once");
+                //Debug.Log("Sent Once");
                 sent = true;
             }
             

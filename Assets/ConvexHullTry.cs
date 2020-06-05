@@ -110,7 +110,7 @@ namespace GK
 						nrCHlocal++;
 						readyForIntersectionLocal = true;
 
-						Debug.Log("Finish CH Local");
+						//Debug.Log("Finish CH Local");
 
 
 					}
