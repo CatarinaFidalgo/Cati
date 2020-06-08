@@ -20,6 +20,7 @@ public class StartEndLogs : MonoBehaviour
     public SaveTrailPoints trail;
     public ConvexHullTry chlocal;
     public ConvexHullTryRemote chremote;
+    public ChooseTest test;
 
     private string participantID;
     private string _logBodyLocalPath;
@@ -31,6 +32,7 @@ public class StartEndLogs : MonoBehaviour
     private bool start = true;
     private bool getStartTime = true;
     private bool getEndTime = true;
+    
 
     //IEnumerator Start()
     void Start()
@@ -44,12 +46,16 @@ public class StartEndLogs : MonoBehaviour
             InitializeFiles();
         }*/
 
+        OVRInput.Update();
+
         if (role.localIsDemonstrator)
         {
-            if (trail.pressed && getStartTime)
+            //if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) == 1 && getStartTime)            
+
+            if (trail.pressed && getStartTime) //CHANGE THE START METHOD, PRESS ANOTHER BUTTON
             {
                 taskStartTime = DateTime.Now;
-                getStartTime = false;
+                getStartTime = false; 
                 //Debug.Log("Start Time:" + taskStartTime.ToString());
             }
 
@@ -58,6 +64,16 @@ public class StartEndLogs : MonoBehaviour
                 
                 taskEndTime = DateTime.Now;
                 getEndTime = false;
+
+                test.j++; //Change target
+
+                if (test.j > 3)
+                {
+                    test.j = 0;
+                    test.i++;
+
+                }
+
                 //Debug.Log("End Time:" + taskEndTime.ToString());
                 File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:ff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:ff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString("F0") + "\"\n");
 
