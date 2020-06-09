@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+
 
 public class ChooseTest : MonoBehaviour
 {
@@ -76,6 +78,13 @@ public class ChooseTest : MonoBehaviour
             TestOn.GetChild(3).GetChild(j).GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", Color.HSVToRGB(148.0f / 360.0f, 1, 1));
             previous = TestOn.GetChild(3).GetChild(j).GetChild(0);
         }
+
+        if (i > 4)
+        {
+            previous.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+            Debug.Log("Experiment is over. Thank you.");
+        }
+
 
     }
 }

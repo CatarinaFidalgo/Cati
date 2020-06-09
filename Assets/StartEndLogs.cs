@@ -32,7 +32,8 @@ public class StartEndLogs : MonoBehaviour
     private bool start = true;
     private bool getStartTime = true;
     private bool getEndTime = true;
-    
+    public bool showWorkspace = false;
+
 
     //IEnumerator Start()
     void Start()
@@ -41,22 +42,35 @@ public class StartEndLogs : MonoBehaviour
     }
     void Update()
     {
-        /*if (start && role.localIsDemonstrator)
-        {
-            InitializeFiles();
-        }*/
-
         OVRInput.Update();
 
         if (role.localIsDemonstrator)
         {
-            //if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) == 1 && getStartTime)            
-
-            if (trail.pressed && getStartTime) //CHANGE THE START METHOD, PRESS ANOTHER BUTTON
+            /*if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) //&& getStartTime)
             {
+                Debug.Log("Secondary");
+            }
+
+            if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.9f) //&& getStartTime)
+            {
+                Debug.Log("Primary");
+            }
+
+            Debug.Log("Right: " + OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger));
+            Debug.Log("Left: " + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger));
+            //Debug.Log("Rest: " + OVRInput.Get(OVRInput.Touch.SecondaryThumbRest));
+            Debug.Log("B: " + OVRInput.Get(OVRInput.Button.Two));
+            Debug.Log("A: " + OVRInput.Get(OVRInput.Button.One));*/
+
+
+
+            //if (trail.pressed && getStartTime) //CHANGE THE START METHOD, PRESS ANOTHER BUTTON
+            if(((OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) || (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.9f)) && getStartTime)
+            {
+                showWorkspace = true;
                 taskStartTime = DateTime.Now;
                 getStartTime = false; 
-                //Debug.Log("Start Time:" + taskStartTime.ToString());
+                Debug.Log("Entrei " + taskStartTime.ToString());
             }
 
             if (udpListener.receptionComplete && getEndTime)
@@ -64,6 +78,8 @@ public class StartEndLogs : MonoBehaviour
                 
                 taskEndTime = DateTime.Now;
                 getEndTime = false;
+
+                showWorkspace = false;
 
                 test.j++; //Change target
 
@@ -73,6 +89,9 @@ public class StartEndLogs : MonoBehaviour
                     test.i++;
 
                 }
+
+                Debug.Log("i: " + test.i);
+                Debug.Log("j: " + test.j);
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
                 File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:ff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:ff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString("F0") + "\"\n");
