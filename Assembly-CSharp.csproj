@@ -497,6 +497,7 @@
     <None Include="Assets\ResultsCati\101_20200609-160218_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161331_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-163902_Approach_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200610-112549_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-180508_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200608-171201_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-173447_Approach_LogBodyRemote.txt" />
@@ -513,6 +514,7 @@
     <None Include="Assets\ResultsCati\101_20200605-114244_Veridical_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161537_Approach_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200609-160218_Approach_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsCati\101_20200616-141759_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-174851_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-155244_Veridical_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200609-160844_Approach_LogBodyLocal.txt" />
@@ -598,6 +600,7 @@
     <None Include="Assets\ResultsCati\101_20200609-175453_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-171922_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\Oculus\SampleFramework\license.txt" />
+    <None Include="Assets\ResultsCati\101_20200610-112549_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCat\101_20200604-122843_Approach_LogVolumePoints.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_Mobile_CombinedMesh.shader" />
     <None Include="Assets\ResultsCati\101_20200609-164553_Approach_LogIntersection.txt" />
@@ -647,6 +650,7 @@
     <None Include="Assets\ResultsCati\101_20200605-110758_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164657_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164553_Approach_LogTime.txt" />
+    <None Include="Assets\Clipboard\ReadMe\ReadMe.txt" />
     <None Include="Assets\ResultsCati\101_20200605-114244_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-153657_Veridical_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-155244_Veridical_LogIntersection.txt" />
@@ -706,6 +710,7 @@
     <None Include="Assets\ResultsCati\101_20200605-114209_Veridical_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164342_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-172437_Veridical_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200616-141759_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164944_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-173447_Approach_LogTime.txt" />
     <Reference Include="Unity.Timeline.Editor">
@@ -714,11 +719,26 @@
     <Reference Include="Unity.Burst">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -743,6 +763,9 @@
     </Reference>
     <Reference Include="Unity.Animation.Rigging.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.Animation.Rigging.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
