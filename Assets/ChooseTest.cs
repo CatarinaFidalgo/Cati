@@ -43,7 +43,8 @@ public class ChooseTest : MonoBehaviour
             TestOn = Test4;
         }
 
-        previous = TestOn.GetChild(0).GetChild(0).GetChild(0);
+        //previous = TestOn.GetChild(0).GetChild(0).GetChild(0);
+        previous = TestOn.GetChild(0).GetChild(0);
 
     }
 
@@ -53,9 +54,14 @@ public class ChooseTest : MonoBehaviour
         //return;
         if (i == 1)
         {
-            previous.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
-            TestOn.GetChild(0).GetChild(j).GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", Color.HSVToRGB(148.0f / 360.0f, 1, 1));
-            previous = TestOn.GetChild(0).GetChild(j).GetChild(0);
+            //previous.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+            //TestOn.GetChild(0).GetChild(j).GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", Color.HSVToRGB(148.0f / 360.0f, 1, 1));
+            //previous = TestOn.GetChild(0).GetChild(j).GetChild(0);
+
+            previous.gameObject.SetActive(false);
+            TestOn.GetChild(0).GetChild(j).gameObject.SetActive(true);
+            previous = TestOn.GetChild(0).GetChild(j);
+            
         }
 
         if (i == 2)
