@@ -94,14 +94,14 @@ public class StartEndLogs : MonoBehaviour
                 Debug.Log("j: " + test.j);
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
-                File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:ff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:ff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString("F0") + "\"\n");
+                File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:fff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:fff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString() + "\"\n");
 
             }
 
             if (chlocal.writeFile)
             {
                 //Save drawn data points (Local)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:ff") + udpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + udpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chlocal.writeFile = false;
                 //Debug.Log("TrailPointsLocal");
 
@@ -110,7 +110,7 @@ public class StartEndLogs : MonoBehaviour
             if (chremote.writeFile)
             {
                 //Save drawn data points (Remote)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:ff") + "\",\"" + udpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chremote.writeFile = false;
                 //Debug.Log("TrailPointsRemote");
 
@@ -119,7 +119,7 @@ public class StartEndLogs : MonoBehaviour
             if (intersection.writeResult)
             {                            
                 //Save volumes and intersection
-                File.AppendAllText(_logIntersectionPath, System.DateTime.Now.ToString("HH:mm:ss:ff") + "\",\"" + intersection.percentageString.Replace(",", ".").Replace("#", "\",\"") + "\"\n");
+                File.AppendAllText(_logIntersectionPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + intersection.percentageString.Replace(",", ".").Replace("#", "\",\"") + "\"\n");
                 
 
                 //Update booleans
@@ -134,8 +134,8 @@ public class StartEndLogs : MonoBehaviour
             }
 
             //Save body data for both participants
-            File.AppendAllText(_logBodyLocalPath, System.DateTime.Now.ToString("HH:mm:ss:ff") + "\",\"" + udpSend.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
-            File.AppendAllText(_logBodyRemotePath, System.DateTime.Now.ToString("HH:mm:ss:ff") + "\",\"" + udpListener.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
+            File.AppendAllText(_logBodyLocalPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpSend.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
+            File.AppendAllText(_logBodyRemotePath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
 
             //+ "\",\"" + sendAvatar.logGeneral.Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\""
 
@@ -175,16 +175,19 @@ public class StartEndLogs : MonoBehaviour
         //start = false;
     }
 
-    float DeltaDateTimeToSeconds(DateTime t0, DateTime t1)
+    TimeSpan DeltaDateTimeToSeconds(DateTime t0, DateTime t1)
     {
-        string[] parcels0 = t0.ToString("HH:mm:ss:ff").Split(':');
-        string[] parcels1 = t1.ToString("HH:mm:ss:ff").Split(':');
+        return t1 - t0;
+
+        /**
+        string[] parcels0 = t0.ToString("HH:mm:ss:fff").Split(':');
+        string[] parcels1 = t1.ToString("HH:mm:ss:fff").Split(':');
 
         float sec0 = float.Parse(parcels0[0]) * 3600.0f + float.Parse(parcels0[1]) * 60.0f + float.Parse(parcels0[2]) + float.Parse(parcels0[3]) / 60.0f;
         float sec1 = float.Parse(parcels1[0]) * 3600.0f + float.Parse(parcels1[1]) * 60.0f + float.Parse(parcels1[2]) + float.Parse(parcels1[3]) / 60.0f;
         //Debug.Log(sec0 +"   "+ sec1 + "   " + (sec1 - sec0));
         return (sec1-sec0);
-
+        **/
     }
 
 

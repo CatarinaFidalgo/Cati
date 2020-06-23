@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: XingLightMaterial
   m_Shader: {fileID: 4800000, guid: 20db1f0dad220cf4e8e49b6e6db7b68c, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
@@ -39,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 11b03a969a56a6541938a82c96221de5, type: 3}
+        m_Texture: {fileID: 2800000, guid: ffc0ecb0a29266e419ce3ad65745eec4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
