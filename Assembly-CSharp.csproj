@@ -472,6 +472,7 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_PC_SingleComponent.shader" />
     <None Include="Assets\ResultsCati\101_20200605-113827_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-174357_Veridical_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115406_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200608-121639_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200608-173308_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\Oculus\Avatar\Samples\CrossPlatform\Readme.txt" />
@@ -484,12 +485,14 @@
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderBumpMap.shader" />
     <None Include="Assets\ResultsCati\101_20200609-161810_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-174950_Approach_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115450_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-160844_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-153445_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161331_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200605-114209_Veridical_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200605-110758_Approach_LogVolumePoints.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Materials\Hands_DiffBump.shader" />
+    <None Include="Assets\ResultsCati\101_20200617-115450_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\Video\Resources\Multiview Stereo.shader" />
     <None Include="Assets\ResultsCati\101_20200609-161537_Approach_LogBodyLocal.txt" />
     <None Include="Assets\OutlineEffect\VerticesOutline_Normal.shader" />
@@ -600,6 +603,7 @@
     <None Include="Assets\ResultsCati\101_20200609-175453_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-171922_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\Oculus\SampleFramework\license.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115450_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200610-112549_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCat\101_20200604-122843_Approach_LogVolumePoints.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Version1.5\Avatar_Mobile_CombinedMesh.shader" />
@@ -620,6 +624,7 @@
     <None Include="Assets\ResultsCati\101_20200608-174044_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\Jorge_05.28.2020 16.08_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200608-174554_Veridical_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115406_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-180126_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\GradientSkybox.shader" />
     <None Include="Assets\ResultsCati\101_20200609-161810_Approach_LogBodyRemote.txt" />
@@ -693,7 +698,9 @@
     <None Include="Assets\ResultsCati\101_20200605-114306_Veridical_LogVolumePoints.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\DistanceGrab\Materials\ToyCubeWithOutline.shader" />
     <None Include="Assets\ResultsCati\101_20200609-162256_Approach_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115406_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200608-173308_Veridical_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200617-115450_Approach_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200605-112859_Veridical_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200608-174606_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200605-114209_Veridical_LogBodyRemote.txt" />
