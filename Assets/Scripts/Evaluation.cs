@@ -71,7 +71,7 @@ public class Evaluation : MonoBehaviour
             remoteWorkspace.localScale = new Vector3(1, 1, 1);
                     
             veridicalSetUp.SetActive(false);
-            approachSetUp.SetActive(true);
+            approachSetUp.SetActive(false);
         }
 
         

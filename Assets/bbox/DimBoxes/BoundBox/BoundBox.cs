@@ -282,7 +282,7 @@ namespace DimBoxes
 
                 lineMaterial = lineList[0].sharedMaterial;
 
-                Debug.Log(lineList.Length);
+                //Debug.Log(lineList.Length);
                 for (int i = 0; i < 4; i++)
                 {
                     //width

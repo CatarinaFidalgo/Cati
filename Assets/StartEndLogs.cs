@@ -83,14 +83,14 @@ public class StartEndLogs : MonoBehaviour
 
                 test.j++; //Change target
 
-                if (test.j > 3)
+               /* if (test.j > 3)
                 {
                     test.j = 0;
                     test.i++;
 
                 }
 
-                Debug.Log("i: " + test.i);
+                Debug.Log("i: " + test.i);*/
                 Debug.Log("j: " + test.j);
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
