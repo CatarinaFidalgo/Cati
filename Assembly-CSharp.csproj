@@ -463,6 +463,7 @@
     <Compile Include="Assets\VRRig2.cs" />
     <None Include="Assets\ResultsCati\101_20200609-163902_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200605-112859_Veridical_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122138_Approach_LogBodyRemote.txt" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
     <None Include="Assets\ResultsCati\101_20200605-112645_Veridical_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200627-150539_Approach_LogBodyRemote.txt" />
@@ -521,6 +522,7 @@
     <None Include="Assets\ResultsCati\101_20200617-175756_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200617-115450_Approach_LogTime.txt" />
     <None Include="Assets\Oculus\SampleFramework\Core\Video\Resources\Multiview Stereo.shader" />
+    <None Include="Assets\ResultsCati\101_20200629-122602_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161537_Approach_LogBodyLocal.txt" />
     <None Include="Assets\OutlineEffect\VerticesOutline_Normal.shader" />
     <None Include="Assets\ResultsCati\101_20200608-171831_Veridical_LogBodyRemote.txt" />
@@ -589,6 +591,7 @@
     <None Include="Assets\ResultsCati\101_20200605-113623_Veridical_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-160700_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-121507_Veridical_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122602_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161055_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200605-113827_Veridical_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200609-161055_Approach_LogBodyLocal.txt" />
@@ -662,6 +665,7 @@
     <None Include="Assets\Jorge_05.28.2020 16.09_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200608-171721_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderPBS.shader" />
+    <None Include="Assets\ResultsCati\101_20200629-122138_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCat\101_20200604-122843_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200629-115822_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200608-171831_Veridical_LogBodyLocal.txt" />
@@ -755,8 +759,11 @@
     <None Include="Assets\ResultsCati\101_20200609-153445_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200627-151417_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200617-175450_Approach_LogBodyLocal.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122138_Approach_LogVolumePoints.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122602_Approach_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200617-183333_Approach_LogVolumePoints.txt" />
     <None Include="Assets\ResultsCati\101_20200617-175350_Approach_LogTime.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122602_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200605-110758_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164657_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164553_Approach_LogTime.txt" />
@@ -772,6 +779,7 @@
     <None Include="Assets\Oculus\SampleFramework\Core\DebugUI\Fonts\Montserrat\OFL.txt" />
     <None Include="Assets\ResultsCati\101_20200608-123634_Veridical_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200609-174528_Approach_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122138_Approach_LogIntersection.txt" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderPBSV2.shader" />
     <None Include="Assets\ResultsCati\101_20200629-115248_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-174044_Veridical_LogBodyRemote.txt" />
@@ -838,6 +846,7 @@
     <None Include="Assets\ResultsCati\101_20200609-160218_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200627-151147_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200605-112645_Veridical_LogTime.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122602_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200629-115139_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200608-121639_Veridical_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200628-150210_Approach_LogBodyRemote.txt" />
@@ -851,6 +860,7 @@
     <None Include="Assets\ResultsCati\101_20200629-113849_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsCati\101_20200609-164944_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsCati\101_20200617-175350_Approach_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsCati\101_20200629-122138_Approach_LogTime.txt" />
     <None Include="Assets\ResultsCati\101_20200609-173447_Approach_LogTime.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/catar/Documents/GitHub/Cati/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

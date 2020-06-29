@@ -131,6 +131,8 @@ public class checkIntersection : MonoBehaviour
                 {
                     Destroy(child.gameObject);
                 }*/
+
+
             }
 
             catch (UnityEngine.Assertions.AssertionException)
@@ -202,25 +204,11 @@ public class checkIntersection : MonoBehaviour
 
         if (volumeOfUnion < 1.0f)
         {
-            Debug.Log("Error computing Union. Please Try again.");
-            return 0;
+            throw new System.ArgumentException("Error computing Union.Please Try again.");
+            
         }
 
-        /*if (volumeOfUnion < volumeLocal || volumeOfUnion < volumeRemote)
-        {
-            if (volumeLocal > volumeRemote)
-            {
-                volumeOfUnion = volumeLocal;
-            }
-
-            else
-            {
-                volumeOfUnion = volumeRemote;
-            }
-
-            
-        }*/
-
+        
         volumeOfIntersection = volumeLocal + volumeRemote - volumeOfUnion;
 
         if (volumeOfIntersection <= 0.0f)
