@@ -18,7 +18,12 @@ public class ChooseHighLightTarget : MonoBehaviour
     public Evaluation evaluation;
 
     public Transform target;
-  
+    public Transform p101;
+    public Transform p102;
+    public Transform p103;
+
+
+
 
     void Start()
     {
@@ -48,7 +53,48 @@ public class ChooseHighLightTarget : MonoBehaviour
     
     void Update()
     {
-        target.position = TestOn[j];
+        
+        
+
+        if (j < 5)
+        {
+            //101 active
+            target.position = TestOn[j];
+
+            p101.GetComponent<HighLight>().radius = 0.05f;
+            p102.GetComponent<HighLight>().radius = 0.01f;
+            p103.GetComponent<HighLight>().radius = 0.01f;
+
+            /*p101.GetComponent<HighLight>().enabled = true;            
+            p102.GetComponent<HighLight>().enabled = false;
+            p103.GetComponent<HighLight>().enabled = false;*/
+        }
+
+        else if ( j >= 5 && j < 12)
+        {
+            //102 active
+            target.position = TestOn[j];
+
+            p101.GetComponent<HighLight>().radius = 0.01f;
+            p102.GetComponent<HighLight>().radius = 0.05f;
+            p103.GetComponent<HighLight>().radius = 0.01f;
+        }
+
+        else if (j >= 12 && j < 16)
+        {
+            //103 active
+            target.position = TestOn[j];
+
+            p101.GetComponent<HighLight>().radius = 0.01f;
+            p102.GetComponent<HighLight>().radius = 0.01f;
+            p103.GetComponent<HighLight>().radius = 0.05f;
+        }
+
+        else
+        {
+
+            Debug.Log("END OF EXPERIMENT");
+        }
 
     }
 

@@ -20,7 +20,7 @@ public class StartEndLogs : MonoBehaviour
     public SaveTrailPoints trail;
     public ConvexHullTry chlocal;
     public ConvexHullTryRemote chremote;
-    public ChooseTest test;
+    public ChooseHighLightTarget test;
 
     private string participantID;
     private string _logBodyLocalPath;
@@ -29,7 +29,7 @@ public class StartEndLogs : MonoBehaviour
     private string _logIntersectionPath;
     private string _logTimePath;
 
-    private bool start = true;
+    
     private bool getStartTime = true;
     private bool getEndTime = true;
     public bool showWorkspace = false;
@@ -79,18 +79,16 @@ public class StartEndLogs : MonoBehaviour
                 taskEndTime = DateTime.Now;
                 getEndTime = false;
 
-                showWorkspace = false;
+                showWorkspace = false;                
 
-                test.j++; //Change target
-
-               /* if (test.j > 3)
+                if (test.j < 16)
                 {
-                    test.j = 0;
-                    test.i++;
+                    test.j++; //Change target
+
 
                 }
 
-                Debug.Log("i: " + test.i);*/
+                
                 Debug.Log("j: " + test.j);
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
