@@ -100,6 +100,9 @@ public class checkIntersection : MonoBehaviour
                 initialMeshCSG.SetActive(false);
                 a.transform.GetChild(child).gameObject.SetActive(false);
                 b.transform.GetChild(child).gameObject.SetActive(false);
+                
+                initialHull.SetActive(false);
+
                 //a.SetActive(false);
                 //b.SetActive(false);
 

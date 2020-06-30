@@ -7,8 +7,8 @@ using GK;
 
 public class StartEndLogs : MonoBehaviour
 {
-    public string _resultsFolder;
-    public Role role;
+    //public string _resultsFolder;
+    //public Role role;
     
     public DateTime taskStartTime;
     public DateTime taskEndTime;
@@ -34,6 +34,8 @@ public class StartEndLogs : MonoBehaviour
     private bool getEndTime = true;
     public bool showWorkspace = false;
 
+    public Camera camera;
+
 
     //IEnumerator Start()
     void Start()
@@ -44,7 +46,7 @@ public class StartEndLogs : MonoBehaviour
     {
         OVRInput.Update();
 
-        if (role.localIsDemonstrator)
+        if (evaluation.localIsDemonstrator)
         {
             /*if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) //&& getStartTime)
             {
@@ -86,6 +88,10 @@ public class StartEndLogs : MonoBehaviour
                     test.j++; //Change target
 
 
+                }
+                else
+                {
+                    camera.depth = 15.0f;
                 }
 
                 
@@ -152,23 +158,23 @@ public class StartEndLogs : MonoBehaviour
     {
         participantID = evaluation.participantID;
 
-        _resultsFolder = Application.dataPath + _resultsFolder;
+        evaluation._resultsFolder = Application.dataPath + evaluation._resultsFolder;
 
-        if (!Directory.Exists(_resultsFolder))
+        if (!Directory.Exists(evaluation._resultsFolder))
         {
-            Directory.CreateDirectory(_resultsFolder);
-            Debug.Log("Folder created: " + _resultsFolder);
+            Directory.CreateDirectory(evaluation._resultsFolder);
+            Debug.Log("Folder created: " + evaluation._resultsFolder);
         }
         else
         {
-            print("Folder already exists: " + _resultsFolder);
+            print("Folder already exists: " + evaluation._resultsFolder);
         }
 
-        _logBodyLocalPath = _resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyLocal" + ".txt";
-        _logBodyRemotePath = _resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyRemote" + ".txt";
-        _logVolumePointsPath = _resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogVolumePoints" + ".txt";
-        _logIntersectionPath = _resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogIntersection" + ".txt";
-        _logTimePath = _resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogTime" + ".txt";
+        _logBodyLocalPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyLocal" + ".txt";
+        _logBodyRemotePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyRemote" + ".txt";
+        _logVolumePointsPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogVolumePoints" + ".txt";
+        _logIntersectionPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogIntersection" + ".txt";
+        _logTimePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogTime" + ".txt";
 
         //start = false;
     }

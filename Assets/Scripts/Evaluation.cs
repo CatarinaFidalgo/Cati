@@ -26,6 +26,9 @@ public class Evaluation : MonoBehaviour
     public ConditionType condition;
     public TestType test;
     public string participantID;
+    public string _resultsFolder;
+
+    public bool localIsDemonstrator;
 
     public Transform localWorkspace;
     public Transform remoteWorkspace;
