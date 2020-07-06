@@ -101,7 +101,7 @@ public class ChooseHighLightTarget : MonoBehaviour
 
     void FillTargetPoints(List<Vector3> Test1, List<Vector3> Test2, List<Vector3> Test3, List<Vector3> Test4)
     {
-        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\catar\Documents\GitHub\Cati\Assets\TargetPoints.txt");
+        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\catar\Documents\GitHub\Cati\Assets\TargetPointsFAST.txt");
         
         //int i = 0;
 
