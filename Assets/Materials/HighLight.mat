@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Highlight
+  m_Name: HighLight
   m_Shader: {fileID: 4800000, guid: b416fd7cad48742849a25b5720bea53b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

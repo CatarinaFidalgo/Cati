@@ -38,14 +38,16 @@ public class StartEndLogs : MonoBehaviour
 
     public GameObject endCanvas;
     public GameObject startCanvas;
+    public GameObject midCanvas;
 
 
     //IEnumerator Start()
     void Start()
-    {
-        endCanvas.SetActive(false);
+    {        
         startCanvas.SetActive(true);
-        //canvas.SetActive(true);
+        midCanvas.SetActive(false);
+        endCanvas.SetActive(false);
+
         InitializeFiles();
         generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";        
 
@@ -78,10 +80,13 @@ public class StartEndLogs : MonoBehaviour
             if(((OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) || (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.9f)) && getStartTime)
             {
                 showWorkspace = true;
+                midCanvas.SetActive(false);
+                startCanvas.SetActive(false);
+
                 taskStartTime = DateTime.Now;
                 getStartTime = false; 
-                Debug.Log("Entrei " + taskStartTime.ToString());
-                startCanvas.SetActive(false);
+                
+                
             }
 
             if (udpListener.receptionComplete && getEndTime)
@@ -91,22 +96,13 @@ public class StartEndLogs : MonoBehaviour
                 getEndTime = false;
 
                 showWorkspace = false;
+                midCanvas.SetActive(true);
 
                 test.j++; //Change target
                 //Debug.Log("j: " + test.j);
 
+                
 
-                /*if (test.j < 16)
-                {
-                    test.j++; //Change target
-                    
-
-
-                }
-                else
-                {
-                    canvas.SetActive(true);                    
-                }*/
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
                 File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:fff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:fff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString() + "\"\n");
@@ -157,9 +153,11 @@ public class StartEndLogs : MonoBehaviour
 
         }
 
-        else
+        else if (evaluation.localIsDemonstrator && test.j >= test.TestOn.Count)
         {
             endCanvas.SetActive(true);
+            midCanvas.SetActive(false);
+            //Debug.Log("Está no else");
         }
 
 
@@ -195,10 +193,10 @@ public class StartEndLogs : MonoBehaviour
         _logTimePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogTime" + ".txt";
 
         //Fill 1st line with description
-        File.AppendAllText(_logBodyLocalPath, generalInfo + "\"Local_HMD_p_x\",\"Local_HMD_p_y\",\"Local_HMD_p_z\",\"Local_HMD_r_x\",\"Local_HMD_r_y\",\"Local_HMD_r_z\",\"Local_HMD_r_w\",\"Local_Right_p_x\",\"Local_Right_p_y\",\"Local_Right_p_z\",\"Local_Right_r_x\",\"Local_Right_r_y\",\"Local_Right_r_z\",\"Local_Right_r_w\",\"Local_Left_p_x\",\"Local_Left_p_y\",\"Local_Left_p_z\",\"Local_Left_r_x\",\"Local_Left_r_y\",\"Local_Left_r_z\",\"Local_Left_r_w\",\"Local_FingertipR_p_x\",\"Local_FingertipR_p_y\",\"Local_FingertipR_p_z\",\"Local_FingertipR_r_x\",\"Local_FingertipR_r_y\",\"Local_FingertipR_r_z\",\"Local_FingertipR_r_w\",\"Local_FingertipL_p_x\",\"Local_FingertipL_p_y\",\"Local_FingertipL_p_z\",\"Local_FingertipL_r_x\",\"Local_FingertipL_r_y\",\"Local_FingertipL_r_z\",\"Local_FingertipL_r_w\",\"\n");
-        File.AppendAllText(_logBodyRemotePath, generalInfo + "\"Remote_HMD_p_x\",\"Remote_HMD_p_y\",\"Remote_HMD_p_z\",\"Remote_HMD_r_x\",\"Remote_HMD_r_y\",\"Remote_HMD_r_z\",\"Remote_HMD_r_w\",\"Remote_Right_p_x\",\"Remote_Right_p_y\",\"Remote_Right_p_z\",\"Remote_Right_r_x\",\"Remote_Right_r_y\",\"Remote_Right_r_z\",\"Remote_Right_r_w\",\"Remote_Left_p_x\",\"Remote_Left_p_y\",\"Remote_Left_p_z\",\"Remote_Left_r_x\",\"Remote_Left_r_y\",\"Remote_Left_r_z\",\"Remote_Left_r_w\",\"Remote_FingertipR_p_x\",\"Remote_FingertipR_p_y\",\"Remote_FingertipR_p_z\",\"Remote_FingertipR_r_x\",\"Remote_FingertipR_r_y\",\"Remote_FingertipR_r_z\",\"Remote_FingertipR_r_w\",\"Remote_FingertipL_p_x\",\"Remote_FingertipL_p_y\",\"Remote_FingertipL_p_z\",\"Remote_FingertipL_r_x\",\"Remote_FingertipL_r_y\",\"Remote_FingertipL_r_z\",\"Remote_FingertipL_r_w\",\"\n");
-        File.AppendAllText(_logVolumePointsPath, generalInfo + "\"Set of points participants used to outline the area of interest (for replicability) \"\n");
-        File.AppendAllText(_logIntersectionPath, generalInfo + "\"V_Local(cm3)\",\"V_Remote(cm3)\",\"V_Union(cm3)\",\"V_Intersection(cm3)\",\"Intersection (%)\"\n");
+        File.AppendAllText(_logBodyLocalPath, generalInfo + "\"Time Stamp\",\"Local_HMD_p_x\",\"Local_HMD_p_y\",\"Local_HMD_p_z\",\"Local_HMD_r_x\",\"Local_HMD_r_y\",\"Local_HMD_r_z\",\"Local_HMD_r_w\",\"Local_Right_p_x\",\"Local_Right_p_y\",\"Local_Right_p_z\",\"Local_Right_r_x\",\"Local_Right_r_y\",\"Local_Right_r_z\",\"Local_Right_r_w\",\"Local_Left_p_x\",\"Local_Left_p_y\",\"Local_Left_p_z\",\"Local_Left_r_x\",\"Local_Left_r_y\",\"Local_Left_r_z\",\"Local_Left_r_w\",\"Local_FingertipR_p_x\",\"Local_FingertipR_p_y\",\"Local_FingertipR_p_z\",\"Local_FingertipR_r_x\",\"Local_FingertipR_r_y\",\"Local_FingertipR_r_z\",\"Local_FingertipR_r_w\",\"Local_FingertipL_p_x\",\"Local_FingertipL_p_y\",\"Local_FingertipL_p_z\",\"Local_FingertipL_r_x\",\"Local_FingertipL_r_y\",\"Local_FingertipL_r_z\",\"Local_FingertipL_r_w\",\"\n");
+        File.AppendAllText(_logBodyRemotePath, generalInfo + "\"Time Stamp\",\"Remote_HMD_p_x\",\"Remote_HMD_p_y\",\"Remote_HMD_p_z\",\"Remote_HMD_r_x\",\"Remote_HMD_r_y\",\"Remote_HMD_r_z\",\"Remote_HMD_r_w\",\"Remote_Right_p_x\",\"Remote_Right_p_y\",\"Remote_Right_p_z\",\"Remote_Right_r_x\",\"Remote_Right_r_y\",\"Remote_Right_r_z\",\"Remote_Right_r_w\",\"Remote_Left_p_x\",\"Remote_Left_p_y\",\"Remote_Left_p_z\",\"Remote_Left_r_x\",\"Remote_Left_r_y\",\"Remote_Left_r_z\",\"Remote_Left_r_w\",\"Remote_FingertipR_p_x\",\"Remote_FingertipR_p_y\",\"Remote_FingertipR_p_z\",\"Remote_FingertipR_r_x\",\"Remote_FingertipR_r_y\",\"Remote_FingertipR_r_z\",\"Remote_FingertipR_r_w\",\"Remote_FingertipL_p_x\",\"Remote_FingertipL_p_y\",\"Remote_FingertipL_p_z\",\"Remote_FingertipL_r_x\",\"Remote_FingertipL_r_y\",\"Remote_FingertipL_r_z\",\"Remote_FingertipL_r_w\",\"\n");
+        File.AppendAllText(_logVolumePointsPath, generalInfo + "\"Set of points participants used to outline the area of interest (for replicability): Demonstrator then Interpreter \"\n");
+        File.AppendAllText(_logIntersectionPath, generalInfo + "\"Time Stamp\",\"V_Local(cm3)\",\"V_Remote(cm3)\",\"V_Union(cm3)\",\"V_Intersection(cm3)\",\"Intersection (%)\"\n");
         File.AppendAllText(_logTimePath, generalInfo + "\"Task Start Time\",\"Task End Time\",\"Delta Time\"\n");
 
     }

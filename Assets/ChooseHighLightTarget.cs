@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ChooseHighLightTarget : MonoBehaviour
 {
-    public int i = 1;
+    //public int i = 1;
     public int j = 0;
 
     public List<Vector3> Test1 = new List<Vector3>();
@@ -53,7 +53,7 @@ public class ChooseHighLightTarget : MonoBehaviour
     
     void Update()
     {
-        
+        //Debug.Log(j);
         
 
         if (j < 5)
@@ -101,8 +101,10 @@ public class ChooseHighLightTarget : MonoBehaviour
 
     void FillTargetPoints(List<Vector3> Test1, List<Vector3> Test2, List<Vector3> Test3, List<Vector3> Test4)
     {
-        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\catar\Documents\GitHub\Cati\Assets\TargetPointsFAST.txt");
-        
+        //string[] lines = System.IO.File.ReadAllLines(@"C:\Users\catar\Documents\GitHub\Cati\Assets\TargetPoints.txt");
+        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\VIMMI3D\Documents\GitHub\Cati\Assets\TargetPoints.txt");
+        //string[] lines = System.IO.File.ReadAllLines(@"C:\Users\VIMMI3D\Documents\GitHub\Cati\Assets\TargetPointsFAST.txt");
+
         //int i = 0;
 
         //Debug.Log("Nr Lines in Text File: " + lines.Length);
@@ -113,11 +115,13 @@ public class ChooseHighLightTarget : MonoBehaviour
 
             //Debug.Log("Nr entries in line: " + c.Length);
 
+           
+
             Test1.Add(new Vector3(float.Parse(c[0]), float.Parse(c[1]), float.Parse(c[2])));
             Test2.Add(new Vector3(float.Parse(c[3]), float.Parse(c[4]), float.Parse(c[5])));
             Test3.Add(new Vector3(float.Parse(c[6]), float.Parse(c[7]), float.Parse(c[8])));
             Test4.Add(new Vector3(float.Parse(c[9]), float.Parse(c[10]), float.Parse(c[11])));
-            i++;
+            //i++;
             //Debug.Log(i);
         }
         
