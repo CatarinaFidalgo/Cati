@@ -40,6 +40,7 @@ public class StartEndLogs : MonoBehaviour
     public GameObject startCanvas;
     public GameObject midCanvas;
 
+    public SendSetUpInfo sendToInterpreter;
 
     //IEnumerator Start()
     void Start()
@@ -80,6 +81,9 @@ public class StartEndLogs : MonoBehaviour
             if(((OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) || (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.9f)) && getStartTime)
             {
                 showWorkspace = true;
+
+                sendToInterpreter.send("update#" + showWorkspace.ToString());
+
                 midCanvas.SetActive(false);
                 startCanvas.SetActive(false);
 
@@ -96,6 +100,9 @@ public class StartEndLogs : MonoBehaviour
                 getEndTime = false;
 
                 showWorkspace = false;
+
+                sendToInterpreter.send("update#" + showWorkspace.ToString());
+
                 midCanvas.SetActive(true);
 
                 test.j++; //Change target
@@ -153,19 +160,23 @@ public class StartEndLogs : MonoBehaviour
 
         }
 
-        else if (evaluation.localIsDemonstrator && test.END)
+        
+
+        else if (test.END)
         {
             endCanvas.SetActive(true);
             midCanvas.SetActive(false);
             //Debug.Log("Está no else");
         }
 
+        
+
 
         //if local is not the demonstrator the data won't be stored in his unit
         //Logs are always saved in the demonstrators site
 
 
-        //yield return new WaitForSeconds(0.0f);
+            //yield return new WaitForSeconds(0.0f);
     }
 
     void InitializeFiles()

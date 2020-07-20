@@ -27,7 +27,7 @@ public class UdpListener : MonoBehaviour
     public bool udpWriteFile = true;
 
 
-    public int port = 7002;
+    public int port;
     
 
     private UdpClient _udpClient = null;
