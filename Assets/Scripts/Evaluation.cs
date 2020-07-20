@@ -53,8 +53,23 @@ public class Evaluation : MonoBehaviour
 
     public SendSetUpInfo sendInfo;
 
+    public SendAvatar sendAvatar;
+    public UdpListener receiveAvatar;
+
     void Start()
     {
+        if (machine == MachineType.A)
+        {
+            sendAvatar.port = 7001;
+            receiveAvatar.port = 7101;
+        }
+
+        else if (machine == MachineType.B)
+        {
+            sendAvatar.port = 7101;
+            receiveAvatar.port = 7001;
+        }
+
         remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
         remoteWorkspace.localScale = new Vector3(1, 1, 1);
 
