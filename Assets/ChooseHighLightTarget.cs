@@ -57,47 +57,50 @@ public class ChooseHighLightTarget : MonoBehaviour
     {
         //Debug.Log(j);
         
-
-        if (j < 5)
+        if (evaluation.localIsDemonstrator)
         {
-            //101 active
-            target.position = TestOn[j];
+            if (j < 5)
+            {
+                //101 active
+                target.position = TestOn[j];
 
-            p101.GetComponent<HighLight>().radius = 0.05f;
-            p102.GetComponent<HighLight>().radius = 0.0f;
-            p103.GetComponent<HighLight>().radius = 0.0f;
+                p101.GetComponent<HighLight>().radius = 0.05f;
+                p102.GetComponent<HighLight>().radius = 0.0f;
+                p103.GetComponent<HighLight>().radius = 0.0f;
 
-            /*p101.GetComponent<HighLight>().enabled = true;            
-            p102.GetComponent<HighLight>().enabled = false;
-            p103.GetComponent<HighLight>().enabled = false;*/
+                /*p101.GetComponent<HighLight>().enabled = true;            
+                p102.GetComponent<HighLight>().enabled = false;
+                p103.GetComponent<HighLight>().enabled = false;*/
+            }
+
+            else if (j >= 5 && j < 12)
+            {
+                //102 active
+                target.position = TestOn[j];
+
+                p101.GetComponent<HighLight>().radius = 0.0f;
+                p102.GetComponent<HighLight>().radius = 0.05f;
+                p103.GetComponent<HighLight>().radius = 0.0f;
+            }
+
+            else if (j >= 12 && j < 16)
+            {
+                //103 active
+                target.position = TestOn[j];
+
+                p101.GetComponent<HighLight>().radius = 0.0f;
+                p102.GetComponent<HighLight>().radius = 0.0f;
+                p103.GetComponent<HighLight>().radius = 0.05f;
+            }
+
+            else
+            {
+                END = true;
+                Debug.Log("END OF EXPERIMENT");
+
+            }
         }
-
-        else if ( j >= 5 && j < 12)
-        {
-            //102 active
-            target.position = TestOn[j];
-
-            p101.GetComponent<HighLight>().radius = 0.0f;
-            p102.GetComponent<HighLight>().radius = 0.05f;
-            p103.GetComponent<HighLight>().radius = 0.0f;
-        }
-
-        else if (j >= 12 && j < 16)
-        {
-            //103 active
-            target.position = TestOn[j];
-
-            p101.GetComponent<HighLight>().radius = 0.0f;
-            p102.GetComponent<HighLight>().radius = 0.0f;
-            p103.GetComponent<HighLight>().radius = 0.05f;
-        }
-
-        else
-        {
-            END = true;
-            Debug.Log("END OF EXPERIMENT");
-            
-        }
+        
 
     }
 
