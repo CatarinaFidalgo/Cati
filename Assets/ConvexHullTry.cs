@@ -28,6 +28,8 @@ namespace GK
 
 		public bool writeFile = false;
 
+        public Evaluation eval;
+
 		IEnumerator Start()
 		{
 			
@@ -47,7 +49,7 @@ namespace GK
 
 			while (true)
 			{
-				if (saveTrailPoints.pressed == false && generateHullDone == false)
+				if (saveTrailPoints.pressed == false && generateHullDone == false && eval.localIsDemonstrator)
 				{
 					
 

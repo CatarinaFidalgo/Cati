@@ -26,7 +26,7 @@ namespace GK
 
 		public bool writeFile = false;
 
-
+        public Evaluation eval;
 
 
 		IEnumerator Start()
@@ -48,7 +48,7 @@ namespace GK
 
 			while (true)
 			{
-				if (udpListener.remotePoints.Count > 0 && udpListener.receptionComplete) //list is complete
+				if (udpListener.remotePoints.Count > 0 && udpListener.receptionComplete && eval.localIsDemonstrator) //list is complete
 				{
 					udpListener.receptionComplete = false;
 

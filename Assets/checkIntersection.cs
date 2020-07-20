@@ -30,11 +30,13 @@ public class checkIntersection : MonoBehaviour
     public bool writeResult;
     public string percentageString;
 
+    public Evaluation eval;
+
     void Update()
     {
         //writeResult = false;
         
-        if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && chlocal.readyForIntersectionLocal && chremote.readyForIntersectionRemote)
+        if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && chlocal.readyForIntersectionLocal && chremote.readyForIntersectionRemote && eval.localIsDemonstrator)
         {
             child = chremote.nrCHremote - 1; 
 

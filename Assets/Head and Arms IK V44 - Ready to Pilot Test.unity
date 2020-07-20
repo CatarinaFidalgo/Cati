@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -646,6 +646,7 @@ MonoBehaviour:
   readyForIntersectionLocal: 0
   checkInt: {fileID: 862417161}
   writeFile: 0
+  eval: {fileID: 0}
 --- !u!23 &20217229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18701,6 +18702,7 @@ MonoBehaviour:
   unionList: []
   writeResult: 0
   percentageString: 
+  eval: {fileID: 0}
 --- !u!4 &862417162
 Transform:
   m_ObjectHideFlags: 0
@@ -39033,6 +39035,7 @@ MonoBehaviour:
   checkInt: {fileID: 862417161}
   udpListener: {fileID: 1594974667}
   writeFile: 0
+  eval: {fileID: 1641664408}
 --- !u!4 &1620933169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6390768452319450209, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
@@ -39388,12 +39391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine: 0
+  machine: 1
   condition: 1
   test: 0
   participantID: 100I
   _resultsFolder: \ResultsPilot2
-  localIsDemonstrator: 1
+  localIsDemonstrator: 0
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}
