@@ -44,10 +44,15 @@ public class StartEndLogs : MonoBehaviour
 
     //IEnumerator Start()
     void Start()
-    {        
-        startCanvas.SetActive(true);
-        midCanvas.SetActive(false);
-        endCanvas.SetActive(false);
+    {
+        /*startCanvas.SetActive(true);
+
+        if (evaluation.localIsDemonstrator)
+        {            
+            midCanvas.SetActive(false);
+            endCanvas.SetActive(false);
+        }*/
+        
 
         InitializeFiles();
         generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";        
@@ -85,7 +90,7 @@ public class StartEndLogs : MonoBehaviour
                 sendToInterpreter.send("update#" + showWorkspace.ToString());
 
                 midCanvas.SetActive(false);
-                startCanvas.SetActive(false);
+                //startCanvas.SetActive(false);
 
                 taskStartTime = DateTime.Now;
                 getStartTime = false; 
