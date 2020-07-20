@@ -78,9 +78,10 @@ public class UdpEvaluationCommands : MonoBehaviour
             {
                 _startEvaluation(tokens);
             }
-            else if (tokens[0] == "update")
+            else if (tokens[0] == "update" && !eval.localIsDemonstrator)
             {
                 startend.showWorkspace = Convert.ToBoolean(tokens[1]);
+                Debug.Log(tokens);
             }
 
 
