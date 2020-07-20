@@ -38,9 +38,14 @@ public class SendAvatar : MonoBehaviour
     public bool SENDING = true; //TODO
 
 
+
     void Start()
     {
 
+    }
+
+    public void Load()
+    {
         _upd = new UdpBroadcast(port);
     }
 

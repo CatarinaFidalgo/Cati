@@ -70,6 +70,9 @@ public class Evaluation : MonoBehaviour
             receiveAvatar.port = 7001;
         }
 
+        sendAvatar.Load();
+        receiveAvatar.udpRestart();
+
         remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
         remoteWorkspace.localScale = new Vector3(1, 1, 1);
 
