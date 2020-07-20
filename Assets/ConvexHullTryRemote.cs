@@ -113,11 +113,11 @@ namespace GK
 						nrCHremote++;
 						readyForIntersectionRemote = true;
 
-						//Debug.Log("Finish CH Remote");
-						
-						
+                        //Debug.Log("Finish CH Remote");
 
-					}
+                        Debug.Log("Remote write = " + writeFile);
+
+                    }
 					catch (System.ArgumentException)
 					{
 						

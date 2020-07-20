@@ -109,7 +109,7 @@ public class checkIntersection : MonoBehaviour
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
 
-                
+                Debug.Log("Intersexction write = " + writeResult);
 
             }
 

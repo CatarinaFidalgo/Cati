@@ -56,7 +56,7 @@ public class StartEndLogs : MonoBehaviour
     {
         OVRInput.Update();
 
-        if (evaluation.localIsDemonstrator && test.j < test.TestOn.Count)
+        if (evaluation.localIsDemonstrator && !test.END)
         {
             /*if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) //&& getStartTime)
             {
@@ -153,7 +153,7 @@ public class StartEndLogs : MonoBehaviour
 
         }
 
-        else if (evaluation.localIsDemonstrator && test.j >= test.TestOn.Count)
+        else if (evaluation.localIsDemonstrator && test.END)
         {
             endCanvas.SetActive(true);
             midCanvas.SetActive(false);

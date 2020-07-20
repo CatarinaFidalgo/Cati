@@ -22,6 +22,8 @@ public class ChooseHighLightTarget : MonoBehaviour
     public Transform p102;
     public Transform p103;
 
+    public bool END = false;
+
 
 
 
@@ -92,7 +94,7 @@ public class ChooseHighLightTarget : MonoBehaviour
 
         else
         {
-
+            END = true;
             Debug.Log("END OF EXPERIMENT");
             
         }
