@@ -32,7 +32,7 @@ public class StartEndLogs : MonoBehaviour
     private string generalInfo;
 
     
-    private bool getStartTime = true;
+    public bool getStartTime = true;
     private bool getEndTime = true;
     public bool showWorkspace = false;
 
@@ -45,14 +45,17 @@ public class StartEndLogs : MonoBehaviour
     //IEnumerator Start()
     void Start()
     {
-        /*startCanvas.SetActive(true);
 
         if (evaluation.localIsDemonstrator)
-        {            
+        {
+            startCanvas.SetActive(true);
             midCanvas.SetActive(false);
             endCanvas.SetActive(false);
-        }*/
-        
+
+        }
+
+
+
 
         InitializeFiles();
         generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";        
@@ -83,6 +86,7 @@ public class StartEndLogs : MonoBehaviour
 
 
             //if (trail.pressed && getStartTime) //CHANGE THE START METHOD, PRESS ANOTHER BUTTON
+
             if(((OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) || (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.9f)) && getStartTime)
             {
                 showWorkspace = true;
@@ -90,7 +94,7 @@ public class StartEndLogs : MonoBehaviour
                 sendToInterpreter.send("update#" + showWorkspace.ToString());
 
                 midCanvas.SetActive(false);
-                //startCanvas.SetActive(false);
+                startCanvas.SetActive(false);
 
                 taskStartTime = DateTime.Now;
                 getStartTime = false;

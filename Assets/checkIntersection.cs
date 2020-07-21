@@ -31,6 +31,8 @@ public class checkIntersection : MonoBehaviour
     public string percentageString;
 
     public Evaluation eval;
+    public StartEndLogs startEnd;
+
 
     void Update()
     {
@@ -38,8 +40,8 @@ public class checkIntersection : MonoBehaviour
         
         if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && chlocal.readyForIntersectionLocal && chremote.readyForIntersectionRemote && eval.localIsDemonstrator)
         {
-            child = chremote.nrCHremote - 1; 
-
+            child = chremote.nrCHremote - 1;
+            Debug.Log("Initiate Intersection");  
             try
             {
                 //Debug.Log("Initiate Intersection");                
@@ -51,6 +53,8 @@ public class checkIntersection : MonoBehaviour
                 var normals = new List<Vector3>();                
 
                 unionList = unionHash.ToList(); //Converte o hashset para uma lista
+
+               Debug.Log("Union List: " + unionList.Count);  
 
                 calc.GenerateHull(unionList, true, ref verts, ref tris, ref normals);                
 
@@ -137,6 +141,7 @@ public class checkIntersection : MonoBehaviour
                     Destroy(child.gameObject);
                 }*/
 
+                startEnd.getStartTime = true;
 
             }
 
@@ -161,6 +166,8 @@ public class checkIntersection : MonoBehaviour
                 {
                     Destroy(child.gameObject);
                 }*/
+
+                startEnd.getStartTime = true;
             }
 
 

@@ -29,6 +29,8 @@ namespace GK
 		public bool writeFile = false;
 
         public Evaluation eval;
+		public StartEndLogs startEnd;
+
 
 		IEnumerator Start()
 		{
@@ -126,12 +128,14 @@ namespace GK
 					{
 						saveTrailPoints.pointsTrail.Clear();						
 						generateHullDone = true;
+						startEnd.getStartTime = true;
 					}
 
 					catch (UnityEngine.Assertions.AssertionException)
 					{
 						saveTrailPoints.pointsTrail.Clear();						
 						generateHullDone = true;
+						startEnd.getStartTime = true;
 					}
 
 

@@ -27,6 +27,7 @@ namespace GK
 		public bool writeFile = false;
 
         public Evaluation eval;
+		public StartEndLogs startEnd;
 
 
 		IEnumerator Start()
@@ -51,12 +52,13 @@ namespace GK
 				if (udpListener.remotePoints.Count > 0 && udpListener.receptionComplete && eval.localIsDemonstrator) //list is complete
 				{
 					udpListener.receptionComplete = false;
+					Debug.Log("Entrei na CH Remote");
 
 					try
 					{
 						
 						calc.GenerateHull(udpListener.remotePoints, true, ref verts, ref tris, ref normals);
-
+						Debug.Log("Try");
 						writeFile = true;
 						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
@@ -126,6 +128,10 @@ namespace GK
 						
 						udpListener.remotePoints.Clear();
 						generateHullDone = true;
+						startEnd.getStartTime = true;
+
+
+						Debug.Log("Exception1");
 					}
 
 					catch (UnityEngine.Assertions.AssertionException)
@@ -133,6 +139,8 @@ namespace GK
 						
 						udpListener.remotePoints.Clear();
 						generateHullDone = true;
+						startEnd.getStartTime = true;
+						Debug.Log("Exception2");
 					}
 
 
