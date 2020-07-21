@@ -37,7 +37,7 @@ public class SendAvatar : MonoBehaviour
 
     public bool SENDING = true; //TODO
 
-
+    public Evaluation eval;
 
     void Start()
     {
@@ -73,11 +73,12 @@ public class SendAvatar : MonoBehaviour
 
             logGeneral = msg;
 
-            if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent)
+            if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
             {
-                msg += (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
+                
                 logPoints = (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
-                //Debug.Log("Sent Once");
+                msg += logPoints;
+                Debug.Log("Sent Once");
                 sent = true;
             }
             

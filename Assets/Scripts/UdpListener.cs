@@ -108,12 +108,14 @@ public class UdpListener : MonoBehaviour
 
             remoteFingertipLeft.localPosition = _parsePosition(transforms[4].Split((char)MessageSeparators.L2)[0]);
             remoteFingertipLeft.localRotation = _parseRotation(transforms[4].Split((char)MessageSeparators.L2)[1]);
-            
+
+           
+
             
 
             if (transforms.Length == 6 && receptionComplete == false)
             {
-                //Debug.Log("Received once");
+                Debug.Log("Received once");
                 //Debug.Log(remotePoints.Count);
                 remotePoints = _stringToList(transforms[5]).ToList();
                 //Debug.Log(remotePoints.Count);
@@ -122,7 +124,10 @@ public class UdpListener : MonoBehaviour
                 udpWriteFile = true;
             }
             
-
+            if (remotePoints.Count != 0)
+            {
+                Debug.Log("Niente");
+            }
 
         }
     }

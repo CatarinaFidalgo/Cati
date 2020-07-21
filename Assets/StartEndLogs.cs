@@ -169,7 +169,7 @@ public class StartEndLogs : MonoBehaviour
 
         if (!evaluation.localIsDemonstrator && !test.END)
         {
-            Debug.Log(showWorkspace);
+            //Debug.Log(showWorkspace);
         }
 
         else if (test.END)
