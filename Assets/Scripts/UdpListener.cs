@@ -17,14 +17,15 @@ public class UdpListener : MonoBehaviour
     public Transform remoteFingertipRight;
     public Transform remoteFingertipLeft;
 
-    //Strings for Loging
     public string logGeneral;
+    /*//Strings for Loging
+    
     public string logPoints;
 
     //public ConvexHullTry chremote;
     public List<Vector3> remotePoints;
     public bool receptionComplete = false;
-    public bool udpWriteFile = true;
+    public bool udpWriteFile = true;*/
 
 
     public int port;
@@ -39,7 +40,7 @@ public class UdpListener : MonoBehaviour
     void Start()
     {
         udpRestart();
-        remotePoints = new List<Vector3>();
+        //remotePoints = new List<Vector3>();
     }
 
     public void udpRestart()
@@ -113,7 +114,7 @@ public class UdpListener : MonoBehaviour
 
             //Debug.Log("Length: " + transforms.Length);
 
-            
+            /*
 
             if (transforms.Length == 6 && receptionComplete == false)
             {
@@ -125,7 +126,7 @@ public class UdpListener : MonoBehaviour
                 receptionComplete = true;
                 udpWriteFile = true;
             }
-            
+            */
             
 
         }
@@ -158,7 +159,7 @@ public class UdpListener : MonoBehaviour
         return ret;
     }
 
-    private HashSet<Vector3> _stringToList(string msg)
+    /*private HashSet<Vector3> _stringToList(string msg)
     {
         HashSet<Vector3> points = new HashSet<Vector3>();
 
@@ -176,7 +177,7 @@ public class UdpListener : MonoBehaviour
 
         //Debug.Log("a3");
         return points;
-    }
+    }*/
 
 
     void OnApplicationQuit()

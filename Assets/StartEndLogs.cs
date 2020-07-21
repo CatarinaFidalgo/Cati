@@ -14,8 +14,10 @@ public class StartEndLogs : MonoBehaviour
     public DateTime taskEndTime;
 
     public Evaluation evaluation;
-    public SendAvatar udpSend;
+    public SendTrail tcpSend;    
+    public ReceiveTrail tcpListener;
     public UdpListener udpListener;
+    public SendAvatar udpSend;
     public checkIntersection intersection;
     public SaveTrailPoints trail;
     public ConvexHullTry chlocal;
@@ -102,7 +104,7 @@ public class StartEndLogs : MonoBehaviour
                 Debug.Log("Started outline");
             }
 
-            if (udpListener.receptionComplete && getEndTime)
+            if (tcpListener.receptionComplete && getEndTime)
             {
                 
                 taskEndTime = DateTime.Now;
@@ -130,7 +132,7 @@ public class StartEndLogs : MonoBehaviour
             if (chlocal.writeFile)
             {
                 //Save drawn data points (Local)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + udpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + tcpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chlocal.writeFile = false;
                 Debug.Log("TrailPointsLocal");
 
@@ -139,7 +141,7 @@ public class StartEndLogs : MonoBehaviour
             if (chremote.writeFile)
             {
                 //Save drawn data points (Remote)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + tcpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chremote.writeFile = false;
                 Debug.Log("TrailPointsRemote");
 

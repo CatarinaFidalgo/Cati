@@ -21,15 +21,15 @@ public class SendAvatar : MonoBehaviour
     public Transform fingertipRight;
     public Transform fingertipLeft;
 
-    public SaveTrailPoints saveTrailPoints;
-    //public ConvexHullTry
+    /*public SaveTrailPoints saveTrailPoints;
+    
 
     public bool sent = false;
 
 
+    
+    public string logPoints;*/
     public string logGeneral;
-    public string logPoints;
-
 
     public int port = 7001;
     private UdpBroadcast _upd;
@@ -73,16 +73,16 @@ public class SendAvatar : MonoBehaviour
 
             logGeneral = msg;
 
-            if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
+            /*if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
             {
                 
                 logPoints = (char)MessageSeparators.L1 + _listToString(saveTrailPoints.pointsTrail);
                 msg += logPoints;
                 Debug.Log("Sent Once");
                 sent = true;
-            }
-            
-             
+            }*/
+
+
             _upd.send(msg);
             //Debug.Log(msg);
             
@@ -110,7 +110,7 @@ public class SendAvatar : MonoBehaviour
         return "" + r.x + (char)MessageSeparators.L3 + r.y + (char)MessageSeparators.L3 + r.z + (char)MessageSeparators.L3 + r.w;
     }
 
-    private string _listToString(List<Vector3> points)
+    /*private string _listToString(List<Vector3> points)
     {
         string msg = "";
         int i;
@@ -125,6 +125,6 @@ public class SendAvatar : MonoBehaviour
         //Debug.Log(msg);
 
         return msg;
-    }
+    }*/
 
 }

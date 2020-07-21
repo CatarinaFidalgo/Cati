@@ -15,7 +15,7 @@ public class SaveTrailPoints : MonoBehaviour
     public TrailRenderer trailRend;
     //private Vector3 mousePosition;
     //public GameObject spherePoint;
-    public SendAvatar udpSend;
+    public SendTrail udpSend;
 
     /* Requirements for buttons to work:
         - Include an instance of OVRManager anywhere in your scene. 
