@@ -70,6 +70,8 @@ public class Evaluation : MonoBehaviour
             receiveAvatar.port = 7001;
         }
 
+       
+
         sendAvatar.Load();
         receiveAvatar.udpRestart();
 

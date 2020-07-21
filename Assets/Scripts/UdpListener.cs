@@ -109,7 +109,7 @@ public class UdpListener : MonoBehaviour
             remoteFingertipLeft.localPosition = _parsePosition(transforms[4].Split((char)MessageSeparators.L2)[0]);
             remoteFingertipLeft.localRotation = _parseRotation(transforms[4].Split((char)MessageSeparators.L2)[1]);
 
-           
+            //Debug.Log("Length: " + transforms.Length);
 
             
 
@@ -124,10 +124,7 @@ public class UdpListener : MonoBehaviour
                 udpWriteFile = true;
             }
             
-            if (remotePoints.Count != 0)
-            {
-                Debug.Log("Niente");
-            }
+            
 
         }
     }
