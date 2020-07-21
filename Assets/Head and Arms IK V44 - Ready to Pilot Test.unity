@@ -647,6 +647,7 @@ MonoBehaviour:
   checkInt: {fileID: 862417161}
   writeFile: 0
   eval: {fileID: 1641664408}
+  startEnd: {fileID: 1243343297}
 --- !u!23 &20217229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18770,6 +18771,7 @@ MonoBehaviour:
   writeResult: 0
   percentageString: 
   eval: {fileID: 1641664408}
+  startEnd: {fileID: 0}
 --- !u!4 &862417162
 Transform:
   m_ObjectHideFlags: 0
@@ -25582,6 +25584,7 @@ MonoBehaviour:
   chlocal: {fileID: 20217228}
   chremote: {fileID: 1620914242}
   test: {fileID: 177125266}
+  getStartTime: 1
   showWorkspace: 0
   endCanvas: {fileID: 1106135841}
   startCanvas: {fileID: 1305830985}
@@ -39104,6 +39107,7 @@ MonoBehaviour:
   udpListener: {fileID: 1594974667}
   writeFile: 0
   eval: {fileID: 1641664408}
+  startEnd: {fileID: 1243343297}
 --- !u!4 &1620933169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6390768452319450209, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,
