@@ -56,18 +56,28 @@ public class Evaluation : MonoBehaviour
     public SendAvatar sendAvatar;
     public UdpListener receiveAvatar;
 
+    public TCPServer tcpServer;
+    public TCPClient tcpClient;
+
     void Start()
     {
         if (machine == MachineType.A)
         {
             sendAvatar.port = 7001;
             receiveAvatar.port = 7101;
+
+            tcpServer.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "A.network.address");
+            tcpServer.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "A.network.port");
+            tcpServer.StartServer();
         }
 
         else if (machine == MachineType.B)
         {
             sendAvatar.port = 7101;
             receiveAvatar.port = 7001;
+            tcpClient.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "B.network.address");
+            tcpClient.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "B.network.port");
+            tcpClient.StartClient();
         }
 
        
@@ -124,6 +134,19 @@ public class Evaluation : MonoBehaviour
             showUI = !showUI;
         }
 
+
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (machine == MachineType.A)
+            {
+                tcpServer.SendMessage("FAVAS");
+            }
+            else
+            {
+                tcpClient.SendMessage("FAVAS");
+            }
+        }
     }
 
 
