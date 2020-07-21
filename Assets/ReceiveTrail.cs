@@ -83,6 +83,8 @@ public class ReceiveTrail : MonoBehaviour
     {
         if (s != "")
         {
+            Debug.Log(s);
+
             string transforms = s;
 
             

@@ -55,13 +55,19 @@ public class SendTrail : MonoBehaviour
 
                 logPoints = _listToString(saveTrailPoints.pointsTrail);
                
-                Debug.Log("Sent Once");
+                Debug.Log("Sent Once " + logPoints.Length);
                 sent = true;
+                _upd.send(logPoints);
+                Debug.Log(logPoints);
+            }
+
+            else
+            {
+                _upd.send("OLAAAAAAAAAAAAAAAAAAAAAAA");
             }
 
 
-            _upd.send(logPoints);
-            //Debug.Log(msg);
+            
 
         }
     }
