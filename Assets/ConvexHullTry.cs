@@ -110,7 +110,11 @@ namespace GK
 						nrCHlocal++;
 						readyForIntersectionLocal = true;
 
-						Debug.Log("Local write = " + writeFile);
+						Debug.Log("CH Hull Local");
+
+						initialHull.SetActive(false);
+
+						//Debug.Log("Local write = " + writeFile);
 
 
 

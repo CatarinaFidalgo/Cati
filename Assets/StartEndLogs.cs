@@ -93,9 +93,9 @@ public class StartEndLogs : MonoBehaviour
                 //startCanvas.SetActive(false);
 
                 taskStartTime = DateTime.Now;
-                getStartTime = false; 
-                
-                
+                getStartTime = false;
+
+                Debug.Log("Started outline");
             }
 
             if (udpListener.receptionComplete && getEndTime)
@@ -111,9 +111,11 @@ public class StartEndLogs : MonoBehaviour
                 midCanvas.SetActive(true);
 
                 test.j++; //Change target
-                //Debug.Log("j: " + test.j);
+                Debug.Log("j: " + test.j);
 
-                
+               
+
+                Debug.Log("Outline completed by partner");
 
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
@@ -126,7 +128,7 @@ public class StartEndLogs : MonoBehaviour
                 //Save drawn data points (Local)
                 File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + udpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chlocal.writeFile = false;
-                //Debug.Log("TrailPointsLocal");
+                Debug.Log("TrailPointsLocal");
 
             }
 
@@ -135,7 +137,7 @@ public class StartEndLogs : MonoBehaviour
                 //Save drawn data points (Remote)
                 File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chremote.writeFile = false;
-                //Debug.Log("TrailPointsRemote");
+                Debug.Log("TrailPointsRemote");
 
             }
 
@@ -151,7 +153,7 @@ public class StartEndLogs : MonoBehaviour
                 getEndTime = true;                
                 intersection.writeResult = false;
 
-                //Debug.Log("intersection");
+                Debug.Log("intersection");
                 
 
             }

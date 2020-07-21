@@ -87,7 +87,7 @@ public class checkIntersection : MonoBehaviour
                 //Compare the volume of intersection with the volume that the local pointed
 
                 percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
-                //Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
+                Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
 
                 //Debug.Log(" V_Loc: " + volumeLocal.ToString("F0") + " V_Rem: " + volumeRemote.ToString("F0") + " V_Union: " + volumeOfUnion.ToString("F0") + " V_Int: " + volumeOfIntersection.ToString("F0"));
                 percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfUnion.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString("F1");
