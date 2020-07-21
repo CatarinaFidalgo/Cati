@@ -67,9 +67,11 @@ public class UdpListener : MonoBehaviour
     {
         while (_stringsToParse.Count > 0)
         {
+            
             try
             {
                 byte[] toProcess = _stringsToParse.First();
+                
                 if (toProcess != null)
                 {
                     
@@ -116,9 +118,9 @@ public class UdpListener : MonoBehaviour
             if (transforms.Length == 6 && receptionComplete == false)
             {
                 Debug.Log("Received once");
-                //Debug.Log(remotePoints.Count);
+                
                 remotePoints = _stringToList(transforms[5]).ToList();
-                //Debug.Log(remotePoints.Count);
+                Debug.Log(remotePoints.Count);
                 logPoints = transforms[5];
                 receptionComplete = true;
                 udpWriteFile = true;

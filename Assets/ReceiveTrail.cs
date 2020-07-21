@@ -63,9 +63,11 @@ public class ReceiveTrail : MonoBehaviour
     {
         while (_stringsToParse.Count > 0)
         {
+            Debug.Log("no while > 0");
             try
             {
                 byte[] toProcess = _stringsToParse.First();
+                Debug.Log("To process " + toProcess);
                 if (toProcess != null)
                 {
 
@@ -83,7 +85,7 @@ public class ReceiveTrail : MonoBehaviour
     {
         if (s != "")
         {
-            Debug.Log(s);
+            Debug.Log("S diferente de zero" + s);
 
             string transforms = s;
 
@@ -92,9 +94,9 @@ public class ReceiveTrail : MonoBehaviour
             if (receptionComplete == false && eval.localIsDemonstrator)
             {
                 Debug.Log("Received once");
-                //Debug.Log(remotePoints.Count);
+                
                 remotePoints = _stringToList(transforms).ToList();
-                //Debug.Log(remotePoints.Count);
+                Debug.Log(remotePoints.Count);
                 logPoints = transforms;
                 receptionComplete = true;
                 udpWriteFile = true;
@@ -113,13 +115,13 @@ public class ReceiveTrail : MonoBehaviour
 
         string[] stringPoints = msg.Split((char)MessageSeparators.L2);
         //Debug.Log(stringPoints.Length);
-        //Debug.Log("a1");
+        Debug.Log("a1");
 
         for (int i = 0; i < stringPoints.Length - 1; i++)
         {
             points.Add(_parsePosition(stringPoints[i]));
             //Debug.Log(points.ToList()[i]);
-            //Debug.Log(points.Count);
+            Debug.Log("points count: " + points.Count);
 
         }
 

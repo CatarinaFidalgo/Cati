@@ -61,10 +61,7 @@ public class SendTrail : MonoBehaviour
                 Debug.Log(logPoints);
             }
 
-            else
-            {
-                _upd.send("OLAAAAAAAAAAAAAAAAAAAAAAA");
-            }
+            
 
 
             

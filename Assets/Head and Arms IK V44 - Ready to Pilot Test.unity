@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2150,7 +2150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &75060617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75060616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6a9162bdd45c9946b68186bb1edc897, type: 3}
   m_Name: 
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   remotePoints: []
   receptionComplete: 0
   udpWriteFile: 1
-  port: 7002
+  port: 7102
   eval: {fileID: 1641664408}
 --- !u!114 &75060618
 MonoBehaviour:
@@ -2176,7 +2176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75060616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a72297c8f282b864888e9d2a01532b92, type: 3}
   m_Name: 
@@ -2184,7 +2184,7 @@ MonoBehaviour:
   saveTrailPoints: {fileID: 28538070}
   sent: 0
   logPoints: 
-  port: 7102
+  port: 7002
   eval: {fileID: 1641664408}
 --- !u!4 &75060619
 Transform:
@@ -39459,12 +39459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine: 1
+  machine: 0
   condition: 1
   test: 0
   participantID: 100I
   _resultsFolder: \ResultsPilot2
-  localIsDemonstrator: 0
+  localIsDemonstrator: 1
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}
