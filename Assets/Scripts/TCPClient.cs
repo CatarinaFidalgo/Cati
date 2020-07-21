@@ -71,7 +71,7 @@ public class TCPClient : MonoBehaviour
 						Array.Copy(bytes, 0, incommingData, 0, length);
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
-						Debug.Log("server message received as: " + serverMessage);
+						//Debug.Log("server message received as: " + serverMessage);
 
 						receiveTrail.newTrailMessage(serverMessage);
 

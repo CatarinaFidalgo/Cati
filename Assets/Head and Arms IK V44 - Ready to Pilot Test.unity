@@ -1137,7 +1137,7 @@ MonoBehaviour:
   convexHullTry: {fileID: 20217228}
   rend: {fileID: 28538066}
   trailRend: {fileID: 28538071}
-  udpSend: {fileID: 1174461000}
+  udpSend: {fileID: 75060618}
 --- !u!96 &28538071
 TrailRenderer:
   serializedVersion: 2
@@ -24328,10 +24328,7 @@ MonoBehaviour:
   controllerLeft: {fileID: 736988006}
   fingertipRight: {fileID: 247878891}
   fingertipLeft: {fileID: 795579419}
-  saveTrailPoints: {fileID: 28538070}
-  sent: 0
   logGeneral: 
-  logPoints: 
   port: 7101
   SENDING: 1
   eval: {fileID: 1641664408}
@@ -25608,8 +25605,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   evaluation: {fileID: 1641664408}
-  udpSend: {fileID: 1174461000}
+  tcpSend: {fileID: 75060618}
+  tcpListener: {fileID: 75060617}
   udpListener: {fileID: 1594974667}
+  udpSend: {fileID: 1174461000}
   intersection: {fileID: 862417161}
   trail: {fileID: 28538070}
   chlocal: {fileID: 20217228}
@@ -28476,7 +28475,7 @@ MonoBehaviour:
   convexHullTry: {fileID: 20217228}
   rend: {fileID: 1346963215}
   trailRend: {fileID: 1346963211}
-  udpSend: {fileID: 1174461000}
+  udpSend: {fileID: 75060618}
 --- !u!114 &1346963213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38316,10 +38315,6 @@ MonoBehaviour:
   remoteFingertipRight: {fileID: 1383562979}
   remoteFingertipLeft: {fileID: 468998937}
   logGeneral: 
-  logPoints: 
-  remotePoints: []
-  receptionComplete: 0
-  udpWriteFile: 1
   port: 7001
 --- !u!114 &1594974668
 MonoBehaviour:

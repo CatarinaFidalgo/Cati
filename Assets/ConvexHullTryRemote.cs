@@ -20,7 +20,7 @@ namespace GK
 		public bool readyForIntersectionRemote = false;
 		public checkIntersection checkInt;
 
-		public ReceiveTrail udpListener;
+		public ReceiveTrail receiveTrail;
 
 		List<Vector3> pointsTrailRemote = new List<Vector3>();
 
@@ -42,22 +42,22 @@ namespace GK
 
 
 
-			//pointsTrailRemote = udpListener.remotePoints;
+			//pointsTrailRemote = receiveTrail.remotePoints;
 
-			//Debug.Log(udpListener.remotePoints.Count);
+			//Debug.Log(receiveTrail.remotePoints.Count);
 			//Debug.Log(pointsTrailRemote.Count);
 
 			while (true)
 			{
-				if (udpListener.remotePoints.Count > 0 && udpListener.receptionComplete && eval.localIsDemonstrator) //list is complete
+				if (receiveTrail.remotePoints.Count > 0 && receiveTrail.receptionComplete && eval.localIsDemonstrator) //list is complete
 				{
-					udpListener.receptionComplete = false;
+					receiveTrail.receptionComplete = false;
 					Debug.Log("Entrei na CH Remote");
 
 					try
 					{
 						
-						calc.GenerateHull(udpListener.remotePoints, true, ref verts, ref tris, ref normals);
+						calc.GenerateHull(receiveTrail.remotePoints, true, ref verts, ref tris, ref normals);
 						Debug.Log("Try");
 						writeFile = true;
 						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
@@ -106,7 +106,9 @@ namespace GK
 
 						//saveTrailPoints.pointsTrail.Clear();
 						//pointsTrailRemote.Clear();
-						udpListener.remotePoints.Clear();
+						receiveTrail.remotePoints.Clear();
+
+                        Debug.Log("After clear:" + receiveTrail.remotePoints.Count);
 
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
@@ -126,7 +128,7 @@ namespace GK
 					catch (System.ArgumentException)
 					{
 						
-						udpListener.remotePoints.Clear();
+						receiveTrail.remotePoints.Clear();
 						generateHullDone = true;
 						startEnd.getStartTime = true;
 
@@ -137,7 +139,7 @@ namespace GK
 					catch (UnityEngine.Assertions.AssertionException)
 					{
 						
-						udpListener.remotePoints.Clear();
+						receiveTrail.remotePoints.Clear();
 						generateHullDone = true;
 						startEnd.getStartTime = true;
 						Debug.Log("Exception2");

@@ -41,10 +41,12 @@ public class SendTrail : MonoBehaviour
             if (eval.machine == MachineType.A)
             {
                 eval.tcpServer.SendAVeryImportantMessage(logPoints);
+                Debug.Log("Sending in machine A");
             }
             else
             {
                 eval.tcpClient.SendAVeryImportantMessage(logPoints);
+                Debug.Log("Sending in machine B");
             }
 
         }
