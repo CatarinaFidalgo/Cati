@@ -17,6 +17,7 @@ public class TCPClient : MonoBehaviour
 	public int serverPort;
 	public string serverAddress;
 
+    public bool connected;
 
 	// Use this for initialization 	
 	public void StartClient()
@@ -26,8 +27,10 @@ public class TCPClient : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        if (socketConnection == null) connected = false;
+        else connected = socketConnection.Connected;
 
-	}
+    }
 	/// <summary> 	
 	/// Setup socket connection. 	
 	/// </summary> 	
