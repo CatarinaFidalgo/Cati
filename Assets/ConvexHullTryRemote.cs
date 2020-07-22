@@ -20,7 +20,7 @@ namespace GK
 		public bool readyForIntersectionRemote = false;
 		public checkIntersection checkInt;
 
-		public UdpListener udpListener;
+		public ReceiveTrail udpListener;
 
 		List<Vector3> pointsTrailRemote = new List<Vector3>();
 
