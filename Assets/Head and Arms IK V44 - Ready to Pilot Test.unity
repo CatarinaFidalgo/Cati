@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1137,7 +1137,7 @@ MonoBehaviour:
   convexHullTry: {fileID: 20217228}
   rend: {fileID: 28538066}
   trailRend: {fileID: 28538071}
-  udpSend: {fileID: 75060618}
+  sendTrail: {fileID: 75060618}
 --- !u!96 &28538071
 TrailRenderer:
   serializedVersion: 2
@@ -2169,7 +2169,6 @@ MonoBehaviour:
   logPoints: 
   remotePoints: []
   receptionComplete: 0
-  udpWriteFile: 1
   eval: {fileID: 1641664408}
 --- !u!114 &75060618
 MonoBehaviour:
@@ -18802,7 +18801,7 @@ MonoBehaviour:
   writeResult: 0
   percentageString: 
   eval: {fileID: 1641664408}
-  startEnd: {fileID: 0}
+  startEnd: {fileID: 1243343297}
 --- !u!4 &862417162
 Transform:
   m_ObjectHideFlags: 0
@@ -25605,12 +25604,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   evaluation: {fileID: 1641664408}
-  tcpSend: {fileID: 75060618}
   tcpListener: {fileID: 75060617}
   udpListener: {fileID: 1594974667}
   udpSend: {fileID: 1174461000}
   intersection: {fileID: 862417161}
-  trail: {fileID: 28538070}
+  saveTrailPoints: {fileID: 28538070}
   chlocal: {fileID: 20217228}
   chremote: {fileID: 1620914242}
   test: {fileID: 177125266}
@@ -28475,7 +28473,7 @@ MonoBehaviour:
   convexHullTry: {fileID: 20217228}
   rend: {fileID: 1346963215}
   trailRend: {fileID: 1346963211}
-  udpSend: {fileID: 75060618}
+  sendTrail: {fileID: 75060618}
 --- !u!114 &1346963213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37489,7 +37487,7 @@ PrefabInstance:
     - target: {fileID: 4980855974123692495, guid: a2d7754065643514082e3a3eaa4a23ba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5730284699413264609, guid: a2d7754065643514082e3a3eaa4a23ba,
         type: 3}
@@ -37545,6 +37543,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105235556345712586, guid: a2d7754065643514082e3a3eaa4a23ba,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5380652}
+    - target: {fileID: 1105235554439588222, guid: a2d7754065643514082e3a3eaa4a23ba,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105235554439588222, guid: a2d7754065643514082e3a3eaa4a23ba,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105235554439588221, guid: a2d7754065643514082e3a3eaa4a23ba,
+        type: 3}
+      propertyPath: m_Text
+      value: END OF PART 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2d7754065643514082e3a3eaa4a23ba, type: 3}
@@ -39489,12 +39507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9afdb9ec0c340bbe625a3321040f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine: 0
+  machine: 1
   condition: 1
   test: 0
   participantID: 100I
   _resultsFolder: \ResultsPilot2
-  localIsDemonstrator: 1
+  localIsDemonstrator: 0
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}

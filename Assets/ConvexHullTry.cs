@@ -94,9 +94,9 @@ namespace GK
 						{
 							checkInt.unionHash.Add(saveTrailPoints.pointsTrail[i]);
 						}
-						
 
-						
+
+                        Debug.Log("UnionHash Local: " + checkInt.unionHash.Count);
 						
 
 						//Limpar os pontos antigos da lista para o proximo convex hull e
@@ -116,7 +116,7 @@ namespace GK
 
 						Debug.Log("CH Hull Local");
 
-						initialHull.SetActive(false);
+						//////////////////////////////////////////////////////////////////initialHull.SetActive(false);
 
 						//Debug.Log("Local write = " + writeFile);
 

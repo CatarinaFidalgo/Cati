@@ -140,17 +140,7 @@ public class Evaluation : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (machine == MachineType.A)
-            {
-                tcpServer.SendAVeryImportantMessage("FAVAS");
-            }
-            else
-            {
-                tcpClient.SendAVeryImportantMessage("BATATAS");
-            }
-        }
+        
     }
 
 

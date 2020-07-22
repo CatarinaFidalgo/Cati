@@ -98,15 +98,15 @@ namespace GK
 						{
 							checkInt.unionHash.Add(pointsTrailRemote[i]);
 						}
-						
 
+                        Debug.Log("UnionHash Remote: " + checkInt.unionHash.Count);
 
-						//Limpar os pontos antigos da lista para o proximo convex hull e
-						//informar o programa de que já realizou esta função 
+                        //Limpar os pontos antigos da lista para o proximo convex hull e
+                        //informar o programa de que já realizou esta função 
 
-						//saveTrailPoints.pointsTrail.Clear();
-						//pointsTrailRemote.Clear();
-						receiveTrail.remotePoints.Clear();
+                        //saveTrailPoints.pointsTrail.Clear();
+                        //pointsTrailRemote.Clear();
+                        receiveTrail.remotePoints.Clear();
 
                         Debug.Log("After clear:" + receiveTrail.remotePoints.Count);
 
@@ -121,7 +121,7 @@ namespace GK
 
 						Debug.Log("CH Hull Remote");
 
-						initialHull.SetActive(false);
+						///////////////////////////////////////////////////initialHull.SetActive(false);
 
 
 					}

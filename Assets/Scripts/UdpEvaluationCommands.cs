@@ -21,7 +21,7 @@ public class UdpEvaluationCommands : MonoBehaviour
 
     public StartEndLogs startend;
 
-    public ConvexHullTryRemote chremote;
+    //public ConvexHullTryRemote chremote;
 
     void Start()
     {
@@ -68,6 +68,9 @@ public class UdpEvaluationCommands : MonoBehaviour
             catch (Exception /*e*/) { _stringsToParse.RemoveAt(0); }
         }
     }
+
+    //Reception of message
+
 
     private void _parseString(string s)
     {

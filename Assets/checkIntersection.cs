@@ -50,7 +50,9 @@ public class checkIntersection : MonoBehaviour
                 var calc = new ConvexHullCalculator();
                 var verts = new List<Vector3>();
                 var tris = new List<int>();
-                var normals = new List<Vector3>();                
+                var normals = new List<Vector3>();
+
+                Debug.Log("UnionHash Int: " + unionHash.Count);
 
                 unionList = unionHash.ToList(); //Converte o hashset para uma lista
 
@@ -107,7 +109,7 @@ public class checkIntersection : MonoBehaviour
                 a.transform.GetChild(child).gameObject.SetActive(false);
                 b.transform.GetChild(child).gameObject.SetActive(false);
                 
-                initialHull.SetActive(false);
+                //////////////////////////////////////////////////////////////initialHull.SetActive(false);
 
                 //a.SetActive(false);
                 //b.SetActive(false);
