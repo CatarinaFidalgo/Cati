@@ -52,7 +52,7 @@ public class checkIntersection : MonoBehaviour
                 var tris = new List<int>();
                 var normals = new List<Vector3>();
 
-                Debug.Log("UnionHash Int: " + unionHash.Count);
+                //Debug.Log("UnionHash Int: " + unionHash.Count);
 
                 unionList = unionHash.ToList(); //Converte o hashset para uma lista
 
@@ -106,13 +106,13 @@ public class checkIntersection : MonoBehaviour
                 unionList.Clear();
 
                 initialMeshCSG.SetActive(false);
-                a.transform.GetChild(child).gameObject.SetActive(false);
-                b.transform.GetChild(child).gameObject.SetActive(false);
                 
-                //////////////////////////////////////////////////////////////initialHull.SetActive(false);
+                
+                a.transform.GetChild(child).gameObject.SetActive(true);
+                b.transform.GetChild(child).gameObject.SetActive(true);                
+                initialHull.SetActive(true);
 
-                //a.SetActive(false);
-                //b.SetActive(false);
+                
 
                 chlocal.readyForIntersectionLocal = false;
                 chremote.readyForIntersectionRemote = false;
@@ -216,7 +216,7 @@ public class checkIntersection : MonoBehaviour
     {
         float volumeOfIntersection;
 
-        if (volumeOfUnion < 1.0f)
+        if (volumeOfUnion < 0.0f)
         {
             throw new System.ArgumentException("Error computing Union.Please Try again.");
             

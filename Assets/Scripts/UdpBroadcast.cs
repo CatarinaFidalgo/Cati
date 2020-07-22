@@ -47,7 +47,7 @@ public class UdpBroadcast
             _udp = new UdpClient();
             _streaming = true;
 
-            Debug.Log("[UDP Broadcast] Sending at port: " + _port);
+            //Debug.Log("[UDP Broadcast] Sending at port: " + _port);
         }
         catch (Exception e)
         {

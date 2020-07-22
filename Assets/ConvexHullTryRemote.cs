@@ -94,9 +94,9 @@ namespace GK
 
 						
 
-						for (int i = 0; i < pointsTrailRemote.Count; i++)
+						for (int i = 0; i < receiveTrail.remotePoints.Count; i++)
 						{
-							checkInt.unionHash.Add(pointsTrailRemote[i]);
+							checkInt.unionHash.Add(receiveTrail.remotePoints[i]);
 						}
 
                         Debug.Log("UnionHash Remote: " + checkInt.unionHash.Count);
@@ -121,7 +121,7 @@ namespace GK
 
 						Debug.Log("CH Hull Remote");
 
-						///////////////////////////////////////////////////initialHull.SetActive(false);
+						initialHull.SetActive(false);
 
 
 					}

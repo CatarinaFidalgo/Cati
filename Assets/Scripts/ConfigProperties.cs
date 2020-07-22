@@ -58,7 +58,7 @@ public class ConfigProperties
 			{
 				if (line.Split('=')[0] == property)
 				{
-					Debug.Log("[RETRIEVING] " + property + " is " + line.Split('=')[1]);
+					//Debug.Log("[RETRIEVING] " + property + " is " + line.Split('=')[1]);
 					return line.Split('=')[1];
 				}
 			}
@@ -72,7 +72,7 @@ public class ConfigProperties
 
     internal static int loadInt(string filename, string property)
     {
-		Debug.Log(load(filename, property));
+		//Debug.Log(load(filename, property));
 		return int.Parse(load(filename, property));
     }
 }
