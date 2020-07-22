@@ -61,13 +61,18 @@ public class Evaluation : MonoBehaviour
 
     void Start()
     {
+
+        tcpServer.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "A.network.address");
+        tcpServer.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "A.network.port");
+        tcpClient.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "B.network.address");
+        tcpClient.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "B.network.port");
+
         if (machine == MachineType.A)
         {
             sendAvatar.port = 7001;
             receiveAvatar.port = 7101;
 
-            tcpServer.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "A.network.address");
-            tcpServer.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "A.network.port");
+
             tcpServer.StartServer();
         }
 
@@ -75,8 +80,7 @@ public class Evaluation : MonoBehaviour
         {
             sendAvatar.port = 7101;
             receiveAvatar.port = 7001;
-            tcpClient.serverAddress = ConfigProperties.load(UnityEngine.Application.dataPath + "/config.txt", "B.network.address");
-            tcpClient.serverPort = ConfigProperties.loadInt(UnityEngine.Application.dataPath + "/config.txt", "B.network.port");
+
             tcpClient.StartClient();
         }
 
@@ -140,11 +144,11 @@ public class Evaluation : MonoBehaviour
         {
             if (machine == MachineType.A)
             {
-                tcpServer.SendMessage("FAVAS");
+                tcpServer.SendAVeryImportantMessage("FAVAS");
+                tcpClient.SendAVeryImportantMessage("BATATAS");
             }
             else
             {
-                tcpClient.SendMessage("FAVAS");
             }
         }
     }

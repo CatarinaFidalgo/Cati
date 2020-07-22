@@ -41,22 +41,7 @@ public class TCPServer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//id local isn't the demonstrator : send
-		/*if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
-		{
 
-			logPoints = _listToString(saveTrailPoints.pointsTrail);
-
-			Debug.Log("Sent Once " + logPoints.Length);
-			sent = true;
-			_upd.send(logPoints);
-			Debug.Log(logPoints);
-		}*/
-
-		/*if (Input.GetKeyDown(KeyCode.W))
-		{
-			SendMessage();
-		}*/
 	}
 
 	/// <summary> 	
@@ -69,12 +54,13 @@ public class TCPServer : MonoBehaviour
 			// Create listener on localhost port 8052. 			
 			tcpListener = new TcpListener(IPAddress.Parse(serverAddress), serverPort);
 			tcpListener.Start();
-			Debug.Log("Server is listening");
+			Debug.Log("[NETWORK] Server is listening in " + serverAddress + ":" + serverPort);
 			Byte[] bytes = new Byte[1024];
 			while (true)
 			{
 				using (connectedTcpClient = tcpListener.AcceptTcpClient())
 				{
+					Debug.Log("[NETWORK] NEW CLINET");
 					// Get a stream object for reading 					
 					using (NetworkStream stream = connectedTcpClient.GetStream())
 					{
@@ -100,7 +86,7 @@ public class TCPServer : MonoBehaviour
 	/// <summary> 	
 	/// Send message to client using socket connection. 	
 	/// </summary> 	
-	private void SendMessage()
+	private void SendAVeryImportantMessage(string message)
 	{
 		if (connectedTcpClient == null)
 		{
@@ -113,7 +99,7 @@ public class TCPServer : MonoBehaviour
 			NetworkStream stream = connectedTcpClient.GetStream();
 			if (stream.CanWrite)
 			{
-				string serverMessage = "This is a message from your server.";
+				string serverMessage = message;
 				// Convert string message to byte array.                 
 				byte[] serverMessageAsByteArray = Encoding.ASCII.GetBytes(serverMessage);
 				// Write byte array to socketConnection stream.               
