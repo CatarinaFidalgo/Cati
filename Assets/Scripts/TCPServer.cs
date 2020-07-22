@@ -86,7 +86,7 @@ public class TCPServer : MonoBehaviour
 	/// <summary> 	
 	/// Send message to client using socket connection. 	
 	/// </summary> 	
-	private void SendAVeryImportantMessage(string message)
+	public void SendAVeryImportantMessage(string message)
 	{
 		if (connectedTcpClient == null)
 		{

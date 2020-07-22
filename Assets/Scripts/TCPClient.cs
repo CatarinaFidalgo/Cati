@@ -79,7 +79,7 @@ public class TCPClient : MonoBehaviour
 	/// <summary> 	
 	/// Send message to server using socket connection. 	
 	/// </summary> 	
-	private void SendAVeryImportantMessage(string message)
+	public void SendAVeryImportantMessage(string message)
 	{
 		if (socketConnection == null)
 		{
