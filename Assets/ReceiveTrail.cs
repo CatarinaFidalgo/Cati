@@ -20,90 +20,35 @@ public class ReceiveTrail : MonoBehaviour
     public bool udpWriteFile = true;
 
 
-    public int port;
-
     public Evaluation eval;
 
 
-
-    private UdpClient _udpClient = null;
-    private IPEndPoint _anyIP;
-    private List<byte[]> _stringsToParse; // TMA: Store the bytes from the socket instead of converting to strings. Saves time.
-    private byte[] _receivedBytes;
-    //so we don't have to create again
-
     void Start()
     {
-        udpRestart();
         remotePoints = new List<Vector3>();
     }
 
-    public void udpRestart()
-    {
-        if (_udpClient != null)
-        {
-            _udpClient.Close();
-        }
-
-        _stringsToParse = new List<byte[]>();
-        _anyIP = new IPEndPoint(IPAddress.Any, port);
-        _udpClient = new UdpClient(_anyIP);
-        _udpClient.BeginReceive(new AsyncCallback(this.ReceiveCallback), null);
-
-    }
-
-    public void ReceiveCallback(IAsyncResult ar)
-    {
-        Byte[] receiveBytes = _udpClient.EndReceive(ar, ref _anyIP);
-        _udpClient.BeginReceive(new AsyncCallback(this.ReceiveCallback), null);
-        _stringsToParse.Add(receiveBytes);
-    }
-
+    
     void Update()
     {
-        while (_stringsToParse.Count > 0)
-        {
-            Debug.Log("no while > 0");
-            try
-            {
-                byte[] toProcess = _stringsToParse.First();
-                Debug.Log("To process " + toProcess);
-                if (toProcess != null)
-                {
-
-                    string stringToParse = Encoding.ASCII.GetString(toProcess);
-                    _parseString(stringToParse);
-
-                }
-                _stringsToParse.RemoveAt(0);
-            }
-            catch (Exception /*e*/) { _stringsToParse.RemoveAt(0); }
-        }
     }
 
-    private void _parseString(string s)
+    public void newTrailMessage(string trailMessage)
     {
-        if (s != "")
+        if (trailMessage != "")
         {
-            Debug.Log("S diferente de zero" + s);
-
-            string transforms = s;
-
+            Debug.Log("TrailMessage diferente de zero" + trailMessage);
             
-
             if (receptionComplete == false && eval.localIsDemonstrator)
             {
                 Debug.Log("Received once");
                 
-                remotePoints = _stringToList(transforms).ToList();
+                remotePoints = _stringToList(trailMessage).ToList();
                 Debug.Log(remotePoints.Count);
-                logPoints = transforms;
+                logPoints = trailMessage;
                 receptionComplete = true;
                 udpWriteFile = true;
             }
-
-
-
         }
     }
 
@@ -142,14 +87,4 @@ public class ReceiveTrail : MonoBehaviour
         return ret;
     }
 
-
-    void OnApplicationQuit()
-    {
-        if (_udpClient != null) _udpClient.Close();
-    }
-
-    void OnQuit()
-    {
-        OnApplicationQuit();
-    }
 }

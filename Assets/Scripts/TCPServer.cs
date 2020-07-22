@@ -29,6 +29,8 @@ public class TCPServer : MonoBehaviour
 	public int serverPort;
 	public string serverAddress;
 
+	public ReceiveTrail receiveTrail;
+
 	// Use this for initialization
 	public void StartServer()
 	{
@@ -73,6 +75,8 @@ public class TCPServer : MonoBehaviour
 							// Convert byte array to string message. 							
 							string clientMessage = Encoding.ASCII.GetString(incommingData);
 							Debug.Log("client message received as: " + clientMessage);
+							receiveTrail.newTrailMessage(clientMessage);
+
 						}
 					}
 				}

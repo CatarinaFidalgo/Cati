@@ -22,53 +22,38 @@ public class SendTrail : MonoBehaviour
     public bool sent = false;
 
 
-    
     public string logPoints;
-
-
-    public int port;
-    private UdpBroadcast _upd;
-
-
-    
 
     public Evaluation eval;
 
     void Start()
     {
-        Load();
+
     }
 
-    public void Load()
-    {
-        _upd = new UdpBroadcast(port);
-    }
 
-    void Update()
+    private void Update()
     {
-        
-
-        if (_upd != null)
+        _updateLogPoints();
+        if (eval.machine == MachineType.A)
         {
-            if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
-            {
-
-                logPoints = _listToString(saveTrailPoints.pointsTrail);
-               
-                Debug.Log("Sent Once " + logPoints.Length);
-                sent = true;
-                _upd.send(logPoints);
-                Debug.Log(logPoints);
-            }
-
-            
-
-
-            
-
+            eval.tcpServer.SendAVeryImportantMessage(logPoints);
+        }
+        else
+        {
+            eval.tcpClient.SendAVeryImportantMessage(logPoints);
         }
     }
 
+    private void _updateLogPoints()
+    {
+        if (saveTrailPoints.pointsTrail.Count != 0 && !saveTrailPoints.pressed && !sent && !eval.localIsDemonstrator)
+        {
+            logPoints = _listToString(saveTrailPoints.pointsTrail);
+            Debug.Log("Sent Once " + logPoints.Length);
+            sent = true;
+        }
+    }
     
     private string _listToString(List<Vector3> points)
     {

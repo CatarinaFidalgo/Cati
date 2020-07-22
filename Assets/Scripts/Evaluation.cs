@@ -145,10 +145,10 @@ public class Evaluation : MonoBehaviour
             if (machine == MachineType.A)
             {
                 tcpServer.SendAVeryImportantMessage("FAVAS");
-                tcpClient.SendAVeryImportantMessage("BATATAS");
             }
             else
             {
+                tcpClient.SendAVeryImportantMessage("BATATAS");
             }
         }
     }

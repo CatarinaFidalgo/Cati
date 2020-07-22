@@ -19,6 +19,8 @@ public class TCPClient : MonoBehaviour
 
     public bool connected;
 
+	public ReceiveTrail receiveTrail;
+
 	// Use this for initialization 	
 	public void StartClient()
 	{
@@ -70,6 +72,9 @@ public class TCPClient : MonoBehaviour
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
 						Debug.Log("server message received as: " + serverMessage);
+
+						receiveTrail.newTrailMessage(serverMessage);
+
 					}
 				}
 			}
