@@ -89,8 +89,13 @@ public class SendTrail : MonoBehaviour
 
     private string _positionToString(Vector3 p)
     {
-        return "" + p.x + (char)MessageSeparators.L3 + p.y + (char)MessageSeparators.L3 + p.z;
+        return "" + _round(p.x) + (char)MessageSeparators.L3 + _round(p.y) + (char)MessageSeparators.L3 + _round(p.z);
 
+    }
+
+    private string _round(float f)
+    {
+        return "" + Math.Round(f, 2);
     }
 
 }

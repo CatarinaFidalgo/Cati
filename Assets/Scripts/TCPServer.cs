@@ -23,8 +23,9 @@ public class TCPServer : MonoBehaviour
 	/// Create handle to connected tcp client. 	
 	/// </summary> 	
 	private TcpClient connectedTcpClient;
-	#endregion
+    #endregion
 
+    public const int BUFF = 65000;
 
 	public int serverPort;
 	public string serverAddress;
@@ -57,7 +58,7 @@ public class TCPServer : MonoBehaviour
 			tcpListener = new TcpListener(IPAddress.Parse(serverAddress), serverPort);
 			tcpListener.Start();
 			Debug.Log("[NETWORK] Server is listening in " + serverAddress + ":" + serverPort);
-			Byte[] bytes = new Byte[1024];
+			Byte[] bytes = new Byte[BUFF];
 			while (true)
 			{
 				using (connectedTcpClient = tcpListener.AcceptTcpClient())

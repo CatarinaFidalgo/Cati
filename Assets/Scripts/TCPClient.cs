@@ -11,10 +11,10 @@ public class TCPClient : MonoBehaviour
 	#region private members 	
 	private TcpClient socketConnection;
 	private Thread clientReceiveThread;
-	#endregion
+    #endregion
+    public const int BUFF = 65000;
 
-
-	public int serverPort;
+    public int serverPort;
 	public string serverAddress;
 
     public bool connected;
@@ -57,7 +57,7 @@ public class TCPClient : MonoBehaviour
 		try
 		{
 			socketConnection = new TcpClient(serverAddress, serverPort);
-			Byte[] bytes = new Byte[1024];
+			Byte[] bytes = new Byte[BUFF];
 			while (true)
 			{
 				// Get a stream object for reading 				
@@ -104,7 +104,7 @@ public class TCPClient : MonoBehaviour
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
 				// Write byte array to socketConnection stream.                 
 				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
-				Debug.Log("Client sent his message - should be received by server");
+				Debug.Log("Client sent his message - should be received by server - Nr. characters: " + message.Length);
 			}
 		}
 		catch (SocketException socketException)
