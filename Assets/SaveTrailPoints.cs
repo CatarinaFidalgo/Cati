@@ -15,7 +15,7 @@ public class SaveTrailPoints : MonoBehaviour
     public TrailRenderer trailRend;
     //private Vector3 mousePosition;
     //public GameObject spherePoint;
-    public SendTrail udpSend;
+    public SendTrail sendTrail;
 
     /* Requirements for buttons to work:
         - Include an instance of OVRManager anywhere in your scene. 
@@ -44,7 +44,7 @@ public class SaveTrailPoints : MonoBehaviour
             //Change flags
             pressed = true;
             convexHullTry.generateHullDone = false;
-            udpSend.sent = false;
+            sendTrail.sent = false;
         }
 
         else

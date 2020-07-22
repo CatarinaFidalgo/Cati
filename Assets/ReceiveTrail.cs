@@ -17,7 +17,7 @@ public class ReceiveTrail : MonoBehaviour
     
     public List<Vector3> remotePoints;
     public bool receptionComplete = false;
-    public bool udpWriteFile = true;
+    //public bool tcpWriteFile = true;
 
 
     public Evaluation eval;
@@ -47,7 +47,7 @@ public class ReceiveTrail : MonoBehaviour
                 Debug.Log(remotePoints.Count);
                 logPoints = trailMessage;
                 receptionComplete = true;
-                udpWriteFile = true;
+                //tcpWriteFile = true;
             }
         }
     }

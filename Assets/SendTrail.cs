@@ -26,6 +26,9 @@ public class SendTrail : MonoBehaviour
 
     public Evaluation eval;
 
+    //public bool erase = false;
+
+
     void Start()
     {
 
@@ -42,11 +45,13 @@ public class SendTrail : MonoBehaviour
             {
                 eval.tcpServer.SendAVeryImportantMessage(logPoints);
                 Debug.Log("Sending in machine A");
+                logPoints = "";
             }
             else
             {
                 eval.tcpClient.SendAVeryImportantMessage(logPoints);
                 Debug.Log("Sending in machine B");
+                logPoints = "";
             }
 
         }

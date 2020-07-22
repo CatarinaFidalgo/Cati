@@ -14,12 +14,12 @@ public class StartEndLogs : MonoBehaviour
     public DateTime taskEndTime;
 
     public Evaluation evaluation;
-    public SendTrail tcpSend;    
+    //public SendTrail tcpSend;    
     public ReceiveTrail tcpListener;
     public UdpListener udpListener;
     public SendAvatar udpSend;
     public checkIntersection intersection;
-    public SaveTrailPoints trail;
+    public SaveTrailPoints saveTrailPoints;
     public ConvexHullTry chlocal;
     public ConvexHullTryRemote chremote;
     public ChooseHighLightTarget test;
@@ -132,7 +132,9 @@ public class StartEndLogs : MonoBehaviour
             if (chlocal.writeFile)
             {
                 //Save drawn data points (Local)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + tcpSend.logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                string logPoints = _listToString(saveTrailPoints.pointsTrail);
+
+                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chlocal.writeFile = false;
                 Debug.Log("TrailPointsLocal");
 
@@ -241,6 +243,29 @@ public class StartEndLogs : MonoBehaviour
         //Debug.Log(sec0 +"   "+ sec1 + "   " + (sec1 - sec0));
         return (sec1-sec0);
         **/
+    }
+
+    private string _listToString(List<Vector3> points)
+    {
+        string msg = "";
+        int i;
+
+        //Debug.Log("Nr points sent: " + points.Count);
+
+        for (i = 0; i < points.Count; i++)
+        {
+            msg += _positionToString(points[i]) + (char)MessageSeparators.L2;
+        }
+
+        //Debug.Log(msg);
+
+        return msg;
+    }
+
+    private string _positionToString(Vector3 p)
+    {
+        return "" + p.x + (char)MessageSeparators.L3 + p.y + (char)MessageSeparators.L3 + p.z;
+
     }
 
 
