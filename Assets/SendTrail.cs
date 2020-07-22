@@ -35,14 +35,21 @@ public class SendTrail : MonoBehaviour
     private void Update()
     {
         _updateLogPoints();
-        if (eval.machine == MachineType.A)
+
+        if (logPoints.Length != 0)
         {
-            eval.tcpServer.SendAVeryImportantMessage(logPoints);
+            if (eval.machine == MachineType.A)
+            {
+                eval.tcpServer.SendAVeryImportantMessage(logPoints);
+            }
+            else
+            {
+                eval.tcpClient.SendAVeryImportantMessage(logPoints);
+            }
+
         }
-        else
-        {
-            eval.tcpClient.SendAVeryImportantMessage(logPoints);
-        }
+
+        
     }
 
     private void _updateLogPoints()
@@ -53,6 +60,7 @@ public class SendTrail : MonoBehaviour
             Debug.Log("Sent Once " + logPoints.Length);
             sent = true;
         }
+
     }
     
     private string _listToString(List<Vector3> points)
