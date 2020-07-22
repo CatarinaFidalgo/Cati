@@ -60,13 +60,13 @@ public class ReceiveTrail : MonoBehaviour
 
         string[] stringPoints = msg.Split((char)MessageSeparators.L2);
         //Debug.Log(stringPoints.Length);
-        Debug.Log("a1");
+        //Debug.Log("a1");
 
         for (int i = 0; i < stringPoints.Length - 1; i++)
         {
             points.Add(_parsePosition(stringPoints[i]));
             //Debug.Log(points.ToList()[i]);
-            Debug.Log("points count: " + points.Count);
+            //Debug.Log("points count: " + points.Count);
 
         }
 

@@ -21,6 +21,8 @@ public class UdpEvaluationCommands : MonoBehaviour
 
     public StartEndLogs startend;
 
+    public ConvexHullTryRemote chremote;
+
     void Start()
     {
         udpRestart();
@@ -81,6 +83,7 @@ public class UdpEvaluationCommands : MonoBehaviour
             else if (tokens[0] == "update" && !eval.localIsDemonstrator)
             {
                 startend.showWorkspace = Convert.ToBoolean(tokens[1]);
+               // remoteGenerateHullDone = Convert.ToBoolean(tokens[2]);
                 Debug.Log(tokens);
             }
 
