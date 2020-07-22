@@ -79,7 +79,7 @@ public class TCPClient : MonoBehaviour
 	/// <summary> 	
 	/// Send message to server using socket connection. 	
 	/// </summary> 	
-	private void SendMessage()
+	private void SendAVeryImportantMessage(string message)
 	{
 		if (socketConnection == null)
 		{
@@ -91,7 +91,7 @@ public class TCPClient : MonoBehaviour
 			NetworkStream stream = socketConnection.GetStream();
 			if (stream.CanWrite)
 			{
-				string clientMessage = "This is a message from one of your clients.";
+				string clientMessage = message;
 				// Convert string message to byte array.                 
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
 				// Write byte array to socketConnection stream.                 
