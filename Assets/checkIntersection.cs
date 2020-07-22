@@ -227,7 +227,7 @@ public class checkIntersection : MonoBehaviour
 
         if (volumeOfIntersection <= 0.0f)
         {
-            volumeOfIntersection = - volumeOfIntersection;
+            volumeOfIntersection = 0;//- volumeOfIntersection;
         }
 
         return volumeOfIntersection;

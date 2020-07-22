@@ -48,12 +48,14 @@ public class SendTrail : MonoBehaviour
                 eval.tcpServer.SendAVeryImportantMessage(logPoints);
                 Debug.Log("Sending in machine A");
                 logPoints = "";
+                saveTrailPoints.pointsTrail.Clear();
             }
             else
             {
                 eval.tcpClient.SendAVeryImportantMessage(logPoints);
                 Debug.Log("Sending in machine B");
                 logPoints = "";
+                saveTrailPoints.pointsTrail.Clear();
             }
 
         }
