@@ -9,7 +9,7 @@ using GK;
 
 public class ReceiveTrail : MonoBehaviour
 {
-
+   
     //Strings for Loging
    
     public string logPoints;
@@ -37,13 +37,17 @@ public class ReceiveTrail : MonoBehaviour
     {
         if (trailMessage != "")
         {
-            Debug.Log("TrailMessage diferente de zero" + trailMessage);
+            
             
             if (receptionComplete == false && eval.localIsDemonstrator)
             {
                 Debug.Log("Received once");
                 
                 remotePoints = _stringToList(trailMessage).ToList();
+
+                
+
+
                 Debug.Log(remotePoints.Count);
                 logPoints = trailMessage;
                 receptionComplete = true;

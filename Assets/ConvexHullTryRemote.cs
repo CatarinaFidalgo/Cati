@@ -4,6 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.WSA.Input;
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Linq;
+using System.Text;
+using GK;
 
 namespace GK
 {
@@ -28,6 +36,8 @@ namespace GK
 
         public Evaluation eval;
 		public StartEndLogs startEnd;
+
+		public GameObject ball;
 
 
 		IEnumerator Start()
@@ -54,11 +64,31 @@ namespace GK
 					receiveTrail.receptionComplete = false;
 					Debug.Log("Entrei na CH Remote");
 
+					//////////////////////////////////////////////////////////////////////////////////////
+
+					for (int i = 0; i < receiveTrail.remotePoints.Count - 1; i++)
+					{
+
+						float x = (float)Math.Ceiling(receiveTrail.remotePoints[i].x * 10000000) / 10000000;
+						float y = (float)Math.Ceiling(receiveTrail.remotePoints[i].y * 10000000) / 10000000;
+						float z = (float)Math.Ceiling(receiveTrail.remotePoints[i].z * 10000000) / 10000000;
+
+						Vector3 position = new UnityEngine.Vector3(x, y, z);
+
+						Instantiate(ball, position, Quaternion.identity);
+
+					}
+					//////////////////////////////////////////////////////////////////////////////////////
+
+
 					try
 					{
-						
+
+						Debug.Log("Remote points used for CH: " + receiveTrail.remotePoints.Count + "as:" + _listToString(receiveTrail.remotePoints));
+
 						calc.GenerateHull(receiveTrail.remotePoints, true, ref verts, ref tris, ref normals);
-						Debug.Log("Try");
+
+						
 						writeFile = true;
 						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
@@ -106,9 +136,7 @@ namespace GK
 
                         //saveTrailPoints.pointsTrail.Clear();
                         //pointsTrailRemote.Clear();
-                        receiveTrail.remotePoints.Clear();
-
-                        Debug.Log("After clear:" + receiveTrail.remotePoints.Count);
+                        receiveTrail.remotePoints.Clear();                        
 
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
@@ -185,6 +213,27 @@ namespace GK
 			return Mathf.Abs(volume);
 		}
 
+		private string _listToString(List<Vector3> points)
+		{
+			string msg = "";
+			int i;
 
+			//Debug.Log("Nr points sent: " + points.Count);
+
+			for (i = 0; i < points.Count; i++)
+			{
+				msg += _positionToString(points[i]) + (char)MessageSeparators.L2;
+			}
+
+			//Debug.Log(msg);
+
+			return msg;
+		}
+
+		private string _positionToString(Vector3 p)
+		{
+			return "" + p.x + (char)MessageSeparators.L3 + p.y + (char)MessageSeparators.L3 + p.z;
+
+		}
 	}
 }

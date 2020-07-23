@@ -37,6 +37,8 @@ public class SendTrail : MonoBehaviour
 
     private void Update()
     {
+
+        
         _updateLogPoints();
 
         if (logPoints.Length != 0)
