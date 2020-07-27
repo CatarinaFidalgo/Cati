@@ -18,7 +18,7 @@ public class StartEndLogs : MonoBehaviour
     public ReceiveTrail tcpListener;
     public UdpListener udpListener;
     public SendAvatar udpSend;
-    public checkIntersection intersection;
+    public IntersectionCalculator intersection;
     public SaveTrailPoints saveTrailPoints;
     public ConvexHullTry chlocal;
     public ConvexHullTryRemote chremote;

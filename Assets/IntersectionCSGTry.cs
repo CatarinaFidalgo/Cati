@@ -20,7 +20,7 @@ public class IntersectionCSGTry : MonoBehaviour
 
     void Start()
     {
-        return;
+        //return;
         Transform[] children = new Transform[2];
         if (a == null && b == null)
         {

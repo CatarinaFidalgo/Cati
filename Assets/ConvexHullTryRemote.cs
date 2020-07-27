@@ -4,12 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.WSA.Input;
-using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using System.Linq;
 using System.Text;
 using GK;
 
@@ -26,11 +23,11 @@ namespace GK
 		public bool remote;
 		public int nrCHremote = 0;
 		public bool readyForIntersectionRemote = false;
-		public checkIntersection checkInt;
+		//public checkIntersection checkInt;
 
 		public ReceiveTrail receiveTrail;
 
-		List<Vector3> pointsTrailRemote = new List<Vector3>();
+		//List<Vector3> pointsTrailRemote = new List<Vector3>();
 
 		public bool writeFile = false;
 
@@ -122,22 +119,20 @@ namespace GK
 
 						//Send points of the mesh to the hashset containing all points for later Union
 
-						
+						/*
 
 						for (int i = 0; i < receiveTrail.remotePoints.Count; i++)
 						{
 							checkInt.unionHash.Add(receiveTrail.remotePoints[i]);
 						}
 
-                        Debug.Log("UnionHash Remote: " + checkInt.unionHash.Count);
+                        Debug.Log("UnionHash Remote: " + checkInt.unionHash.Count);*/
+
 
                         //Limpar os pontos antigos da lista para o proximo convex hull e
                         //informar o programa de que já realizou esta função 
 
-                        //saveTrailPoints.pointsTrail.Clear();
-                        //pointsTrailRemote.Clear();
-                        receiveTrail.remotePoints.Clear();                        
-
+                        receiveTrail.remotePoints.Clear();   
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 

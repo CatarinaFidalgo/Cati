@@ -24,7 +24,7 @@ namespace GK
 		
 		
 		public bool readyForIntersectionLocal = false;
-		public checkIntersection checkInt;
+		//public checkIntersection checkInt;
 
 		public bool writeFile = false;
 
@@ -90,13 +90,13 @@ namespace GK
 						//Send points of the mesh to the hashset containing all points for later Union
 
 						
-						for (int i = 0; i < saveTrailPoints.pointsTrail.Count; i++)
+						/*for (int i = 0; i < saveTrailPoints.pointsTrail.Count; i++)
 						{
 							checkInt.unionHash.Add(saveTrailPoints.pointsTrail[i]);
 						}
 
 
-                        Debug.Log("UnionHash Local: " + checkInt.unionHash.Count);
+                        Debug.Log("UnionHash Local: " + checkInt.unionHash.Count);*/
 						
 
 						//Limpar os pontos antigos da lista para o proximo convex hull e
