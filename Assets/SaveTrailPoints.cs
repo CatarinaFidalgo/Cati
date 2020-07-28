@@ -16,6 +16,7 @@ public class SaveTrailPoints : MonoBehaviour
     //private Vector3 mousePosition;
     //public GameObject spherePoint;
     public SendTrail sendTrail;
+    public StartEndLogs startEnd;
 
     /* Requirements for buttons to work:
         - Include an instance of OVRManager anywhere in your scene. 
@@ -27,7 +28,7 @@ public class SaveTrailPoints : MonoBehaviour
     {
         OVRInput.Update();
 
-        if (OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Three))
+        if ((OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Three)) && startEnd.showWorkspace)
         {    
             //Activate trail renderer
 

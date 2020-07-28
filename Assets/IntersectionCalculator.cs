@@ -15,11 +15,13 @@ public class IntersectionCalculator : MonoBehaviour
 
     public GameObject localVolumesParent;
     public GameObject remoteVolumesParent;
+    public GameObject IntParent;
     //public List<Vector3> intersectionPoints = new List<Vector3>();
     //public float volumeOfUnion;
     public float volumeOfIntersection;
     //public Transform ball;
     public GameObject initialMeshCSG;
+    public GameObject meshLess;
     //public List<Vector3> ballsList = new List<Vector3>();
     //public Transform POINTS;
     public int child;
@@ -34,6 +36,7 @@ public class IntersectionCalculator : MonoBehaviour
     public StartEndLogs startEnd;
 
     private Mesh intersectionMesh;
+    public GameObject ball;
 
 
     void Update()
@@ -55,18 +58,75 @@ public class IntersectionCalculator : MonoBehaviour
                 CSG result = null;
                 result = A.intersect(B);
 
-                //Debug.Log(A.polygons.Count + ", " + B.polygons.Count + ", " + result.polygons.Count);
+                Debug.Log(A.polygons.Count + ", " + B.polygons.Count + ", " + result.polygons.Count);
 
+                GameObject newGo = Instantiate(meshLess, Vector3.zero, Quaternion.identity) as GameObject;
+                newGo.transform.SetParent(IntParent.transform, false);
+                intersectionMesh = result.toMesh();
+                newGo.GetComponent<MeshFilter>().mesh = intersectionMesh;
+                float volumeCSG = (VolumeOfMesh(intersectionMesh) * 1000000);
+                Debug.Log("Volume from CSG Algorithm: " + volumeCSG + ".   %: " + volumeCSG / chlocal.volume * 100.0f);
+
+
+                
+
+
+                ////////////////////////////////////////////////////////////////////////////////////
+                ////////   PASS TO CONEX HULL /////////////////////
+
+                //Parametros necessarios para o algoritmo de Convex Hull
+
+                var calc = new ConvexHullCalculator();
+                var verts = new List<Vector3>();
+                var tris = new List<int>();
+                var normals = new List<Vector3>();
+
+                
+                Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
+
+                for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
+				{
+
+					float x = (float)Math.Ceiling(result.intersectionPoints.ToList()[i].x * 10000000) / 10000000;
+					float y = (float)Math.Ceiling(result.intersectionPoints.ToList()[i].y * 10000000) / 10000000;
+					float z = (float)Math.Ceiling(result.intersectionPoints.ToList()[i].z * 10000000) / 10000000;
+
+					Vector3 position = new UnityEngine.Vector3(x , y, z);
+
+					Instantiate(ball, position, Quaternion.identity);
+
+				}
+
+
+                calc.GenerateHull(result.intersectionPoints.ToList(), true, ref verts, ref tris, ref normals);
+
+                //Create an initial transform that will evolve into our Convex Hull when altering the mesh
+
+                var initialHull = Instantiate(initialMeshCSG);
+                //initialHull = Instantiate(initialMesh);
+
+                initialHull.transform.SetParent(IntParent.transform, false);
+                initialHull.transform.position = Vector3.zero;
+                initialHull.transform.rotation = Quaternion.identity;
+                initialHull.transform.localScale = Vector3.one;
+
+                //Independentemente do tipo de mesh com que se começa (cubo, esfera..) 
+                //a mesh é redefenida com as definiçoes abaixo
+
+                var mesh = new Mesh();
+                mesh.SetVertices(verts);
+                mesh.SetTriangles(tris, 0);
+                mesh.SetNormals(normals);
+
+                initialHull.GetComponent<MeshFilter>().sharedMesh = mesh;
+                initialHull.GetComponent<MeshCollider>().sharedMesh = mesh;
+                /////////////////////////////////////////////////////////////////////
 
                 if (result != null)
-                {
-                    GameObject newGo = Instantiate(initialMeshCSG, Vector3.zero, Quaternion.identity) as GameObject;
-                    intersectionMesh = result.toMesh();
-                    newGo.GetComponent<MeshFilter>().mesh = intersectionMesh;
-
+                {   
                     //Calcular o volume da mesh
-                    volumeOfIntersection = VolumeOfMesh(intersectionMesh) * 1000000; //convert to cm3  
-
+                    volumeOfIntersection = VolumeOfMesh(mesh) * 1000000; //convert to cm3  
+                    
                     //Compare the volume of intersection with the volume that the local pointed
 
                     percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
@@ -77,15 +137,17 @@ public class IntersectionCalculator : MonoBehaviour
                     percentageOfIntersection = 0.0f;
                 }
 
-                Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
+                Debug.Log("Volume from CH Algorithm: " + volumeOfIntersection + ".   %: " + percentageOfIntersection);
+                //Debug.Log("Percentage of Intersection: " + percentageOfIntersection.ToString("F0") + "%");
 
                 percentageString = chlocal.volume.ToString() + '#' + chremote.volume.ToString() + '#' + volumeOfIntersection.ToString() + '#' + percentageOfIntersection.ToString("F1");
                 writeResult = true;
 
+                Debug.Log(percentageString);
 
-                initialMeshCSG.SetActive(false);
-                localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
-                remoteVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
+                //initialMeshCSG.SetActive(false);                
+                //localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
+                //remoteVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
 
 
 

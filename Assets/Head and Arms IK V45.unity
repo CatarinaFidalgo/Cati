@@ -1137,6 +1137,7 @@ MonoBehaviour:
   rend: {fileID: 28538066}
   trailRend: {fileID: 28538071}
   sendTrail: {fileID: 75060618}
+  startEnd: {fileID: 1243343297}
 --- !u!96 &28538071
 TrailRenderer:
   serializedVersion: 2
@@ -25699,7 +25700,7 @@ MonoBehaviour:
   tcpListener: {fileID: 75060617}
   udpListener: {fileID: 1594974667}
   udpSend: {fileID: 1174461000}
-  intersection: {fileID: 0}
+  intersection: {fileID: 2040792651}
   saveTrailPoints: {fileID: 28538070}
   chlocal: {fileID: 20217228}
   chremote: {fileID: 1620914242}
@@ -27818,6 +27819,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325211587}
   m_Mesh: {fileID: -9198733311506207664, guid: 257b9d6a519a9d24286164853edb4c10, type: 3}
+--- !u!1001 &1330244800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2040792650}
+    m_Modifications:
+    - target: {fileID: 100000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_Name
+      value: MeshLess
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+--- !u!4 &1330244801 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1330244800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1330244802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: caab4fad538204057bf5d8a26c28416e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1330244800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1333499949
 GameObject:
   m_ObjectHideFlags: 0
@@ -28566,6 +28636,7 @@ MonoBehaviour:
   rend: {fileID: 1346963215}
   trailRend: {fileID: 1346963211}
   sendTrail: {fileID: 75060618}
+  startEnd: {fileID: 1243343297}
 --- !u!114 &1346963213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31687,6 +31758,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482889525}
   m_Mesh: {fileID: 6406524552492315002, guid: 257b9d6a519a9d24286164853edb4c10, type: 3}
+--- !u!1 &1485685993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485685994}
+  m_Layer: 0
+  m_Name: IntersectionVolume Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1485685994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485685993}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2040792650}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1488097780
 GameObject:
   m_ObjectHideFlags: 0
@@ -49158,6 +49259,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1414076806}
+  - {fileID: 1330244801}
+  - {fileID: 1485685994}
   m_Father: {fileID: 1641664410}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49182,14 +49285,17 @@ MonoBehaviour:
   chlocal: {fileID: 20217228}
   localVolumesParent: {fileID: 1687955048}
   remoteVolumesParent: {fileID: 1831162582}
+  IntParent: {fileID: 1485685993}
   volumeOfIntersection: 0
   initialMeshCSG: {fileID: 1414076805}
+  meshLess: {fileID: 1330244802}
   child: 0
   percentageOfIntersection: 0
   writeResult: 0
   percentageString: 
   eval: {fileID: 1641664408}
   startEnd: {fileID: 1243343297}
+  ball: {fileID: 606867856}
 --- !u!4 &2041510840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6045796424742603435, guid: 3dc4f98d0f4e1bd4bb7ede0e1fb894a9,

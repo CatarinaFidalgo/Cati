@@ -63,7 +63,7 @@ namespace GK
 
 					//////////////////////////////////////////////////////////////////////////////////////
 
-					for (int i = 0; i < receiveTrail.remotePoints.Count - 1; i++)
+					/*for (int i = 0; i < receiveTrail.remotePoints.Count - 1; i++)
 					{
 
 						float x = (float)Math.Ceiling(receiveTrail.remotePoints[i].x * 10000000) / 10000000;
@@ -74,7 +74,7 @@ namespace GK
 
 						Instantiate(ball, position, Quaternion.identity);
 
-					}
+					}*/
 					//////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -144,7 +144,9 @@ namespace GK
 
 						Debug.Log("CH Hull Remote");
 
-						initialHull.SetActive(false);
+						Debug.Log("nr ch remote:" + nrCHremote);
+
+						/////////////////////////////////////////////////////initialHull.SetActive(false);
 
 
 					}

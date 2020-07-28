@@ -116,11 +116,11 @@ namespace GK
 
 						Debug.Log("CH Hull Local");
 
-						initialHull.SetActive(false);
+						///////////////////////////////////////////////////////////////initialHull.SetActive(false);
 
 						//Debug.Log("Local write = " + writeFile);
 
-
+						Debug.Log("nr ch local:" + nrCHlocal);
 
 
 					}

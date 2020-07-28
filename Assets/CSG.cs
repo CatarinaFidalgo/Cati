@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 // Constructive Solid Geometry (CSG) is a modeling technique that uses Boolean
 // operations like union and intersection to combine 3D solids. This library
@@ -55,10 +54,16 @@ namespace ConstructiveSolidGeometry
     /// Holds a binary space partition tree representing a 3D solid. Two solids can
     /// be combined using the `union()`, `subtract()`, and `intersect()` methods.
     /// </summary>
+    /// 
+
+
+
+
     public class CSG
     {
         public List<Polygon> polygons;
         private Bounds bounds = new Bounds();
+        public HashSet<Vector3> intersectionPoints = new HashSet<Vector3>();
 
         /// <summary>
         /// Constuctor
@@ -99,29 +104,28 @@ namespace ConstructiveSolidGeometry
 
         public Mesh toMesh()
         {
+            Debug.Log("Iniciating ToMesh Function");
             List<Polygon> trisFromPolygons = new List<Polygon>();
             // triangulate polygons
             for (int i = this.polygons.Count - 1; i >= 0; i--)
             {
-                if (this.polygons[i].vertices.Length > 3) // list polygons keeps only the polygons that are already triangles
+                if (this.polygons[i].vertices.Length > 3)
                 {
                     //Debug.Log("!!! Poly to Tri (order): " + this.polygons[i].vertices.Length);
                     for (int vi = 1; vi < this.polygons[i].vertices.Length - 1; vi++)
                     {
                         IVertex[] tri = new IVertex[] {
-                            this.polygons[i].vertices[0], 
-                            this.polygons[i].vertices[vi], 
+                            this.polygons[i].vertices[0],
+                            this.polygons[i].vertices[vi],
                             this.polygons[i].vertices[vi+1]
                         };
-                        trisFromPolygons.Add(new Polygon(tri)); // list trisFromPolygons contains all the triangles made from the bigger poligons
+                        trisFromPolygons.Add(new Polygon(tri));
                     }
                     // the original polygon is replaced by a set of triangles
                     this.polygons.RemoveAt(i);
                 }
             }
-            this.polygons.AddRange(trisFromPolygons); //Concatenate both lists
-            cleanDuplicates(polygons);
-            collapseEdges(polygons);
+            this.polygons.AddRange(trisFromPolygons);
 
             // TODO: Simplify mesh - the boolean CSG algorithm leaves lots of coplanar
             //       polygons that share an edge that could be simplified.
@@ -135,7 +139,7 @@ namespace ConstructiveSolidGeometry
             for (int pi = 0; pi < this.polygons.Count; pi++)
             {
                 Polygon tri = this.polygons[pi];
-                
+
                 if (tri.vertices.Length > 3) Debug.LogError("Polygon should be a triangle, but isn't !!");
 
                 for (int vi = 0; vi < 3; vi++)
@@ -144,7 +148,7 @@ namespace ConstructiveSolidGeometry
                     bool equivalentVertexAlreadyInList = false;
                     for (int i = 0; i < vertices.Count; i++)
                     {
-                        if (vertices[i].pos.ApproximatelyEqual(vertex.pos) && 
+                        if (vertices[i].pos.ApproximatelyEqual(vertex.pos) &&
                             vertices[i].normal.ApproximatelyEqual(vertex.normal))
                         {
                             equivalentVertexAlreadyInList = true;
@@ -163,21 +167,30 @@ namespace ConstructiveSolidGeometry
 
             Vector3[] verts = new Vector3[this.polygons.Count * 3];
             Vector3[] normals = new Vector3[this.polygons.Count * 3];
+
             Mesh m = new Mesh();
+
             for (int i = 0; i < vertices.Count; i++)
             {
                 verts[i] = vertices[i].pos;
+                intersectionPoints.Add(vertices[i].pos);
+
+                //Debug.Log(verts[i]);
+                //Debug.Log(intersectionPoints.Count);
                 normals[i] = vertices[i].normal;
             }
+
+            Debug.Log("Nr of vertices in List: " + verts.Length);
+            Debug.Log("Nr of vertices in Hash: " + intersectionPoints.Count);
+
             m.vertices = verts;
             m.normals = normals;
             m.triangles = tris;
-
             //m.RecalculateBounds();
             //m.RecalculateNormals();
             //m.Optimize();
 
-            Debug.Log("toMesh verts, normals, tris: " + m.vertices.Length + ", " +m.normals.Length+", "+m.triangles.Length);
+            //Debug.Log("toMesh verts, normals, tris: " + m.vertices.Length + ", " +m.normals.Length+", "+m.triangles.Length);
 
             return m;
         }
@@ -186,7 +199,7 @@ namespace ConstructiveSolidGeometry
         {
             List<Polygon> triangles = new List<Polygon>();
             int[] tris = m.triangles;
-            
+            Debug.Log("tris " + tris.Length);
             for (int t = 0; t < tris.Length; t += 3)
             {
                 Vertex[] vs = new Vertex[3];
@@ -196,7 +209,7 @@ namespace ConstructiveSolidGeometry
                 //Debug.Log("Tri index: " + (t+i).ToString() + ", Vertex: " + vs[i].pos);
                 triangles.Add(new Polygon(vs));
             }
-            //Debug.Log("Poly: " + triangles.Count);
+            Debug.Log("Poly " + triangles.Count);
             return CSG.fromPolygons(triangles);
         }
 
@@ -296,10 +309,17 @@ namespace ConstructiveSolidGeometry
             Node a = new Node(this.polygons);
             Node b = new Node(csg.polygons);
             a.invert();
+            //Debug.Log("Intersect 1 polygons: " + a.polygons.Count);
             b.invert();
+            //Debug.Log("Intersect 2 polygons: " + b.polygons.Count);
             a.clipTo(b);
+            //Debug.Log("Intersect 3 polygons: " + a.polygons.Count);
             b.clipTo(a);
-            a.build(b.allPolygons());          
+            //Debug.Log("Intersect 5 polygons: " + b.polygons.Count);
+            a.build(b.allPolygons());
+            //Debug.Log("Intersect 6 polygons: " + a.polygons.Count);
+            //Debug.Log("Intersect 7 all polygons: " + a.allPolygons().Count);
+            //Debug.Log("Intersect 8 polygons finalll cgs: " + CSG.fromPolygons(a.allPolygons()).inverse().polygons.Count);
             return CSG.fromPolygons(a.allPolygons()).inverse();
         }
 
@@ -392,9 +412,8 @@ namespace ConstructiveSolidGeometry
             foreach (Polygon p in polygons)
             {
                 csg.polygons.Add(p.clone());
-                
             }
-            //Debug.Log("nr polygons" + csg.polygons.Count);
+
             return csg;
         }
 
@@ -410,119 +429,5 @@ namespace ConstructiveSolidGeometry
             csg.polygons.AddRange(polygons);
             return csg;
         }
-
-        private List<Polygon> collapseEdges(List<Polygon> poly)
-        {
-            List<Polygon> polyResult = new List<Polygon>();
-            List<List<Polygon>> coplanarPolygons = new List<List<Polygon>>();
-
-            for (int pi = poly.Count - 1; pi >= 0; pi--)
-            {
-                List<Polygon> newPlane = new List<Polygon>();
-                newPlane.Add(poly[pi]);
-
-                for (int pj = poly.Count - 1; pj >= 0; pj--)
-                {
-                    if (pj == pi)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        if (Vector3.Dot(poly[pi].plane.normal, poly[pj].plane.normal) == 1.0f)
-                        {
-                            newPlane.Add(poly[pj]);
-                            poly.RemoveAt(pj);
-                            pi--;
-                        }
-                    }
-                }
-
-                coplanarPolygons.Add(newPlane);
-            }
-
-            findCollapsableEdge(coplanarPolygons[0]);
-            
-
-            Debug.Log("Nr of Planes: " + coplanarPolygons.Count);
-            Debug.Log("Nr of polys in Plane 1: " + coplanarPolygons[0].Count);
-            /*Debug.Log("Nr of polys in Plane 2: " + coplanarPolygons[1].Count);
-            Debug.Log("Nr of polys in Plane 3: " + coplanarPolygons[2].Count);
-            Debug.Log("Nr of polys in Plane 4: " + coplanarPolygons[3].Count);
-            Debug.Log("Nr of polys in Plane 5: " + coplanarPolygons[4].Count);
-            Debug.Log("Nr of polys in Plane 6: " + coplanarPolygons[5].Count);*/
-
-            return polyResult;
-        }
-
-        private IVertex[] findCollapsableEdge(List<Polygon> plane)
-        {
-            IVertex[] collapsableVertices = new IVertex[2];
-            List<int> sharedVertex = new List<int>();
-            List<IVertex> vertices = new List<IVertex>();
-
-            //Debug.Log("Nr of polygons: " + plane.Count);
-
-            for (int pi = 0; pi < plane.Count; pi++)
-            {
-                for (int vi = 0; vi < 3; vi++)
-                {
-                    Debug.Log("Vertex " + pi + vi + " : " + plane[pi].vertices[vi].pos);
-                    if (!vertices.Exists(x => x.pos == plane[pi].vertices[vi].pos))
-                    {
-                        vertices.Add(plane[pi].vertices[vi]);
-                    }
-                }
-            }
-
-            //Debug.Log("Nr of vertices: " + vertices.Count);
-
-
-            return collapsableVertices;
-        }
-
-        private List<Polygon> cleanDuplicates(List<Polygon> poly)
-        {
-            for (int pi = poly.Count - 1; pi >= 0; pi--)
-            {
-                for (int pj = poly.Count - 1; pj >= 0; pj--)
-                {
-                    if (pi == pj)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        if (poly[pi].vertices[0].pos == poly[pj].vertices[0].pos && 
-                            poly[pi].vertices[1].pos == poly[pj].vertices[1].pos &&
-                            poly[pi].vertices[2].pos == poly[pj].vertices[2].pos)
-                        {
-                            poly.RemoveAt(pj);
-                            pi--;
-                        }
-                    }
-                }
-            }
-
-            return poly;
-        }
-
-        /*private float[] getLineParameters(Vector3 v1, Vector3 v2)
-        {
-            float[3]
-        }*/
     }
 }
-
-/*
- * A = y2-y1; B = x1-x2; C = Ax1+By1
-float delta = A1 * B2 - A2 * B1;
-
-if (delta == 0) 
-    throw new ArgumentException("Lines are parallel");
-
-float x = (B2 * C1 - B1 * C2) / delta;
-float y = (A1 * C2 - A2 * C1) / delta;
-
-    
-*/
