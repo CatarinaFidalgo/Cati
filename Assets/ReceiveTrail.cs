@@ -49,7 +49,7 @@ public class ReceiveTrail : MonoBehaviour
                 
 
 
-                Debug.Log(remotePoints.Count);
+                
                 logPoints = trailMessage;
                 startEnd.showWorkspace = false;
                 sendToInterpreter.send("update#" + startEnd.showWorkspace.ToString());

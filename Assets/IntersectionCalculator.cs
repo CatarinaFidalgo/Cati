@@ -82,7 +82,7 @@ public class IntersectionCalculator : MonoBehaviour
                 var normals = new List<Vector3>();
 
                 
-                Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
+                //Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
 
                 for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
 				{
@@ -178,7 +178,7 @@ public class IntersectionCalculator : MonoBehaviour
                 }*/
 
                 startEnd.getStartTime = true;
-                percentageString = "Error computing!";
+                percentageString = "Error computing: Can't generate hull, points are coplanar!";
                 writeResult = true;
 
             }
@@ -199,9 +199,12 @@ public class IntersectionCalculator : MonoBehaviour
                 }*/
 
                 startEnd.getStartTime = true;
-                percentageString = "Error computing!";
+                percentageString = "Error computing: Assertion failed!";
                 writeResult = true;
             }
+
+            //throw new System.ArgumentException("Can't generate hull, points are coplanar");
+            //throw new UnityEngine.Assertions.AssertionException("Assertion failed", "");
 
         }
 

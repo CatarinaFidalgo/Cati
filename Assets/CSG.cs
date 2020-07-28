@@ -104,7 +104,7 @@ namespace ConstructiveSolidGeometry
 
         public Mesh toMesh()
         {
-            Debug.Log("Iniciating ToMesh Function");
+            //Debug.Log("Iniciating ToMesh Function");
             List<Polygon> trisFromPolygons = new List<Polygon>();
             // triangulate polygons
             for (int i = this.polygons.Count - 1; i >= 0; i--)
@@ -180,8 +180,8 @@ namespace ConstructiveSolidGeometry
                 normals[i] = vertices[i].normal;
             }
 
-            Debug.Log("Nr of vertices in List: " + verts.Length);
-            Debug.Log("Nr of vertices in Hash: " + intersectionPoints.Count);
+            //Debug.Log("Nr of vertices in List: " + verts.Length);
+            //Debug.Log("Nr of vertices in Hash: " + intersectionPoints.Count);
 
             m.vertices = verts;
             m.normals = normals;
@@ -199,7 +199,7 @@ namespace ConstructiveSolidGeometry
         {
             List<Polygon> triangles = new List<Polygon>();
             int[] tris = m.triangles;
-            Debug.Log("tris " + tris.Length);
+            //Debug.Log("tris " + tris.Length);
             for (int t = 0; t < tris.Length; t += 3)
             {
                 Vertex[] vs = new Vertex[3];
@@ -209,7 +209,7 @@ namespace ConstructiveSolidGeometry
                 //Debug.Log("Tri index: " + (t+i).ToString() + ", Vertex: " + vs[i].pos);
                 triangles.Add(new Polygon(vs));
             }
-            Debug.Log("Poly " + triangles.Count);
+            //Debug.Log("Poly " + triangles.Count);
             return CSG.fromPolygons(triangles);
         }
 

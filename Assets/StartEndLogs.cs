@@ -118,7 +118,7 @@ public class StartEndLogs : MonoBehaviour
                 midCanvas.SetActive(true);
 
                 test.j++; //Change target
-                Debug.Log("j: " + test.j);
+                //Debug.Log("j: " + test.j);
 
                
 

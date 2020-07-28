@@ -75,7 +75,7 @@ public class TCPServer : MonoBehaviour
 							Array.Copy(bytes, 0, incommingData, 0, length);
 							// Convert byte array to string message. 							
 							string clientMessage = Encoding.ASCII.GetString(incommingData);
-							Debug.Log("client message received with: " + clientMessage.Length + " as: " + clientMessage);
+							//Debug.Log("client message received with: " + clientMessage.Length + " as: " + clientMessage);
 							receiveTrail.newTrailMessage(clientMessage);
 
 						}

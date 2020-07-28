@@ -96,7 +96,6 @@ public class ChooseHighLightTarget : MonoBehaviour
             else
             {
                 END = true;
-                Debug.Log("END OF EXPERIMENT");
 
             }
         }
