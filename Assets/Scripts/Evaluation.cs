@@ -92,12 +92,7 @@ public class Evaluation : MonoBehaviour
         remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);
         remoteWorkspace.localScale = new Vector3(1, 1, 1);
 
-        /*if ( condition == ConditionType.Veridical)
-        {           
-            remoteWorkspace.localRotation = Quaternion.Euler(0, 180, 0);            
-            remoteWorkspace.localScale = new Vector3(1, 1, 1);
-            
-        }
+        
 
         /*else if (condition == ConditionType.SideToSide)
         {
@@ -124,8 +119,30 @@ public class Evaluation : MonoBehaviour
     {
         if (startEnd.showWorkspace)
         {
-            model.SetActive(true);
             
+
+            if (condition == ConditionType.Veridical)
+            {
+                if (machine == MachineType.A)
+                {
+                    model.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    model.SetActive(true);
+                }
+
+                else if (machine == MachineType.B)
+                {
+                    model.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                    model.SetActive(true);
+                }
+
+            }
+
+            else if (condition == ConditionType.Approach)
+            {
+                model.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                model.SetActive(true);
+            }
+
         }
         else
         {
