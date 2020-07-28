@@ -2188,6 +2188,7 @@ MonoBehaviour:
   sent: 0
   logPoints: 
   eval: {fileID: 1641664408}
+  startEnd: {fileID: 1243343297}
 --- !u!4 &75060619
 Transform:
   m_ObjectHideFlags: 0
@@ -27833,18 +27834,6 @@ PrefabInstance:
       value: MeshLess
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -27874,6 +27863,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caab4fad538204057bf5d8a26c28416e, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -30169,7 +30162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414076805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11494504, y: -0.8548579, z: 0.7110606}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 2040792650}
@@ -30200,7 +30193,7 @@ Rigidbody:
   m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126

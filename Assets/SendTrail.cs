@@ -25,6 +25,7 @@ public class SendTrail : MonoBehaviour
     public string logPoints;
 
     public Evaluation eval;
+    public StartEndLogs startEnd;
 
     //public bool erase = false;
 
@@ -49,6 +50,7 @@ public class SendTrail : MonoBehaviour
                 Debug.Log("Sending in machine A");
                 logPoints = "";
                 saveTrailPoints.pointsTrail.Clear();
+                startEnd.showWorkspace = false;
             }
             else
             {
@@ -56,6 +58,7 @@ public class SendTrail : MonoBehaviour
                 Debug.Log("Sending in machine B");
                 logPoints = "";
                 saveTrailPoints.pointsTrail.Clear();
+                startEnd.showWorkspace = false;
             }
 
         }

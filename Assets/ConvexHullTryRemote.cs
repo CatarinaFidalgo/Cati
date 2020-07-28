@@ -36,10 +36,10 @@ namespace GK
 
 		public GameObject ball;
 
-         
+        private List<Vector3> remotePointsAltered = new List<Vector3>();
 
 
-		IEnumerator Start()
+        IEnumerator Start()
 		{
 
 			//Parametros necessarios para o algoritmo de Convex Hull
@@ -61,7 +61,21 @@ namespace GK
 				if (receiveTrail.remotePoints.Count > 0 && receiveTrail.receptionComplete && eval.localIsDemonstrator) //list is complete
 				{
                        
-                    
+                    if (eval.condition == ConditionType.Veridical)
+                    {
+                        for (int i = 0; i < receiveTrail.remotePoints.Count - 1; i++)
+                        {
+
+                            float x = - (float)Math.Ceiling(receiveTrail.remotePoints[i].x * 10000000) / 10000000;
+                            float y = (float)Math.Ceiling(receiveTrail.remotePoints[i].y * 10000000) / 10000000;
+                            float z = - (float)Math.Ceiling(receiveTrail.remotePoints[i].z * 10000000) / 10000000;
+
+                            Vector3 position = new UnityEngine.Vector3(x, y, z);
+
+                            remotePointsAltered.Add(position);
+
+                        }
+                    }
 
 					receiveTrail.receptionComplete = false;
 					Debug.Log("Entrei na CH Remote");
@@ -86,12 +100,12 @@ namespace GK
 					try
 					{
 
-						Debug.Log("Remote points used for CH: " + receiveTrail.remotePoints.Count + "as:" + _listToString(receiveTrail.remotePoints));
+                        //Debug.Log("Remote points used for CH: " + receiveTrail.remotePoints.Count + "as:" + _listToString(receiveTrail.remotePoints));
+                        if (eval.condition == ConditionType.Approach) calc.GenerateHull(receiveTrail.remotePoints, true, ref verts, ref tris, ref normals);
+                        if (eval.condition == ConditionType.Veridical) calc.GenerateHull(remotePointsAltered, true, ref verts, ref tris, ref normals);
 
-						calc.GenerateHull(receiveTrail.remotePoints, true, ref verts, ref tris, ref normals);
 
-						
-						writeFile = true;
+                        writeFile = true;
 						//calc.GenerateHull(saveTrailPoints.pointsTrail, true, ref verts, ref tris, ref normals);
 
 						//Create an initial transform that will evolve into our Convex Hull when altering the mesh
@@ -137,7 +151,8 @@ namespace GK
                         //Limpar os pontos antigos da lista para o proximo convex hull e
                         //informar o programa de que já realizou esta função 
 
-                        receiveTrail.remotePoints.Clear();   
+                        receiveTrail.remotePoints.Clear();
+                        remotePointsAltered.Clear();
 						generateHullDone = true;
 						//checkInt.intersectionDone = false;
 
@@ -159,7 +174,8 @@ namespace GK
 					{
 						
 						receiveTrail.remotePoints.Clear();
-						generateHullDone = true;
+                        remotePointsAltered.Clear();
+                        generateHullDone = true;
 						startEnd.getStartTime = true;
 
 
@@ -170,7 +186,8 @@ namespace GK
 					{
 						
 						receiveTrail.remotePoints.Clear();
-						generateHullDone = true;
+                        remotePointsAltered.Clear();
+                        generateHullDone = true;
 						startEnd.getStartTime = true;
 						Debug.Log("Exception2");
 					}

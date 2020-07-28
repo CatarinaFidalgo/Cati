@@ -135,6 +135,7 @@ public class IntersectionCalculator : MonoBehaviour
 
                 else
                 {
+                    volumeOfIntersection = 0.0f;
                     percentageOfIntersection = 0.0f;
                 }
 
