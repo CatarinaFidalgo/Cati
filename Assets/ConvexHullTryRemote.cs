@@ -36,6 +36,8 @@ namespace GK
 
 		public GameObject ball;
 
+         
+
 
 		IEnumerator Start()
 		{
@@ -58,6 +60,9 @@ namespace GK
 			{
 				if (receiveTrail.remotePoints.Count > 0 && receiveTrail.receptionComplete && eval.localIsDemonstrator) //list is complete
 				{
+                       
+                    
+
 					receiveTrail.receptionComplete = false;
 					Debug.Log("Entrei na CH Remote");
 

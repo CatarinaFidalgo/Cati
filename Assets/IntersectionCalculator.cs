@@ -97,40 +97,41 @@ public class IntersectionCalculator : MonoBehaviour
 
 				}
 
+                if (result.intersectionPoints.Count >= 4)
+                {
+                    calc.GenerateHull(result.intersectionPoints.ToList(), true, ref verts, ref tris, ref normals);
 
-                calc.GenerateHull(result.intersectionPoints.ToList(), true, ref verts, ref tris, ref normals);
+                    //Create an initial transform that will evolve into our Convex Hull when altering the mesh
 
-                //Create an initial transform that will evolve into our Convex Hull when altering the mesh
+                    var initialHull = Instantiate(initialMeshCSG);
+                    //initialHull = Instantiate(initialMesh);
 
-                var initialHull = Instantiate(initialMeshCSG);
-                //initialHull = Instantiate(initialMesh);
+                    initialHull.transform.SetParent(IntParent.transform, false);
+                    initialHull.transform.position = Vector3.zero;
+                    initialHull.transform.rotation = Quaternion.identity;
+                    initialHull.transform.localScale = Vector3.one;
 
-                initialHull.transform.SetParent(IntParent.transform, false);
-                initialHull.transform.position = Vector3.zero;
-                initialHull.transform.rotation = Quaternion.identity;
-                initialHull.transform.localScale = Vector3.one;
+                    //Independentemente do tipo de mesh com que se começa (cubo, esfera..) 
+                    //a mesh é redefenida com as definiçoes abaixo
 
-                //Independentemente do tipo de mesh com que se começa (cubo, esfera..) 
-                //a mesh é redefenida com as definiçoes abaixo
+                    var mesh = new Mesh();
+                    mesh.SetVertices(verts);
+                    mesh.SetTriangles(tris, 0);
+                    mesh.SetNormals(normals);
 
-                var mesh = new Mesh();
-                mesh.SetVertices(verts);
-                mesh.SetTriangles(tris, 0);
-                mesh.SetNormals(normals);
-
-                initialHull.GetComponent<MeshFilter>().sharedMesh = mesh;
-                initialHull.GetComponent<MeshCollider>().sharedMesh = mesh;
-                /////////////////////////////////////////////////////////////////////
-
-                if (result != null)
-                {   
+                    initialHull.GetComponent<MeshFilter>().sharedMesh = mesh;
+                    initialHull.GetComponent<MeshCollider>().sharedMesh = mesh;
+                    /////////////////////////////////////////////////////////////////////
+                    
                     //Calcular o volume da mesh
                     volumeOfIntersection = VolumeOfMesh(mesh) * 1000000; //convert to cm3  
-                    
+
                     //Compare the volume of intersection with the volume that the local pointed
 
                     percentageOfIntersection = volumeOfIntersection / chlocal.volume * 100.0f;
                 }
+
+
 
                 else
                 {
@@ -176,6 +177,8 @@ public class IntersectionCalculator : MonoBehaviour
                 }*/
 
                 startEnd.getStartTime = true;
+                percentageString = "Error computing!";
+                writeResult = true;
 
             }
 
@@ -195,6 +198,8 @@ public class IntersectionCalculator : MonoBehaviour
                 }*/
 
                 startEnd.getStartTime = true;
+                percentageString = "Error computing!";
+                writeResult = true;
             }
 
         }

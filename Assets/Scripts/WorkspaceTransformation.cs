@@ -147,9 +147,11 @@ public class WorkspaceTransformation : MonoBehaviour
             }  
         }       
 
-        if (evaluation.condition == ConditionType.Veridical || evaluation.condition == ConditionType.SideToSide)
+        if (evaluation.condition == ConditionType.Veridical)
         {
             //Warped hands are the same as the remote hands received through the network
+
+            warpedSpace.localScale = new Vector3(1, 1, 1);
 
             warpedHMD.localPosition = remoteHMD.localPosition;
             warpedHandLeft.localPosition = remoteLeft.localPosition;

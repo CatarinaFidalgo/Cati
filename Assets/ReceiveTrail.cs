@@ -21,7 +21,8 @@ public class ReceiveTrail : MonoBehaviour
 
 
     public Evaluation eval;
-
+    public StartEndLogs startEnd;
+    public SendSetUpInfo sendToInterpreter;
 
     void Start()
     {
@@ -50,7 +51,10 @@ public class ReceiveTrail : MonoBehaviour
 
                 Debug.Log(remotePoints.Count);
                 logPoints = trailMessage;
+                startEnd.showWorkspace = false;
+                sendToInterpreter.send("update#" + startEnd.showWorkspace.ToString());
                 receptionComplete = true;
+
                 //tcpWriteFile = true;
             }
         }

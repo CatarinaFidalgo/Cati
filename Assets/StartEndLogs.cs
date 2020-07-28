@@ -111,9 +111,9 @@ public class StartEndLogs : MonoBehaviour
                 taskEndTime = DateTime.Now;
                 getEndTime = false;
 
-                showWorkspace = false;
+                //showWorkspace = false;
 
-                sendToInterpreter.send("update#" + showWorkspace.ToString());
+                //sendToInterpreter.send("update#" + showWorkspace.ToString());
 
                 midCanvas.SetActive(true);
 
@@ -162,7 +162,7 @@ public class StartEndLogs : MonoBehaviour
                 getEndTime = true;                
                 intersection.writeResult = false;
 
-                Debug.Log("intersection");
+                Debug.Log("Intersection completed");
                 
 
             }
