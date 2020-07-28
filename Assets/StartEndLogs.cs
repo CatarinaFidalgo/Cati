@@ -53,14 +53,15 @@ public class StartEndLogs : MonoBehaviour
             startCanvas.SetActive(true);
             midCanvas.SetActive(false);
             endCanvas.SetActive(false);
+            InitializeFiles();
+            generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";
 
         }
 
 
 
 
-        InitializeFiles();
-        generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";        
+           
 
     }
     void Update()
