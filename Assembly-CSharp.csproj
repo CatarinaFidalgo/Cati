@@ -73,7 +73,6 @@
     <Compile Include="Assets\calibration.cs" />
     <Compile Include="Assets\checkIntersection.cs" />
     <Compile Include="Assets\ChooseHighLightTarget.cs" />
-    <Compile Include="Assets\ChooseTest.cs" />
     <Compile Include="Assets\ConvexHullCalculator.cs" />
     <Compile Include="Assets\ConvexHullIntersection.cs" />
     <Compile Include="Assets\ConvexHullTry.cs" />
@@ -763,6 +762,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200722-173551_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200727-154315_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200728-171138_Approach_LogVolumePoints.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-181848__LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-155847_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-183001_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-132440_Approach_LogVolumePoints.txt" />
@@ -1098,6 +1098,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200722-171443_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-125317_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-170759_Approach_LogTime.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-181848__LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-133142_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-135426_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200727-174821_Approach_LogTime.txt" />
@@ -1108,6 +1109,7 @@
     <None Include="Assets\Results100i\100D_20200719-182452_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-125353_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-150249_Approach_LogVolumePoints.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-181848__LogBodyRemote.txt" />
     <None Include="Assets\Jorge_05.28.2020 16.09_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-135426_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-161926_Approach_LogBodyRemote.txt" />
@@ -1472,6 +1474,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200720-133056_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-162440_Approach_LogBodyRemote.txt" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShader.shader" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-181848__LogVolumePoints.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-153627_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-170837_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-134550_Approach_LogBodyRemote.txt" />
@@ -1614,6 +1617,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200722-150222_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-183224_Approach_LogBodyRemote.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\OculusSampleTrainPropsShader.shader" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-181848__LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-134421_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-135426_Approach_LogVolumePoints.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-130042_Approach_LogVolumePoints.txt" />

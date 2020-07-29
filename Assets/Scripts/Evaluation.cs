@@ -31,7 +31,8 @@ public class Evaluation : MonoBehaviour
 {
     public MachineType machine; 
     public ConditionType condition;
-    public TestType test;
+    public TestType test1;
+    public TestType test2;
     public string participantID;
     public string _resultsFolder;
 
@@ -117,6 +118,12 @@ public class Evaluation : MonoBehaviour
 
     void Update()
     {
+
+        
+
+
+
+
         if (startEnd.showWorkspace)
         {
             
@@ -170,7 +177,8 @@ public class Evaluation : MonoBehaviour
     private string UI_ParticipantID_A = "";
     private string UI_ParticipantID_B = "";
     private string UI_ResultsFolder = "";
-    private int UI_test = 1;
+    private int UI_test1 = 1;
+    private int UI_test2 = 1;
     public GUIStyle myStyle;
     void OnGUI()
     {
@@ -192,15 +200,28 @@ public class Evaluation : MonoBehaviour
             }
             top += linestep;
             
-            GUI.Label(new Rect(left, top, 100, linestep), "Test:", myStyle);
-            if (UI_test > 1 && GUI.Button(new Rect(left + 200, top, 20, 20), "<"))
+            GUI.Label(new Rect(left, top, 100, linestep), "Test 1:", myStyle);
+            if (UI_test1 > 1 && GUI.Button(new Rect(left + 200, top, 20, 20), "<"))
             {
-                UI_test -= 1;
+                UI_test1 -= 1;
             }
-            GUI.Label(new Rect(left + 200 + 30, top, 100, linestep), "Test " + UI_test);
-            if (UI_test < 4 && GUI.Button(new Rect(left + 200 + 100 - 20, top, 20, 20), ">"))
+            GUI.Label(new Rect(left + 200 + 30, top, 100, linestep), "Test " + UI_test1);
+            if (UI_test1 < 4 && GUI.Button(new Rect(left + 200 + 100 - 20, top, 20, 20), ">"))
             {
-                UI_test += 1;
+                UI_test1 += 1;
+            }
+
+            top += linestep;
+
+            GUI.Label(new Rect(left, top, 100, linestep), "Test2:", myStyle);
+            if (UI_test2 > 1 && GUI.Button(new Rect(left + 200, top, 20, 20), "<"))
+            {
+                UI_test2 -= 1;
+            }
+            GUI.Label(new Rect(left + 200 + 30, top, 100, linestep), "Test " + UI_test2);
+            if (UI_test2 < 4 && GUI.Button(new Rect(left + 200 + 100 - 20, top, 20, 20), ">"))
+            {
+                UI_test2 += 1;
             }
 
             top += linestep;
@@ -222,7 +243,8 @@ public class Evaluation : MonoBehaviour
             {
                 string s = "start" + '#';
                 s += UI_condition.ToString() + '#';
-                s += (UI_test - 1).ToString() + '#';
+                s += (UI_test1 - 1).ToString() + '#';
+                s += (UI_test2 - 1).ToString() + '#';
                 s += UI_ParticipantID_A + '#';
                 s += UI_ParticipantID_B + '#';
                 s += UI_ResultsFolder;

@@ -31,9 +31,10 @@ public class TCPServer : MonoBehaviour
 	public string serverAddress;
 
 	public ReceiveTrail receiveTrail;
+    public StartEndLogs startEnd;
 
-	// Use this for initialization
-	public void StartServer()
+    // Use this for initialization
+    public void StartServer()
 	{
 		// Start TcpServer background thread 		
 		tcpListenerThread = new Thread(new ThreadStart(ListenForIncommingRequests));
@@ -78,7 +79,12 @@ public class TCPServer : MonoBehaviour
 							//Debug.Log("client message received with: " + clientMessage.Length + " as: " + clientMessage);
 							receiveTrail.newTrailMessage(clientMessage);
 
-						}
+                            if (clientMessage.Split('#')[0] == "update#")
+                            {
+                                startEnd.showWorkspace = Convert.ToBoolean(clientMessage.Split('#')[1]);
+                            }
+
+                        }
 					}
 				}
 			}

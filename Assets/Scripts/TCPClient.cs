@@ -20,6 +20,7 @@ public class TCPClient : MonoBehaviour
     public bool connected;
 
 	public ReceiveTrail receiveTrail;
+    public StartEndLogs startEnd;
 
 	// Use this for initialization 	
 	public void StartClient()
@@ -71,9 +72,13 @@ public class TCPClient : MonoBehaviour
 						Array.Copy(bytes, 0, incommingData, 0, length);
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
-						//Debug.Log("server message received as: " + serverMessage);
-
+						//Debug.Log("server message received as: " + serverMessage);                        
 						receiveTrail.newTrailMessage(serverMessage);
+
+                        if (serverMessage.Split('#')[0] == "update#")
+                        {
+                            startEnd.showWorkspace = Convert.ToBoolean(serverMessage.Split('#')[1]);
+                        }
 
 					}
 				}

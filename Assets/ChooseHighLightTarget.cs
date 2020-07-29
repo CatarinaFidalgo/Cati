@@ -13,9 +13,13 @@ public class ChooseHighLightTarget : MonoBehaviour
     public List<Vector3> Test2 = new List<Vector3>();
     public List<Vector3> Test3 = new List<Vector3>();
     public List<Vector3> Test4 = new List<Vector3>();
-    public List<Vector3> TestOn = new List<Vector3>();
+    public List<Vector3> TestOn1 = new List<Vector3>();
+    public List<Vector3> TestOn2 = new List<Vector3>();
+    public List<Vector3> Test = new List<Vector3>();
+
 
     public Evaluation evaluation;
+    public StartEndLogs startEnd;
 
     public Transform target;
     public Transform p101;
@@ -30,53 +34,41 @@ public class ChooseHighLightTarget : MonoBehaviour
     void Start()
     {
         FillTargetPoints(Test1, Test2, Test3, Test4);
-
-        if (evaluation.test == TestType.T1)
-        {
-            TestOn = Test1;
-        }
-        else if (evaluation.test == TestType.T2)
-        {
-            TestOn = Test2;
-        }
-        else if (evaluation.test == TestType.T3)
-        {
-            TestOn = Test3;
-        }
-        else
-        {
-            TestOn = Test4;
-        }
-
-        
-
+        ChooseTargetTests();
     }
 
     
     void Update()
     {
         //Debug.Log(j);
-        
+        if (evaluation.machine == MachineType.A)
+        {
+            Test = TestOn1;
+        }
+
+        if (evaluation.machine == MachineType.A)
+        {
+            Test = TestOn2;
+        }
+
         if (evaluation.localIsDemonstrator)
         {
             if (j < 5)
             {
                 //101 active
-                target.position = TestOn[j];
+                target.position = Test[j];
 
                 p101.GetComponent<HighLight>().radius = 0.05f;
                 p102.GetComponent<HighLight>().radius = 0.0f;
                 p103.GetComponent<HighLight>().radius = 0.0f;
 
-                /*p101.GetComponent<HighLight>().enabled = true;            
-                p102.GetComponent<HighLight>().enabled = false;
-                p103.GetComponent<HighLight>().enabled = false;*/
+                
             }
 
             else if (j >= 5 && j < 12)
             {
                 //102 active
-                target.position = TestOn[j];
+                target.position = Test[j];
 
                 p101.GetComponent<HighLight>().radius = 0.0f;
                 p102.GetComponent<HighLight>().radius = 0.05f;
@@ -86,7 +78,62 @@ public class ChooseHighLightTarget : MonoBehaviour
             else if (j >= 12 && j < 16)
             {
                 //103 active
-                target.position = TestOn[j];
+                target.position = Test[j];
+
+                p101.GetComponent<HighLight>().radius = 0.0f;
+                p102.GetComponent<HighLight>().radius = 0.0f;
+                p103.GetComponent<HighLight>().radius = 0.05f;
+            }
+
+            if (j == 16)
+            {
+                 
+                evaluation.localIsDemonstrator = !evaluation.localIsDemonstrator;
+                //send message to other saying he is the demonstrator now
+
+                if (evaluation.machine == MachineType.A)
+                {
+                    evaluation.tcpServer.SendAVeryImportantMessage("demonstrator#" + evaluation.localIsDemonstrator.ToString());
+                    //Debug.Log("Sending in machine A");
+                    
+                }
+                else
+                {
+                    evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + evaluation.localIsDemonstrator.ToString());
+                    
+                }
+
+
+                END = true;
+
+            }
+
+            /*if (j >= 16 && j < 16 + 5)
+            {
+                //101 active
+                target.position = TestOn1[j - 16];
+
+                p101.GetComponent<HighLight>().radius = 0.05f;
+                p102.GetComponent<HighLight>().radius = 0.0f;
+                p103.GetComponent<HighLight>().radius = 0.0f;
+
+                
+            }
+
+            else if (j >= 16 + 5 && j < 16 + 12)
+            {
+                //102 active
+                target.position = TestOn1[j - 16];
+
+                p101.GetComponent<HighLight>().radius = 0.0f;
+                p102.GetComponent<HighLight>().radius = 0.05f;
+                p103.GetComponent<HighLight>().radius = 0.0f;
+            }
+
+            else if (j >= 16 + 12 && j < 16 + 16)
+            {
+                //103 active
+                target.position = TestOn1[j - 16];
 
                 p101.GetComponent<HighLight>().radius = 0.0f;
                 p102.GetComponent<HighLight>().radius = 0.0f;
@@ -97,7 +144,7 @@ public class ChooseHighLightTarget : MonoBehaviour
             {
                 END = true;
 
-            }
+            }*/
         }
         
 
@@ -135,6 +182,46 @@ public class ChooseHighLightTarget : MonoBehaviour
         }
         
         return;
+    }
+
+    void ChooseTargetTests()
+    {
+        //Choose the first test
+        if (evaluation.test1 == TestType.T1)
+        {
+            TestOn1 = Test1;
+        }
+        else if (evaluation.test1 == TestType.T2)
+        {
+            TestOn1 = Test2;
+        }
+        else if (evaluation.test1 == TestType.T3)
+        {
+            TestOn1 = Test3;
+        }
+        else
+        {
+            TestOn1 = Test4;
+        }
+
+        //Choose the second test
+        if (evaluation.test2 == TestType.T1)
+        {
+            TestOn2 = Test1;
+        }
+        else if (evaluation.test2 == TestType.T2)
+        {
+            TestOn2 = Test2;
+        }
+        else if (evaluation.test1 == TestType.T3)
+        {
+            TestOn2 = Test3;
+        }
+        else
+        {
+            TestOn2 = Test4;
+        }
+
     }
 
 }

@@ -54,11 +54,12 @@ public class StartEndLogs : MonoBehaviour
             midCanvas.SetActive(false);
             endCanvas.SetActive(false);
             InitializeFiles();
-            generalInfo = "Participant ID:" + participantID + "Condition: " + evaluation.condition + "Test: " + evaluation.test + "\n";
+            generalInfo = " \",\"Condition\",\"ParticipantID\",\"Test1\",\"Test2\",\" ";
 
+            
         }
 
-
+        
 
 
            
@@ -67,6 +68,8 @@ public class StartEndLogs : MonoBehaviour
     void Update()
     {
         OVRInput.Update();
+
+        
 
         if (evaluation.localIsDemonstrator && !test.END)
         {
@@ -94,7 +97,19 @@ public class StartEndLogs : MonoBehaviour
             {
                 showWorkspace = true;
 
-                sendToInterpreter.send("update#" + showWorkspace.ToString());
+                //sendToInterpreter.send("update#" + showWorkspace.ToString());
+
+                if (evaluation.machine == MachineType.A)
+                {
+                    evaluation.tcpServer.SendAVeryImportantMessage("update#" + showWorkspace.ToString());
+                    //Debug.Log("Sending in machine A");
+
+                }
+                else
+                {
+                    evaluation.tcpClient.SendAVeryImportantMessage("update#" + showWorkspace.ToString());
+
+                }
 
                 midCanvas.SetActive(false);
                 startCanvas.SetActive(false);
@@ -123,10 +138,12 @@ public class StartEndLogs : MonoBehaviour
                
 
                 Debug.Log("Outline completed by partner");
+                
+
 
 
                 //Debug.Log("End Time:" + taskEndTime.ToString());
-                File.AppendAllText(_logTimePath, taskStartTime.ToString("HH:mm:ss:fff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:fff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString() + "\"\n");
+                File.AppendAllText(_logTimePath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + taskStartTime.ToString("HH:mm:ss:fff") + "\",\"" + taskEndTime.ToString("HH:mm:ss:fff") + "\",\"" + DeltaDateTimeToSeconds(taskStartTime, taskEndTime).ToString() + "\"\n");
 
             }
 
@@ -135,7 +152,7 @@ public class StartEndLogs : MonoBehaviour
                 //Save drawn data points (Local)
                 string logPoints = _listToString(saveTrailPoints.pointsTrail);
 
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + logPoints.Replace(",",".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chlocal.writeFile = false;
                 Debug.Log("TrailPointsLocal");
 
@@ -144,7 +161,7 @@ public class StartEndLogs : MonoBehaviour
             if (chremote.writeFile)
             {
                 //Save drawn data points (Remote)
-                File.AppendAllText(_logVolumePointsPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + tcpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
+                File.AppendAllText(_logVolumePointsPath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + tcpListener.logPoints.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"\n");
                 chremote.writeFile = false;
                 Debug.Log("TrailPointsRemote");
 
@@ -153,7 +170,7 @@ public class StartEndLogs : MonoBehaviour
             if (intersection.writeResult)
             {                            
                 //Save volumes and intersection
-                File.AppendAllText(_logIntersectionPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + intersection.percentageString.Replace(",", ".").Replace("#", "\",\"") + "\"\n");
+                File.AppendAllText(_logIntersectionPath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + intersection.percentageString.Replace(",", ".").Replace("#", "\",\"") + "\"\n");
                 
 
                 //Update booleans
@@ -168,18 +185,15 @@ public class StartEndLogs : MonoBehaviour
             }
 
             //Save body data for both participants
-            File.AppendAllText(_logBodyLocalPath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpSend.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
-            File.AppendAllText(_logBodyRemotePath, System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
+            File.AppendAllText(_logBodyLocalPath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpSend.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
+            File.AppendAllText(_logBodyRemotePath, "\",\"" + evaluation.condition.ToString() + "\",\"" + evaluation.participantID.ToString() + "\",\"" + evaluation.test1.ToString() + "\",\"" + evaluation.test2.ToString() + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + udpListener.logGeneral.Replace(",", ".").Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\"" + "\n");
 
             //+ "\",\"" + sendAvatar.logGeneral.Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\""
 
 
         }
 
-        if (!evaluation.localIsDemonstrator && !test.END)
-        {
-            //Debug.Log(showWorkspace);
-        }
+        
 
         else if (test.END)
         {
@@ -216,11 +230,11 @@ public class StartEndLogs : MonoBehaviour
         
         //Create files
 
-        _logBodyLocalPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyLocal" + ".txt";
-        _logBodyRemotePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogBodyRemote" + ".txt";
-        _logVolumePointsPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogVolumePoints" + ".txt";
-        _logIntersectionPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogIntersection" + ".txt";
-        _logTimePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" + evaluation.condition + "_LogTime" + ".txt";
+        _logBodyLocalPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" +  "_LogBodyLocal" + ".txt";
+        _logBodyRemotePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" +  "_LogBodyRemote" + ".txt";
+        _logVolumePointsPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" +  "_LogVolumePoints" + ".txt";
+        _logIntersectionPath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" +  "_LogIntersection" + ".txt";
+        _logTimePath = evaluation._resultsFolder + "/" + participantID + "_" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "_" +  "_LogTime" + ".txt";
 
         //Fill 1st line with description
         File.AppendAllText(_logBodyLocalPath, generalInfo + "\"Time Stamp\",\"Local_HMD_p_x\",\"Local_HMD_p_y\",\"Local_HMD_p_z\",\"Local_HMD_r_x\",\"Local_HMD_r_y\",\"Local_HMD_r_z\",\"Local_HMD_r_w\",\"Local_Right_p_x\",\"Local_Right_p_y\",\"Local_Right_p_z\",\"Local_Right_r_x\",\"Local_Right_r_y\",\"Local_Right_r_z\",\"Local_Right_r_w\",\"Local_Left_p_x\",\"Local_Left_p_y\",\"Local_Left_p_z\",\"Local_Left_r_x\",\"Local_Left_r_y\",\"Local_Left_r_z\",\"Local_Left_r_w\",\"Local_FingertipR_p_x\",\"Local_FingertipR_p_y\",\"Local_FingertipR_p_z\",\"Local_FingertipR_r_x\",\"Local_FingertipR_r_y\",\"Local_FingertipR_r_z\",\"Local_FingertipR_r_w\",\"Local_FingertipL_p_x\",\"Local_FingertipL_p_y\",\"Local_FingertipL_p_z\",\"Local_FingertipL_r_x\",\"Local_FingertipL_r_y\",\"Local_FingertipL_r_z\",\"Local_FingertipL_r_w\",\"\n");

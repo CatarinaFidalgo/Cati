@@ -91,7 +91,7 @@ public class SendTrail : MonoBehaviour
 
         //Debug.Log(msg);
 
-        return msg;
+        return "points#" + msg;
     }
 
     private string _positionToString(Vector3 p)

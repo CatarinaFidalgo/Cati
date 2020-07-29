@@ -36,7 +36,7 @@ public class ReceiveTrail : MonoBehaviour
 
     public void newTrailMessage(string trailMessage)
     {
-        if (trailMessage != "")
+        if (trailMessage != "" && trailMessage.Split('#')[0] == "points")
         {
             
             
@@ -44,15 +44,24 @@ public class ReceiveTrail : MonoBehaviour
             {
                 Debug.Log("Received once");
                 
-                remotePoints = _stringToList(trailMessage).ToList();
+                remotePoints = _stringToList(trailMessage).ToList(); 
 
-                
-
-
-                
                 logPoints = trailMessage;
                 startEnd.showWorkspace = false;
-                sendToInterpreter.send("update#" + startEnd.showWorkspace.ToString());
+                //sendToInterpreter.send("update#" + startEnd.showWorkspace.ToString());
+
+                if (eval.machine == MachineType.A)
+                {
+                    eval.tcpServer.SendAVeryImportantMessage("update#" + startEnd.showWorkspace.ToString());
+                    
+
+                }
+                else
+                {
+                    eval.tcpClient.SendAVeryImportantMessage("update#" + startEnd.showWorkspace.ToString());
+
+                }
+
                 receptionComplete = true;
 
                 //tcpWriteFile = true;
@@ -66,7 +75,9 @@ public class ReceiveTrail : MonoBehaviour
     {
         HashSet<Vector3> points = new HashSet<Vector3>();
 
-        string[] stringPoints = msg.Split((char)MessageSeparators.L2);
+        string newMsg = msg.Split('#')[1];
+
+        string[] stringPoints = newMsg.Split((char)MessageSeparators.L2);
         //Debug.Log(stringPoints.Length);
         //Debug.Log("a1");
 

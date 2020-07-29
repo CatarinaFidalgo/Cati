@@ -83,12 +83,13 @@ public class UdpEvaluationCommands : MonoBehaviour
             {
                 _startEvaluation(tokens);
             }
-            else if (tokens[0] == "update" && !eval.localIsDemonstrator)
+
+            /*else if (tokens[0] == "update" && !eval.localIsDemonstrator)
             {
                 startend.showWorkspace = Convert.ToBoolean(tokens[1]);
                // remoteGenerateHullDone = Convert.ToBoolean(tokens[2]);
                 Debug.Log(tokens);
-            }
+            }*/
 
 
         }
@@ -97,17 +98,18 @@ public class UdpEvaluationCommands : MonoBehaviour
     private void _startEvaluation(string[] tokens)
     {
         eval.condition = (ConditionType)Enum.Parse(typeof(ConditionType), tokens[1]);
-        eval.test = (TestType)Enum.Parse(typeof(TestType), tokens[2]);
+        eval.test1 = (TestType)Enum.Parse(typeof(TestType), tokens[2]);
+        eval.test2 = (TestType)Enum.Parse(typeof(TestType), tokens[3]);
         if (eval.machine == MachineType.A)
-        {
-            eval.participantID = tokens[3];
-        }
-        else if (eval.machine == MachineType.B)
         {
             eval.participantID = tokens[4];
         }
+        else if (eval.machine == MachineType.B)
+        {
+            eval.participantID = tokens[5];
+        }
 
-        eval._resultsFolder = tokens[5];
+        eval._resultsFolder = tokens[6];
 
         
     }
