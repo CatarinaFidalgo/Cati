@@ -85,6 +85,7 @@ public class TCPClient : MonoBehaviour
                         if (serverMessage.Split('#')[0] == "demonstrator")
                         {
                             evaluation.localIsDemonstrator = Convert.ToBoolean(serverMessage.Split('#')[1]);
+                            startEnd.changeCoordinator = true;
                             Debug.Log("Become the DEMONSTRATOOOOR");
                         }
 

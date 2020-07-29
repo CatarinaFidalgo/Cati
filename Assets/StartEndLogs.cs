@@ -55,17 +55,20 @@ public class StartEndLogs : MonoBehaviour
            
 
     }
+
+    public bool changeCoordinator = true;
     void Update()
     {
         OVRInput.Update();
 
-        if (evaluation.localIsDemonstrator && test.j == 0)
+        if (evaluation.localIsDemonstrator && test.j == 0 && changeCoordinator)
         {
             startCanvas.SetActive(true);
             midCanvas.SetActive(false);
             endCanvas.SetActive(false);
             InitializeFiles();
             generalInfo = " \",\"Condition\",\"ParticipantID\",\"Test1\",\"Test2\",\" ";
+            changeCoordinator = false;
         }
 
 
@@ -219,7 +222,8 @@ public class StartEndLogs : MonoBehaviour
     {
         participantID = evaluation.participantID;
 
-        evaluation._resultsFolder = Application.dataPath + evaluation._resultsFolder;
+        evaluation._resultsFolder = Application.dataPath + Path.DirectorySeparatorChar + evaluation._resultsFolder;
+
 
         if (!Directory.Exists(evaluation._resultsFolder))
         {

@@ -89,6 +89,7 @@ public class TCPServer : MonoBehaviour
                             {
                                 evaluation.localIsDemonstrator = Convert.ToBoolean(clientMessage.Split('#')[1]);
                                 Debug.Log("Become the DEMONSTRATOOOOR");
+                                startEnd.changeCoordinator = true;
                             }
 
                         }
