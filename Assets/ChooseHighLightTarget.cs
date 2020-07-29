@@ -93,18 +93,18 @@ public class ChooseHighLightTarget : MonoBehaviour
 
                 if (evaluation.machine == MachineType.A)
                 {
-                    evaluation.tcpServer.SendAVeryImportantMessage("demonstrator#" + evaluation.localIsDemonstrator.ToString());
+                    evaluation.tcpServer.SendAVeryImportantMessage("demonstrator#" + (!evaluation.localIsDemonstrator).ToString());
                     //Debug.Log("Sending in machine A");
                     
                 }
                 else
                 {
-                    evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + evaluation.localIsDemonstrator.ToString());
+                    evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + (!evaluation.localIsDemonstrator).ToString());
                     
                 }
 
 
-                END = true;
+                //END = true;
 
             }
 

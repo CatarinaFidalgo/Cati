@@ -147,9 +147,9 @@ public class IntersectionCalculator : MonoBehaviour
 
                 Debug.Log(percentageString);
 
-                //initialMeshCSG.SetActive(false);                
-                //localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
-                //remoteVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
+                initialMeshCSG.SetActive(false);                
+                localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
+                remoteVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
 
 
 
