@@ -76,10 +76,10 @@ public class TCPServer : MonoBehaviour
 							Array.Copy(bytes, 0, incommingData, 0, length);
 							// Convert byte array to string message. 							
 							string clientMessage = Encoding.ASCII.GetString(incommingData);
-							//Debug.Log("client message received with: " + clientMessage.Length + " as: " + clientMessage);
+							Debug.Log("client message received with: " + clientMessage.Length + " as: " + clientMessage);
 							receiveTrail.newTrailMessage(clientMessage);
 
-                            if (clientMessage.Split('#')[0] == "update#")
+                            if (clientMessage.Split('#')[0] == "update")
                             {
                                 startEnd.showWorkspace = Convert.ToBoolean(clientMessage.Split('#')[1]);
                             }
@@ -115,8 +115,8 @@ public class TCPServer : MonoBehaviour
 				byte[] serverMessageAsByteArray = Encoding.ASCII.GetBytes(serverMessage);
 				// Write byte array to socketConnection stream.               
 				stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
-				//Debug.Log("Server sent his message - should be received by client");
-			}
+                Debug.Log("Server sent his message - should be received by server - Nr. characters: " + message.Length + " Message: " + message);
+            }
 		}
 		catch (SocketException socketException)
 		{
