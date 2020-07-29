@@ -21,6 +21,7 @@ public class TCPClient : MonoBehaviour
 
 	public ReceiveTrail receiveTrail;
     public StartEndLogs startEnd;
+    public Evaluation evaluation;
 
 	// Use this for initialization 	
 	public void StartClient()
@@ -81,7 +82,13 @@ public class TCPClient : MonoBehaviour
                             Debug.Log("Show Workspace");
                         }
 
-					}
+                        if (serverMessage.Split('#')[0] == "demonstrator")
+                        {
+                            evaluation.localIsDemonstrator = Convert.ToBoolean(serverMessage.Split('#')[1]);
+                            Debug.Log("Become the DEMONSTRATOOOOR");
+                        }
+
+                    }
 				}
 			}
 		}

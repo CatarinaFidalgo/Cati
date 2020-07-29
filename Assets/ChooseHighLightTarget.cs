@@ -99,6 +99,7 @@ public class ChooseHighLightTarget : MonoBehaviour
                 }
                 else
                 {
+                    END = true;
                     evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + (!evaluation.localIsDemonstrator).ToString());
                     
                 }

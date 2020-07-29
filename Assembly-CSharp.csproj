@@ -900,6 +900,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200722-173437_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-154000_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200729-183558__LogBodyLocal.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-190450__LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-183118_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot\100I_20200720-114815_Approach_LogIntersection.txt" />
     <None Include="Assets\OutlineEffect\Readme.txt" />
@@ -945,6 +946,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200720-184421_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-150504_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200728-180520_Veridical_LogVolumePoints.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-190450__LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-164150_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-130519_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200722-162440_Approach_LogTime.txt" />
@@ -984,6 +986,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200722-153146_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-174036_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-134939_Approach_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-190450__LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-134029_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-181039_Approach_LogBodyRemote.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-125353_Approach_LogVolumePoints.txt" />
@@ -1230,6 +1233,7 @@
     <None Include="Assets\Results100i\100D_20200720-100848_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-170714_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200728-182236_Veridical_LogBodyRemote.txt" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-190450__LogBodyLocal.txt" />
     <None Include="Assets\Results100i\100D_20200720-100306_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200727-164528_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-125353_Approach_LogBodyRemote.txt" />
@@ -1285,6 +1289,7 @@
     <None Include="Assets\ResultsPilot2\100I_20200720-123548_Approach_LogTime.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-132911_Approach_LogBodyLocal.txt" />
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\GradientSkybox.shader" />
+    <None Include="Assets\ResultsPilot2\100I_20200729-190450__LogVolumePoints.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-160714_Approach_LogBodyLocal.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200721-132615_Approach_LogIntersection.txt" />
     <None Include="Assets\ResultsPilot2\100I_20200720-173409_Approach_LogIntersection.txt" />

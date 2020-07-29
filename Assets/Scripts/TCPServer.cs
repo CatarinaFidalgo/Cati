@@ -32,6 +32,7 @@ public class TCPServer : MonoBehaviour
 
 	public ReceiveTrail receiveTrail;
     public StartEndLogs startEnd;
+    public Evaluation evaluation;
 
     // Use this for initialization
     public void StartServer()
@@ -82,6 +83,12 @@ public class TCPServer : MonoBehaviour
                             if (clientMessage.Split('#')[0] == "update")
                             {
                                 startEnd.showWorkspace = Convert.ToBoolean(clientMessage.Split('#')[1]);
+                            }
+
+                            if (clientMessage.Split('#')[0] == "demonstrator")
+                            {
+                                evaluation.localIsDemonstrator = Convert.ToBoolean(clientMessage.Split('#')[1]);
+                                Debug.Log("Become the DEMONSTRATOOOOR");
                             }
 
                         }

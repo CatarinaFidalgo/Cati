@@ -191,8 +191,7 @@ public class StartEndLogs : MonoBehaviour
             //+ "\",\"" + sendAvatar.logGeneral.Replace("#", "\",\"").Replace(":", "\",\"").Replace("/", "\",\"") + "\""
 
 
-        }
-
+        }        
         
 
         else if (test.END)
@@ -202,14 +201,20 @@ public class StartEndLogs : MonoBehaviour
             //Debug.Log("Está no else");
         }
 
-        
+        else
+        {
+            endCanvas.SetActive(false);
+            midCanvas.SetActive(false);
+        }
+
+
 
 
         //if local is not the demonstrator the data won't be stored in his unit
         //Logs are always saved in the demonstrators site
 
 
-            //yield return new WaitForSeconds(0.0f);
+        //yield return new WaitForSeconds(0.0f);
     }
 
     void InitializeFiles()
