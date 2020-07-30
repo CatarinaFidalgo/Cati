@@ -31,7 +31,7 @@ public class StartEndLogs : MonoBehaviour
     private string _logIntersectionPath;
     private string _logTimePath;
 
-    private string generalInfo;
+    private string generalInfo = "";
 
     
     public bool getStartTime = true;
@@ -43,6 +43,10 @@ public class StartEndLogs : MonoBehaviour
     public GameObject midCanvas;
 
     public SendSetUpInfo sendToInterpreter;
+
+    //public bool changeCoordinator = true;
+    public bool changeCoordinator = false;
+    public bool filesCreated = false;
 
     //IEnumerator Start()
     void Start()
@@ -56,20 +60,23 @@ public class StartEndLogs : MonoBehaviour
 
     }
 
-    public bool changeCoordinator = true;
+    
     void Update()
     {
         OVRInput.Update();
 
+        //Debug.Log(changeCoordinator);
 
-
+        ///Init files
         if (evaluation.localIsDemonstrator && test.j == 0 && changeCoordinator)
         {
+            Debug.Log("InitializeFiles files");
             startCanvas.SetActive(true);
             midCanvas.SetActive(false);
-            endCanvas.SetActive(false);
-            InitializeFiles();
+            endCanvas.SetActive(false);            
             generalInfo = "Condition\",\"ParticipantID\",\"Test\",\" ";
+            Debug.Log(generalInfo);
+            InitializeFiles();
             changeCoordinator = false;
         }
 
@@ -88,7 +95,7 @@ public class StartEndLogs : MonoBehaviour
         
         
 
-        if (evaluation.localIsDemonstrator && !test.END)
+        if (evaluation.localIsDemonstrator && !test.END && filesCreated)
         {
             /*if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.9f) //&& getStartTime)
             {
@@ -266,6 +273,7 @@ public class StartEndLogs : MonoBehaviour
         File.AppendAllText(_logIntersectionPath, generalInfo + "\"Time Stamp\",\"V_Local(cm3)\",\"V_Remote(cm3)\",\"V_Union(cm3)\",\"V_Intersection(cm3)\",\"Intersection (%)\"\n");
         File.AppendAllText(_logTimePath, generalInfo + "\"Task Start Time\",\"Task End Time\",\"Delta Time\"\n");
 
+        filesCreated = true;
     }
 
     TimeSpan DeltaDateTimeToSeconds(DateTime t0, DateTime t1)

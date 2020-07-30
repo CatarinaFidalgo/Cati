@@ -251,6 +251,7 @@ public class Evaluation : MonoBehaviour
                 sendInfo.send(s);
                // Debug.Log("sent:" + s);
                 showUI = false;
+                
             }
         }
     }

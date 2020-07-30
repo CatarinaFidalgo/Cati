@@ -67,7 +67,7 @@ public class IntersectionCalculator : MonoBehaviour
                 float volumeCSG = (VolumeOfMesh(intersectionMesh) * 1000000);
                 Debug.Log("Volume from CSG Algorithm: " + volumeCSG + ".   %: " + volumeCSG / chlocal.volume * 100.0f);
 
-
+                newGo.SetActive(false);
                 
 
 
@@ -84,7 +84,7 @@ public class IntersectionCalculator : MonoBehaviour
                 
                 //Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
 
-                for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
+                /*for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
 				{
 
 					float x = (float)Math.Ceiling(result.intersectionPoints.ToList()[i].x * 10000000) / 10000000;
@@ -95,7 +95,7 @@ public class IntersectionCalculator : MonoBehaviour
 
 					Instantiate(ball, position, Quaternion.identity);
 
-				}
+				}*/
 
                 if (result.intersectionPoints.Count >= 4)
                 {

@@ -19,7 +19,7 @@ public class UdpEvaluationCommands : MonoBehaviour
     private byte[] _receivedBytes;
     //so we don't have to create again
 
-    public StartEndLogs startend;
+    public StartEndLogs startEnd;
 
     //public ConvexHullTryRemote chremote;
 
@@ -111,7 +111,9 @@ public class UdpEvaluationCommands : MonoBehaviour
 
         eval._resultsFolder = tokens[6];
 
-        
+        startEnd.changeCoordinator = true;
+
+        Debug.Log("Ola" + startEnd.changeCoordinator);
     }
 
     void OnApplicationQuit()

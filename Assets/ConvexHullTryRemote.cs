@@ -166,7 +166,7 @@ namespace GK
 
 						Debug.Log("nr ch remote:" + nrCHremote);
 
-						/////////////////////////////////////////////////////initialHull.SetActive(false);
+						initialHull.SetActive(false);
 
 
 					}
