@@ -100,8 +100,10 @@ public class ChooseHighLightTarget : MonoBehaviour
                 else
                 {
                     END = true;
-                    evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + (!evaluation.localIsDemonstrator).ToString());
-                    
+                    //evaluation.tcpClient.SendAVeryImportantMessage("demonstrator#" + (!evaluation.localIsDemonstrator).ToString());
+                    p101.GetComponent<HighLight>().radius = 0.0f;
+                    p102.GetComponent<HighLight>().radius = 0.0f;
+                    p103.GetComponent<HighLight>().radius = 0.0f;
                 }
 
                 j = 0;
