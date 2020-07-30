@@ -258,7 +258,7 @@ public class Evaluation : MonoBehaviour
                 s += UI_ResultsFolder;
                 sendInfo.send(s);
                // Debug.Log("sent:" + s);
-                showUI = false;
+                //showUI = false;
                 
             }
 
@@ -268,7 +268,7 @@ public class Evaluation : MonoBehaviour
             GUI.Label(new Rect(left, top, 1000, linestep), "CH Remote: " + convexRemote.nrCHremote, myStyleMAIOR); top += linestep; 
             GUI.Label(new Rect(left, top, 1000, linestep), "Target JOTA: " + highlightTarget.j, myStyleMAIOR); top += linestep;
             GUI.Label(new Rect(left, top, 1000, linestep), "% intersection: " + intersectionCalc.percentageOfIntersection, myStyleMAIOR); top += linestep;
-            GUI.Label(new Rect(left, top, 1000, linestep), "Write intersection: " + intersectionCalc.writeResult, myStyleMAIOR); top += linestep;
+            //GUI.Label(new Rect(left, top, 1000, linestep), "Write intersection: " + intersectionCalc.writeResult, myStyleMAIOR); top += linestep;
 
         }
     }
