@@ -172,7 +172,7 @@ namespace GK
 					}
 					catch (System.ArgumentException)
 					{
-						
+						nrCHremote++;
 						receiveTrail.remotePoints.Clear();
                         remotePointsAltered.Clear();
                         generateHullDone = true;
@@ -184,7 +184,7 @@ namespace GK
 
 					catch (UnityEngine.Assertions.AssertionException)
 					{
-						
+						nrCHremote++;
 						receiveTrail.remotePoints.Clear();
                         remotePointsAltered.Clear();
                         generateHullDone = true;

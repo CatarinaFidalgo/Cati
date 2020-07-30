@@ -208,6 +208,14 @@ public class IntersectionCalculator : MonoBehaviour
 
         }
 
+        else if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && eval.localIsDemonstrator && (!chlocal.readyForIntersectionLocal || !chremote.readyForIntersectionRemote) )
+        {
+            percentageString = "Error computing initial hulls: Assertion failed!";
+            writeResult = true;
+        }
+
+
+
     }
 
     float SignedVolumeOfTriangle(Vector3 p1, Vector3 p2, Vector3 p3)

@@ -126,16 +126,22 @@ namespace GK
 					}
 					catch (System.ArgumentException)
 					{
+						nrCHlocal++;
 						saveTrailPoints.pointsTrail.Clear();						
 						generateHullDone = true;
 						startEnd.getStartTime = true;
+
+						Debug.Log("Exception1");
 					}
 
 					catch (UnityEngine.Assertions.AssertionException)
 					{
+						nrCHlocal++;
 						saveTrailPoints.pointsTrail.Clear();						
 						generateHullDone = true;
 						startEnd.getStartTime = true;
+
+						Debug.Log("Exception2");
 					}
 
 
