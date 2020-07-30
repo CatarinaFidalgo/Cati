@@ -1,0 +1,5 @@
+Condition","ParticipantID","Test"," "Time Stamp","V_Local(cm3)","V_Remote(cm3)","V_Union(cm3)","V_Intersection(cm3)","Intersection (%)"
+Approach","g","T1","17:08:09:540","932.7459","1886.667","0","0.0"
+Approach","g","T","17:09:07:469","Couldn't generate Hull - Exception."
+Approach","g","T1","17:09:26:987","30.19489","109.1667","0","0.0"
+Approach","g","T1","17:10:00:840","271.0576","566.6663","0.8130482","0.3"

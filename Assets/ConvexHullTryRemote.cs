@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using GK;
+using System.IO;
 
 namespace GK
 {
@@ -26,6 +27,7 @@ namespace GK
 		//public checkIntersection checkInt;
 
 		public ReceiveTrail receiveTrail;
+        public ConvexHullTry chlocal;
 
 		//List<Vector3> pointsTrailRemote = new List<Vector3>();
 
@@ -41,6 +43,9 @@ namespace GK
 
         IEnumerator Start()
 		{
+
+            
+
 
 			//Parametros necessarios para o algoritmo de Convex Hull
 
@@ -168,8 +173,19 @@ namespace GK
 
 						initialHull.SetActive(false);
 
+                        if (chlocal.ChParent.childCount != chlocal.nrCHlocal)
+                        {
+                            Destroy(initialHull);
+                            Debug.Log("destroyed exception object");
+                            nrCHremote--;
+                            chlocal.nrCHlocal--;
+                            File.AppendAllText(startEnd._logIntersectionPath, eval.condition.ToString() + "\",\"" + eval.participantID.ToString() + "\",\"" + "T" + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + "Couldn't generate Hull - Exception." + "\"\n");
 
-					}
+                        }
+
+
+
+                    }
 					catch (System.ArgumentException)
 					{
 						nrCHremote++;

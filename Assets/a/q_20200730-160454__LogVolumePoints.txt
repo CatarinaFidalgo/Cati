@@ -1,0 +1,3 @@
+Condition","ParticipantID","Test"," "Set of points participants used to outline the area of interest (for replicability): Demonstrator then Interpreter "
+Veridical","q","T1","16:05:08:000"
+Veridical","q","T1","16:05:36:643","points","0.05","1.26","-0.04","0.05","1.26","-0.04","0.05","1.26","-0.04","0.03","1.26","-0.04","0.02","1.26","-0.05","0.04","1.25","-0.05","0.05","1.24","-0.04","0.02","1.23","-0.05",""

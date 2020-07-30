@@ -52,6 +52,11 @@ public class IntersectionCalculator : MonoBehaviour
 
                 child = chremote.nrCHremote - 1;
 
+                /*if ()
+                {
+
+                }*/
+
                 CSG A = CSG.fromMesh(localVolumesParent.transform.GetChild(child).GetComponent<MeshFilter>().mesh, localVolumesParent.transform.GetChild(child));
                 CSG B = CSG.fromMesh(remoteVolumesParent.transform.GetChild(child).GetComponent<MeshFilter>().mesh, remoteVolumesParent.transform.GetChild(child));
 
@@ -162,7 +167,7 @@ public class IntersectionCalculator : MonoBehaviour
 
             catch (System.ArgumentException)
             {
-
+                //newGo.SetActive(false);
 
                 initialMeshCSG.SetActive(false);
                 localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
@@ -185,6 +190,8 @@ public class IntersectionCalculator : MonoBehaviour
 
             catch (UnityEngine.Assertions.AssertionException)
             {
+                //newGo.SetActive(false);
+
                 initialMeshCSG.SetActive(false);
                 localVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
                 remoteVolumesParent.transform.GetChild(child).gameObject.SetActive(false);
@@ -208,11 +215,13 @@ public class IntersectionCalculator : MonoBehaviour
 
         }
 
-        else if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && eval.localIsDemonstrator && (!chlocal.readyForIntersectionLocal || !chremote.readyForIntersectionRemote) )
+        /*else if (chremote.nrCHremote == chlocal.nrCHlocal && chremote.nrCHremote != 0 && chlocal.nrCHlocal != 0 && eval.localIsDemonstrator && (!chlocal.readyForIntersectionLocal || !chremote.readyForIntersectionRemote) )
         {
             percentageString = "Error computing initial hulls: Assertion failed!";
-            writeResult = true;
-        }
+            //writeResult = true;
+
+            Debug.Log("Stuck here");
+        }*/
 
 
 

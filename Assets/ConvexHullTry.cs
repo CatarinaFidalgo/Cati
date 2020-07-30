@@ -4,6 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.WSA.Input;
+using ConstructiveSolidGeometry;
+using GK;
+using Oculus.Platform.Samples.VrHoops;
+
+using System;
+using System.IO;
 
 namespace GK
 {
@@ -30,6 +36,7 @@ namespace GK
 
         public Evaluation eval;
 		public StartEndLogs startEnd;
+        public ConvexHullTryRemote chremote;
 
 
 		IEnumerator Start()
@@ -122,9 +129,20 @@ namespace GK
 
 						Debug.Log("nr ch local:" + nrCHlocal);
 
+                        if (chremote.ChParent.childCount != chremote.nrCHremote)
+                        {
+                            Destroy(initialHull);
+                            Debug.Log("destroyed exception object");
+                            nrCHlocal--;
+                            chremote.nrCHremote--;
+                            File.AppendAllText(startEnd._logIntersectionPath, eval.condition.ToString() + "\",\"" + eval.participantID.ToString() + "\",\"" + "T" + "\",\"" + System.DateTime.Now.ToString("HH:mm:ss:fff") + "\",\"" + "Couldn't generate Hull - Exception." + "\"\n");
 
-					}
-					catch (System.ArgumentException)
+                        }
+
+
+
+                    }
+                    catch (System.ArgumentException)
 					{
 						nrCHlocal++;
 						saveTrailPoints.pointsTrail.Clear();						

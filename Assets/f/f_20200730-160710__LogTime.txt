@@ -1,0 +1,3 @@
+Condition","ParticipantID","Test"," "Task Start Time","Task End Time","Delta Time"
+Veridical","f","T1","16:07:15:224","16:07:32:967","00:00:17.7434617"
+Veridical","f","T1","16:07:56:608","16:08:18:843","00:00:22.2357414"

@@ -28,7 +28,7 @@ public class StartEndLogs : MonoBehaviour
     private string _logBodyLocalPath;
     private string _logBodyRemotePath;
     private string _logVolumePointsPath;
-    private string _logIntersectionPath;
+    public string _logIntersectionPath;
     private string _logTimePath;
 
     private string generalInfo = "";

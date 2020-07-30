@@ -647,6 +647,7 @@ MonoBehaviour:
   writeFile: 0
   eval: {fileID: 1641664408}
   startEnd: {fileID: 1243343297}
+  chremote: {fileID: 1620914242}
 --- !u!23 &20217229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39454,6 +39455,7 @@ MonoBehaviour:
   nrCHremote: 0
   readyForIntersectionRemote: 0
   receiveTrail: {fileID: 75060617}
+  chlocal: {fileID: 20217228}
   writeFile: 0
   eval: {fileID: 1641664408}
   startEnd: {fileID: 1243343297}

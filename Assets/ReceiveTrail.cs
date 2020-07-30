@@ -63,7 +63,7 @@ public class ReceiveTrail : MonoBehaviour
                 }
 
                 receptionComplete = true;
-
+                Debug.Log("receptionComplete" + receptionComplete);
                 //tcpWriteFile = true;
             }
         }
