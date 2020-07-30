@@ -48,16 +48,6 @@ public class StartEndLogs : MonoBehaviour
     void Start()
     {
 
-        if (evaluation.localIsDemonstrator)
-        {
-            startCanvas.SetActive(true);
-            midCanvas.SetActive(false);
-            endCanvas.SetActive(false);
-            InitializeFiles();
-            generalInfo = " \",\"Condition\",\"ParticipantID\",\"Test1\",\"Test2\",\" ";
-
-            
-        }
 
         
 
@@ -69,7 +59,15 @@ public class StartEndLogs : MonoBehaviour
     {
         OVRInput.Update();
 
-        
+        if (evaluation.localIsDemonstrator && test.j == 0)
+        {
+            startCanvas.SetActive(true);
+            midCanvas.SetActive(false);
+            endCanvas.SetActive(false);
+            InitializeFiles();
+            generalInfo = " \",\"Condition\",\"ParticipantID\",\"Test1\",\"Test2\",\" ";
+        }
+
 
         if (evaluation.localIsDemonstrator && !test.END)
         {

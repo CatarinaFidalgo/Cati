@@ -46,7 +46,7 @@ public class ChooseHighLightTarget : MonoBehaviour
             Test = TestOn1;
         }
 
-        if (evaluation.machine == MachineType.A)
+        if (evaluation.machine == MachineType.B)
         {
             Test = TestOn2;
         }
@@ -104,6 +104,7 @@ public class ChooseHighLightTarget : MonoBehaviour
                     
                 }
 
+                j = 0;
 
                 //END = true;
 
