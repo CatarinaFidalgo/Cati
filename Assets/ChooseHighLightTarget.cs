@@ -85,7 +85,7 @@ public class ChooseHighLightTarget : MonoBehaviour
                 p103.GetComponent<HighLight>().radius = 0.05f;
             }
 
-            if (j == 16)
+            if (j >= 16)
             {
                  
                 evaluation.localIsDemonstrator = !evaluation.localIsDemonstrator;
