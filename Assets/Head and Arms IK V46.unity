@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25715,6 +25715,7 @@ MonoBehaviour:
   chlocal: {fileID: 20217228}
   chremote: {fileID: 1620914242}
   test: {fileID: 177125266}
+  _logIntersectionPath: 
   getStartTime: 1
   showWorkspace: 0
   endCanvas: {fileID: 1106135841}
@@ -39821,7 +39822,7 @@ MonoBehaviour:
   test2: 1
   participantID: 100I
   _resultsFolder: ResultsPilot2
-  localIsDemonstrator: 1
+  localIsDemonstrator: 0
   localWorkspace: {fileID: 1174460999}
   remoteWorkspace: {fileID: 1594974666}
   veridicalSetUp: {fileID: 1032742800}
@@ -39835,6 +39836,10 @@ MonoBehaviour:
   receiveAvatar: {fileID: 1594974667}
   tcpServer: {fileID: 75060620}
   tcpClient: {fileID: 75060621}
+  convexLocal: {fileID: 20217228}
+  convexRemote: {fileID: 1620914242}
+  intersectionCalc: {fileID: 2040792651}
+  highlightTarget: {fileID: 177125266}
   myStyle:
     m_Name: 
     m_Normal:
@@ -39891,6 +39896,73 @@ MonoBehaviour:
       m_Bottom: 0
     m_Font: {fileID: 0}
     m_FontSize: 18
+    m_FontStyle: 1
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  myStyleMAIOR:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 40
     m_FontStyle: 1
     m_Alignment: 0
     m_WordWrap: 0

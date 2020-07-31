@@ -1,4 +1,5 @@
-﻿using Oculus.Platform;
+﻿using GK;
+using Oculus.Platform;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,6 +60,12 @@ public class Evaluation : MonoBehaviour
 
     public TCPServer tcpServer;
     public TCPClient tcpClient;
+
+    public ConvexHullTry convexLocal;
+    public ConvexHullTryRemote convexRemote;
+    public IntersectionCalculator intersectionCalc;
+    public ChooseHighLightTarget highlightTarget;
+
 
     void Start()
     {
@@ -180,6 +187,7 @@ public class Evaluation : MonoBehaviour
     private int UI_test1 = 1;
     private int UI_test2 = 1;
     public GUIStyle myStyle;
+    public GUIStyle myStyleMAIOR;
     void OnGUI()
     {
         if (machine == MachineType.A && showUI) 
@@ -253,6 +261,15 @@ public class Evaluation : MonoBehaviour
                 showUI = false;
                 
             }
+
+            top += 100;
+            linestep *= 2;
+            GUI.Label(new Rect(left, top, 1000, linestep), "CH Local: " + convexLocal.nrCHlocal, myStyleMAIOR); top += linestep;
+            GUI.Label(new Rect(left, top, 1000, linestep), "CH Remote: " + convexRemote.nrCHremote, myStyleMAIOR); top += linestep; 
+            GUI.Label(new Rect(left, top, 1000, linestep), "Target JOTA: " + highlightTarget.j, myStyleMAIOR); top += linestep;
+            GUI.Label(new Rect(left, top, 1000, linestep), "% intersection: " + intersectionCalc.percentageOfIntersection, myStyleMAIOR); top += linestep;
+            GUI.Label(new Rect(left, top, 1000, linestep), "Write intersection: " + intersectionCalc.writeResult, myStyleMAIOR); top += linestep;
+
         }
     }
 
