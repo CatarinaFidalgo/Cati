@@ -1,0 +1,7 @@
+Condition","ParticipantID","Test"," "Time Stamp","V_Local(cm3)","V_Remote(cm3)","V_Union(cm3)","V_Intersection(cm3)","Intersection (%)"
+Veridical","6","T1","19:12:07:416","111.5552","43.8341","1.543512","1.4"
+Veridical","6","T1","19:12:32:792","40.40804","65.16669","12.16261","30.1"
+Veridical","6","T1","19:12:52:454","34.54713","32.33366","8.602015","24.9"
+Veridical","6","T1","19:13:14:108","28.53485","41.83323","4.50108","15.8"
+Veridical","6","T1","19:13:31:266","Error computing: Can't generate hull. points are coplanar!"
+Veridical","6","T1","19:13:49:328","71.14468","28.66667","1.586185","2.2"

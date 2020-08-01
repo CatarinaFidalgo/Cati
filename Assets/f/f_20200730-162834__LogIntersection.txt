@@ -1,2 +1,0 @@
-Condition","ParticipantID","Test"," "Time Stamp","V_Local(cm3)","V_Remote(cm3)","V_Union(cm3)","V_Intersection(cm3)","Intersection (%)"
-Veridical","f","T1","16:30:31:916","20.00313","56.83205","0","0.0"

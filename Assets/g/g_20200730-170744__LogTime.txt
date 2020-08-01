@@ -1,4 +1,0 @@
-Condition","ParticipantID","Test"," "Task Start Time","Task End Time","Delta Time"
-Approach","g","T1","17:07:53:945","17:08:09:011","00:00:15.0666339"
-Approach","g","T1","17:08:27:765","17:08:44:851","00:00:17.0855753"
-Approach","g","T1","17:09:43:865","17:10:00:305","00:00:16.4398100"
