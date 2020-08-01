@@ -87,9 +87,9 @@ public class IntersectionCalculator : MonoBehaviour
                 var normals = new List<Vector3>();
 
                 
-                //Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
+                Debug.Log("Intersection points Hash:" + result.intersectionPoints.Count);
 
-                /*for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
+                for (int i = 0; i < result.intersectionPoints.Count - 1; i++)
 				{
 
 					float x = (float)Math.Ceiling(result.intersectionPoints.ToList()[i].x * 10000000) / 10000000;
@@ -100,7 +100,7 @@ public class IntersectionCalculator : MonoBehaviour
 
 					Instantiate(ball, position, Quaternion.identity);
 
-				}*/
+				}
 
                 if (result.intersectionPoints.Count >= 4)
                 {
