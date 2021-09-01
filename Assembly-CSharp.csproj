@@ -73,6 +73,7 @@
     <Compile Include="Assets\calibration.cs" />
     <Compile Include="Assets\checkIntersection.cs" />
     <Compile Include="Assets\ChooseHighLightTarget.cs" />
+    <Compile Include="Assets\ControllerCalibration.cs" />
     <Compile Include="Assets\ConvexHullCalculator.cs" />
     <Compile Include="Assets\ConvexHullIntersection.cs" />
     <Compile Include="Assets\ConvexHullTry.cs" />
