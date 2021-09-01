@@ -44,8 +44,8 @@ public class StartEndLogs : MonoBehaviour
 
     public SendSetUpInfo sendToInterpreter;
 
-    //public bool changeCoordinator = true;
-    public bool changeCoordinator = false;
+    public bool changeCoordinator = true;
+    //public bool changeCoordinator = false;
     public bool filesCreated = false;
 
     //IEnumerator Start()
