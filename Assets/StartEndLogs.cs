@@ -44,8 +44,8 @@ public class StartEndLogs : MonoBehaviour
 
     public SendSetUpInfo sendToInterpreter;
 
-    public bool changeCoordinator = true;
-    //public bool changeCoordinator = false;
+    //public bool changeCoordinator = true;
+    public bool changeCoordinator = false;
     public bool filesCreated = false;
 
     //IEnumerator Start()
@@ -65,7 +65,7 @@ public class StartEndLogs : MonoBehaviour
     {
         OVRInput.Update();
 
-        //Debug.Log(changeCoordinator);
+        Debug.Log(changeCoordinator);
 
         ///Init files
         if (evaluation.localIsDemonstrator && test.j == 0 && changeCoordinator)
